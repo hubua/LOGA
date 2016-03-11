@@ -16,5 +16,17 @@ namespace LOGA.WebUI.Controllers
 
             return View("Index", abc);
         }
+
+        public ActionResult Learn(int id)
+        {
+            var abc = GeorgianABC.LettersIndex;
+
+            if (id < 1 || id > abc.Count)
+            {
+                id = 1;
+            }
+
+            return View("Learn", abc.ToList()[id].Value);
+        }
     }
 }
