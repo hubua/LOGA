@@ -1,0 +1,30 @@
+﻿@model Dictionary<string, LOGA.WebUI.Models.GeorgianLetter>
+
+@{
+    ViewBag.Title = "ქართული ანბანი";
+}
+
+<h2>ქართული ანბანი</h2>
+
+
+
+<table class="table text-center table-bordered" style="font-size:large">
+    <tr>
+        <th>მხედრული</th>
+        <th>ასომთავრული</th>
+        <th>ნუსხური</th>
+        <th>რიცხვითი მნიშვნელობა</th>
+        <th>სახელი</th>
+    </tr>
+    @foreach (var item in @Model)
+    {
+        <tr>
+            <td>@(String.IsNullOrEmpty(item.Value.ReadAs) ?  item.Value.Mxedruli : $"{item.Value.Mxedruli} ({item.Value.ReadAs})")</td>
+            <td>@item.Value.Asomtavruli</td>
+            <td>@item.Value.Nuskhuru</td>
+            <td>@item.Value.NumberEquivalent</td>
+            <td>@item.Value.LetterName</td>
+        </tr>
+        
+    }
+</table>
