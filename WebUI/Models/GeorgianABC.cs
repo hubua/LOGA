@@ -8,6 +8,8 @@ namespace LOGA.WebUI.Models
 {
     public static class GeorgianABC
     {
+        private static readonly Random random = new Random(DateTime.Now.Millisecond);
+
         public static Dictionary<char, GeorgianLetter> LettersDictionary;
 
         private static List<GeorgianLetter> LettersOrdered
@@ -40,14 +42,15 @@ namespace LOGA.WebUI.Models
             return LettersOrdered[index - 1];
         }
 
-        public static string ToKhucuri(string mxedruli)
+        public static string GetFirstWordToTranslateForLetter(int lid)
         {
-            StringBuilder result = new StringBuilder();
-            foreach (var c in mxedruli)
-            {
-                result.Append(LettersDictionary.ContainsKey(c) ? LettersDictionary[c].Nuskhuru : c.ToString());
-            }
-            return result.ToString();
+            return GetLetterByLearnIndex(lid).Words[0];
+        }
+
+        public static string GetRandomWordToTranslateForLetter(int lid)
+        {
+            var letter = GetLetterByLearnIndex(lid);
+            return letter.Words[random.Next(1, letter.Words.Count())];
         }
 
         public static void Initialize(string csvpath)
@@ -77,4 +80,27 @@ namespace LOGA.WebUI.Models
             }
         }
     }
+
+    public static class StringTranslationExtension
+    {
+        public static string ToKhucuri(this string mxedruli, bool withCapital = false)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (var c in mxedruli)
+            {
+                if (GeorgianABC.LettersDictionary.ContainsKey(c))
+                {
+                    string khucuriLetter = withCapital ? GeorgianABC.LettersDictionary[c].Asomtavruli : GeorgianABC.LettersDictionary[c].Nuskhuru;
+                    withCapital = false; // Only first letter should be capitalized
+                    result.Append(khucuriLetter);
+                }
+                else
+                {
+                    result.Append(c);
+                }
+            }
+            return result.ToString();
+        }
+    }
+
 }

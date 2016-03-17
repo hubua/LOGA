@@ -18,34 +18,38 @@ namespace LOGA.WebUI.Controllers
             return View("Index", abc);
         }
 
-        public ActionResult Learn(int id)
+        public ActionResult LearnLetter(int id)
         {
             if (!GeorgianABC.IsValidLetterIndex(id))
             {
-                return RedirectToAction("Learn", new { id = 1 });
+                return RedirectToAction("LearnLetter", new { id = 1 });
             }
 
             GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(id);
             return View("LearnLetter", letter);
         }
 
-        [HttpPost]
-        public ActionResult LetterRemembered(int id, int learnorder) // public ActionResult LetterRemembered([DefaultValue(0)] int id)
+        [HttpGet]
+        public ActionResult Translate(int id) // public ActionResult LetterRemembered([DefaultValue(0)] int id)
         {
-            if (id == 1)
+            if (!GeorgianABC.IsValidLetterIndex(id))
             {
-                return Learn(id + 1);
+                return RedirectToAction("Translate", new { id = 1 });
             }
-            else
-            {
-                GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(learnorder + 1);
-                return View("Translate", letter.Words[0]);
-            }
+            
+            return View("Translate", (object)GeorgianABC.GetFirstWordToTranslateForLetter(id).ToKhucuri());
+            
         }
 
-        public ActionResult LetterVerifyTranslation(string mxedruli, string translation)
+        [HttpPost]
+        public ActionResult Translate(int id, string hdnKhucuri, string tbTranslation)
         {
-            return null;
+            if (tbTranslation.ToKhucuri() == hdnKhucuri)
+            {
+                TempData["Result"] = "correct";
+            }
+
+            return View("Translate", (object)GeorgianABC.GetRandomWordToTranslateForLetter(id).ToKhucuri());
         }
     }
 }

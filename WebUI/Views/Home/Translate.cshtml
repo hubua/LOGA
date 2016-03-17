@@ -4,31 +4,24 @@
     ViewBag.Title = "სწავლა";
 }
 
+@TempData["Result"];
 
 
-@using (Html.BeginForm("LetterVerifyTranslation", "Home"))
+@using (Html.BeginForm("Translate", "Home"))
 {
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            გადათარგმნეთ
+        </div>
+        <div class="panel-body">
 
-    <table class="table text-center table-bordered" style="width: 500px">
-        <colgroup>
-            <col style="width: 25%; background-color: lightgray" />
-            <col style="width: 25%" />
-            <col style="width: 25%" />
-            <col style="width: 25%" />
-        </colgroup>
+            <div class="h2">@Model</div>
+            <div>
+                @Html.TextBox("tbTranslation", null, new { @class = "form-control input-lg", placeholder = "შეიყვანეთ თარგმანი" })
+            </div>
+        </div>
+    </div>
 
-        <tr>
-            <td>გადათარგმნეთ</td>
-        </tr>
-        <tr>
-            <td><strong>@Model</strong></td>
-        </tr>
-        <tr>
-            <td class="h1">@Html.TextBox("translation")</td>
-        </tr>
-    </table>
-
-    //@Html.HiddenFor(m => m.LearnOrder);
-    @Html.Hidden("mxedruli", Model);
-    <input type="submit" id="translate" name="translate" value="შევამოწმოთ" class="btn btn-default" />
+    @Html.Hidden("hdnKhucuri", Model);
+    <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-default" />
 }
