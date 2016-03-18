@@ -48,7 +48,7 @@ namespace LOGA.WebUI.Controllers
             {
                 TempData["Result"] = "correct";
             }
-
+            ModelState.Clear();
             return View("Translate", (object)GeorgianABC.GetRandomWordToTranslateForLetter(id).ToKhucuri());
         }
     }
