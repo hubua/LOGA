@@ -18,38 +18,70 @@ namespace LOGA.WebUI.Controllers
             return View("Index", abc);
         }
 
-        public ActionResult LearnLetter(int id)
+        public ActionResult LearnLetter(int lid)
         {
-            if (!GeorgianABC.IsValidLetterIndex(id))
+            if (!GeorgianABC.IsValidLetterIndex(lid))
             {
-                return RedirectToAction("LearnLetter", new { id = 1 });
+                return RedirectToAction("LearnLetter", new { lid = 1 });
             }
 
-            GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(id);
+            GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(lid);
             return View("LearnLetter", letter);
         }
 
         [HttpGet]
-        public ActionResult Translate(int id) // public ActionResult LetterRemembered([DefaultValue(0)] int id)
+        public ActionResult Translate(int lid) // public ActionResult LetterRemembered([DefaultValue(0)] int id)
         {
-            if (!GeorgianABC.IsValidLetterIndex(id))
+            if (!GeorgianABC.IsValidLetterIndex(lid))
             {
-                return RedirectToAction("Translate", new { id = 1 });
+                return RedirectToAction("Translate", new { lid = 1 });
             }
+
+
+            // TODO: no need to shuffle
+            var allwords = GeorgianABC.GetRandomWordsToTranslateForLetter(lid);
+            var firstword = GeorgianABC.GetFirstWordToTranslateForLetter(lid);
+            allwords.Remove(firstword);
+
+            Session["WordsToTranslate"] = allwords;
             
-            return View("Translate", (object)GeorgianABC.GetFirstWordToTranslateForLetter(id).ToKhucuri());
+            return View("Translate", new Translate(firstword, firstword.ToKhucuri()));
             
         }
 
         [HttpPost]
-        public ActionResult Translate(int id, string hdnKhucuri, string tbTranslation)
+        public ActionResult Translate(int lid, string hdnMxedruli, string tbTranslation) // TODO: TextBox from model
         {
-            if (tbTranslation.ToKhucuri() == hdnKhucuri)
+            var WordsToTranslate = (Dictionary<string, bool?>)Session["WordsToTranslate"];
+
+            var correct = (hdnMxedruli == tbTranslation);
+            WordsToTranslate[hdnMxedruli] = correct;
+
+            if (correct)
             {
                 TempData["Result"] = "correct";
             }
+
             ModelState.Clear();
-            return View("Translate", (object)GeorgianABC.GetRandomWordToTranslateForLetter(id).ToKhucuri());
+
+
+            string word = String.Empty;
+            foreach (var item in WordsToTranslate)
+            {
+                if (item.Value == null)
+                {
+                    word = item.Key;
+                    break;
+                }
+            }
+
+
+            return View("Translate", new Translate(word, word.ToKhucuri()));
+        }
+
+        public ActionResult LogError()
+        {
+            throw new ApplicationException("Sample error message", new ApplicationException("Sample inner error message"));
         }
     }
 }

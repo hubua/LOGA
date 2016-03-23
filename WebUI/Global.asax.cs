@@ -14,8 +14,9 @@ namespace LOGA.WebUI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
-            GeorgianABC.Initialize(@"~\App_Data\oga.csv");
+            GeorgianABC.Initialize(HttpContext.Current.Server.MapPath(@"~\App_Data\oga.csv"));
         }
     }
 }

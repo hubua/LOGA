@@ -28,14 +28,14 @@
 </table>
 
 
-@Html.ActionLink("REMEMBERED, NEXT", "LearnLetter", "Home", new { id = Model.LearnOrder + 1 }, new { @class = "btn btn-info btn-lg" })
-@Html.ActionLink("PREVIOUS", "LearnLetter", "Home", new { id = Model.LearnOrder - 1 }, new { @class = "btn btn-info btn-lg" })
+@Html.ActionLink("REMEMBERED, NEXT", "LearnLetter", "Home", new { lid = Model.LearnOrder + 1 }, new { @class = "btn btn-info btn-lg" })
+@Html.ActionLink("PREVIOUS", "LearnLetter", "Home", new { lid = Model.LearnOrder - 1 }, new { @class = "btn btn-info btn-lg" })
 @Html.ActionLink("LIST ALL", "Index", "Home", new { @class = "btn btn-info btn-lg" })
 
-@Html.ActionLink("CHECK KNOWLEGDE", "Translate", "Home", new { id = Model.LearnOrder }, new { @class = "btn btn-info btn-lg" })
+@Html.ActionLink("CHECK KNOWLEGDE", "Translate", "Home", new { lid = Model.LearnOrder }, new { @class = "btn btn-info btn-lg" })
 
 <!--
-@using (Html.BeginForm("LetterRemembered", "Home", new { id = Model.LearnOrder }))
+@using (Html.BeginForm("LetterRemembered", "Home", new { lid = Model.LearnOrder }))
 {
     @Html.Hidden("learnorder", Model.LearnOrder); // @Html.HiddenFor(m => m.LearnOrder);
     <input type="submit" id="remembered" name="remembered" value="დავიმახოვრე" class="btn btn-default" /> // formaction="LetterRemembered" formmethod="post"

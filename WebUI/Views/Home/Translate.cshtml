@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model LOGA.WebUI.Models.Translate
 
 @{
     ViewBag.Title = "სწავლა";
@@ -14,14 +14,13 @@
             გადათარგმნეთ
         </div>
         <div class="panel-body">
-
-            <div class="h2">@Model</div>
+            <div class="h2" style="padding-bottom: 15px; padding-top: 5px">@Model.Khucuri</div>
             <div>
                 @Html.TextBox("tbTranslation", null, new { @class = "form-control input-lg", placeholder = "შეიყვანეთ თარგმანი", autofocus = "" })
             </div>
         </div>
     </div>
 
-    @Html.Hidden("hdnKhucuri", Model);
+    @Html.Hidden("hdnMxedruli", Model.Mxedruli);
     <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-default" />
 }
