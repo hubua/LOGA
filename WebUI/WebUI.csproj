@@ -129,6 +129,7 @@
     <Content Include="Views\Home\LearnLetter.cshtml" />
     <Content Include="Views\Home\Translate.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Home\TranslateResults.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

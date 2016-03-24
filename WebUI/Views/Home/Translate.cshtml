@@ -4,8 +4,9 @@
     ViewBag.Title = "სწავლა";
 }
 
-@TempData["Result"];
 
+<h4><span class="label label-success" style="margin: 8px">@Model.CorrectCount</span>სწორია</h4>
+<h4><span class="label label-danger" style="margin: 8px">@Model.IncorrectCount</span>არასწორია</h4>
 
 @using (Html.BeginForm("Translate", "Home"))
 {

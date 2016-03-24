@@ -42,9 +42,19 @@ namespace LOGA.WebUI.Models
             return LettersOrdered[index - 1];
         }
 
+        /// <summary>
+        /// Gets firts word/sentence to translate for given Letter ID
+        /// </summary>
+        /// <param name="lid">Letter ID</param>
+        /// <returns>String in mxedruli to translate</returns>
         public static string GetFirstWordToTranslateForLetter(int lid)
         {
             return GetLetterByLearnIndex(lid).Words[0];
+        }
+
+        public static Dictionary<string, bool?> GetWordsToTranslateForLetter(int lid)
+        {
+            return GetLetterByLearnIndex(lid).Words.ToDictionary(item => item, item => default(bool?));
         }
 
         /// <summary>
