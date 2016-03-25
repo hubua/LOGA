@@ -4,24 +4,36 @@
     ViewBag.Title = "სწავლა";
 }
 
-
-<h4><span class="label label-success" style="margin: 8px">@Model.CorrectCount</span>სწორია</h4>
-<h4><span class="label label-danger" style="margin: 8px">@Model.IncorrectCount</span>არასწორია</h4>
-
 @using (Html.BeginForm("Translate", "Home"))
 {
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            გადათარგმნეთ
-        </div>
-        <div class="panel-body">
-            <div class="h2" style="padding-bottom: 15px; padding-top: 5px">@Model.Khucuri</div>
-            <div>
-                @Html.TextBox("tbTranslation", null, new { @class = "form-control input-lg", placeholder = "შეიყვანეთ თარგმანი", autofocus = "" })
+
+    <div class="row">
+        <div class="col-sm-6">
+            <!--ROW 1 COL 1-->
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    გადათარგმნეთ
+                </div>
+                <div class="panel-body">
+                    <div class="h2" style="padding-bottom: 15px; padding-top: 5px">@Model.Khucuri</div>
+                    <div>
+                        @Html.TextBox("tbTranslation", null, new { @class = "form-control input-lg", placeholder = "შეიყვანეთ თარგმანი", autofocus = "" })
+                    </div>
+                </div>
             </div>
+
+        </div>
+        <div class="col-sm-6">
+            <!--ROW 1 COL 1-->
+
+            <h4><span class="label label-success" style="margin: 8px">@Model.CorrectCount</span>სწორია</h4>
+            <h4><span class="label label-danger" style="margin: 8px">@Model.IncorrectCount</span>არასწორია</h4>
+
         </div>
     </div>
 
     @Html.Hidden("hdnMxedruli", Model.Mxedruli);
     <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-default" />
+
 }

@@ -20,7 +20,7 @@ namespace LOGA.WebUI.Controllers
 
         public ActionResult LearnLetter(int lid)
         {
-            if (!GeorgianABC.IsValidLetterIndex(lid))
+            if (!GeorgianABC.IsValidLearnIndex(lid))
             {
                 return RedirectToAction("LearnLetter", new { lid = 1 });
             }
@@ -32,7 +32,7 @@ namespace LOGA.WebUI.Controllers
         [HttpGet]
         public ActionResult Translate(int lid) // public ActionResult LetterRemembered([DefaultValue(0)] int id)
         {
-            if (!GeorgianABC.IsValidLetterIndex(lid))
+            if (!GeorgianABC.IsValidLearnIndex(lid))
             {
                 return RedirectToAction("Translate", new { lid = 1 });
             }
@@ -53,13 +53,7 @@ namespace LOGA.WebUI.Controllers
             var isCorrectTranslation = (hdnMxedruli == tbTranslation);
             WordsToTranslate[hdnMxedruli] = isCorrectTranslation;
 
-            if (isCorrectTranslation)
-            {
-                TempData["Result"] = "correct";
-            }
-
             ModelState.Clear();
-
 
             string word = String.Empty;
             int correctCount = 0;

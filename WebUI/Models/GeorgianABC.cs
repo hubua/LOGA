@@ -8,10 +8,12 @@ namespace LOGA.WebUI.Models
 {
     public static class GeorgianABC
     {
+
         private static readonly Random random = new Random(DateTime.Now.Millisecond);
 
         public static Dictionary<char, GeorgianLetter> LettersDictionary;
 
+        /*
         private static List<GeorgianLetter> LettersOrdered
         {
             get
@@ -20,26 +22,20 @@ namespace LOGA.WebUI.Models
             }
         }
 
-        /// <summary>
-        /// Returns sequental index of letters starting from 1
-        /// ა - 1
-        /// ბ - 2
-        /// </summary>
-        /// <param name="index">Letter index</param>
-        /// <returns>True if index between 1 and 38 (33 + 5)</returns>
-        public static bool IsValidLetterIndex(int index)
-        {
-            return (index >= 1 && index <= LettersDictionary.Count);
-        }
-
         public static GeorgianLetter GetLetterByAlphabetIndex(int index)
         {
             return LettersDictionary.ToList()[index - 1].Value;
         }
+        */
 
-        public static GeorgianLetter GetLetterByLearnIndex(int index)
+        public static bool IsValidLearnIndex(int lid)
         {
-            return LettersOrdered[index - 1];
+            return LettersDictionary.Values.ToList().Exists(item => item.LearnOrder == lid);
+        }
+
+        public static GeorgianLetter GetLetterByLearnIndex(int lid)
+        {
+            return LettersDictionary.Single(item => item.Value.LearnOrder == lid).Value;
         }
 
         /// <summary>
@@ -64,6 +60,8 @@ namespace LOGA.WebUI.Models
         /// <returns>String in mxedruli to translate</returns>
         public static string GetRandomWordToTranslateForLetter(int lid)
         {
+            throw new NotImplementedException();
+
             var letter = GetLetterByLearnIndex(lid);
             return letter.Words[random.Next(1, letter.Words.Count())];
         }
@@ -75,6 +73,8 @@ namespace LOGA.WebUI.Models
         /// <returns>String in mxedruli to translate</returns>
         public static string GetRandomWordToTranslateForLetters(int lid)
         {
+            throw new NotImplementedException();
+
             var letter = GetLetterByLearnIndex(random.Next(lid));
             return letter.Words[random.Next(1, letter.Words.Count())];
         }
@@ -86,6 +86,8 @@ namespace LOGA.WebUI.Models
         /// <returns>Strings in mxedruli / is correct translation</returns>
         public static Dictionary<string, bool?> GetRandomWordsToTranslateForLetter(int lid)
         {
+            throw new NotImplementedException();
+
             var letter = GetLetterByLearnIndex(lid);
             var words = letter.Words.OrderBy(item => random.Next()).ToArray();
             return words.ToDictionary(item => item, item => default(bool?));
@@ -144,8 +146,9 @@ namespace LOGA.WebUI.Models
     {
         public static string ToKhucuri(this string mxedruli, bool withCapital = false)
         {
+#if DEBUG
             return mxedruli;
-
+#endif
             StringBuilder result = new StringBuilder();
             foreach (var c in mxedruli)
             {
