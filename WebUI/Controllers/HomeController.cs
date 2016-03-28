@@ -10,6 +10,7 @@ namespace LOGA.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        private static string SESSION_WORDS_TO_TRANSLATE = "SESSION_WORDS_TO_TRANSLATE";
         // GET: Home
         public ActionResult Index()
         {
@@ -18,7 +19,7 @@ namespace LOGA.WebUI.Controllers
             return View("Index", abc);
         }
 
-        public ActionResult LearnLetter(int lid)
+        public ActionResult LearnLetter([DefaultValue(1)] int lid)
         {
             if (!GeorgianABC.IsValidLearnIndex(lid))
             {
@@ -30,16 +31,16 @@ namespace LOGA.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Translate(int lid) // public ActionResult LetterRemembered([DefaultValue(0)] int id)
+        public ActionResult Translate([DefaultValue(2)] int lid)
         {
-            if (!GeorgianABC.IsValidLearnIndex(lid))
+            if (!GeorgianABC.IsValidLearnIndex(lid) || lid == 1) // Change magic numbers to consts
             {
-                return RedirectToAction("Translate", new { lid = 1 });
+                return RedirectToAction("Translate", new { lid = 2 });
             }
 
             var words = GeorgianABC.GetWordsToTranslateForLetter(lid);
 
-            Session["WordsToTranslate"] = words;
+            Session[SESSION_WORDS_TO_TRANSLATE] = words;
             
             return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri()));
             
@@ -48,7 +49,11 @@ namespace LOGA.WebUI.Controllers
         [HttpPost]
         public ActionResult Translate(int lid, string hdnMxedruli, string tbTranslation) // TODO: TextBox from model
         {
-            var WordsToTranslate = (Dictionary<string, bool?>)Session["WordsToTranslate"]; // TODO: Move to property
+            var WordsToTranslate = (Dictionary<string, bool?>)Session[SESSION_WORDS_TO_TRANSLATE]; // TODO: Move to property
+            if (WordsToTranslate == null)
+            {
+                return RedirectToAction("Translate", new { lid = lid });
+            }
 
             var isCorrectTranslation = (hdnMxedruli == tbTranslation);
             WordsToTranslate[hdnMxedruli] = isCorrectTranslation;

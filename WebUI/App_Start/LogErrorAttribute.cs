@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,6 +11,8 @@ namespace LOGA.WebUI
 {
     public class LogErrorAttribute : HandleErrorAttribute
     {
+        private readonly string logaConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
         private const string SQL_QUERY =
             @"INSERT INTO ErrorLog
             (
@@ -22,14 +27,16 @@ namespace LOGA.WebUI
         {
             base.OnException(filterContext);
 
+            
+
             // TODO: Log to storage
             //var a = filterContext.RequestContext.RouteData;
 
-            /*
-            using (SqlConnection conn = new SqlConnection(mssConnectionString))
+            
+            using (SqlConnection conn = new SqlConnection(logaConnectionString))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand(SQL_QUERY, conn))
+                /*using (SqlCommand cmd = new SqlCommand(SQL_QUERY, conn))
                 {
                     cmd.Parameters.AddWithValue("@ExceptionType", ExceptionType);
                     cmd.Parameters.AddWithValue("@InnerMessage", InnerMessage);
@@ -41,9 +48,9 @@ namespace LOGA.WebUI
                     cmd.Parameters.AddWithValue("@ErrorDate", ErrorDate);
 
                     cmd.ExecuteNonQuery();
-                }
+                }*/
             }
-            */
+            
         }
     }
 
