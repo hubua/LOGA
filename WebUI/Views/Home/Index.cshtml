@@ -6,26 +6,22 @@
 
 <pre>
 <strong>TODO:</strong>
-* Collapsing menu
-* Width of translation input for long text
-** Move results on top, when narrow page
 * How to learn words in asomtavruli and numbers
 ** Add levels of complexity - (1) nusxuri (2) asomtavruli (3) numbers
 * How to learn unavailable letters - index more then 100
 * Add intermediate exam with random letters learned up to current in the TranslationResult
-* Add more sentences to translate
 ** Add large orthodox texts to translate
 * Add persistent (DB) error logging
 * Save user progress (DB / Cookie)
-* Top menu, resizable
 * Introducution text
 * Add section with PDFs to download
 * Service page to calculate letter for given sentence
 * Service page for logs
+* Add more sentences to translate
 * Associations with images or mnemonics
+* http://martlmadidebloba.ge/ganmarteba19.html
 * Georgian on http://www.memrise.com/home/
 * Tips http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/
-
 <strong>BUGS:</strong>
 * Translation fails when session expires
 * Fix redirection links - translation, styling, availability
@@ -46,23 +42,25 @@
     @Html.ActionLink("დავიწყოთ", "LearnLetter", "Home", new { lid = 1 }, new { @class = "btn btn-info btn-lg" })
 </p>
 
-<table class="table text-center table-bordered" style="font-size:large">
-    <tr>
-        <th>სახელი</th>
-        <th>მხედრული</th>
-        <th>ასომთავრული</th>
-        <th>ნუსხური</th>
-        <th>რიცხვითი მნიშვნელობა</th>
-    </tr>
-    @foreach (var item in @Model)
-    {
+<h4>
+    <table class="table text-center table-bordered">
         <tr>
-            <td><a href='@Url.Action("LearnLetter", "Home", new { lid = @item.Value.LearnOrder })' data-toggle="tooltip" title = "გავაგრძელოთ აქედან">@item.Value.LetterName</a></td>
-            <td>@(String.IsNullOrEmpty(item.Value.ReadAs) ?  item.Value.Mxedruli : $"{item.Value.Mxedruli} ({item.Value.ReadAs})")</td>
-            <td>@item.Value.Asomtavruli</td>
-            <td>@item.Value.Nuskhuru</td>
-            <td>@item.Value.NumberEquivalent</td>
+            <th>სახელი</th>
+            <th>მხედრული</th>
+            <th>ასომთავრული</th>
+            <th>ნუსხური</th>
+            <th>რიცხვითი მნიშვნელობა</th>
         </tr>
-        
-    }
-</table>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td><a href='@Url.Action("LearnLetter", "Home", new { lid = @item.Value.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@item.Value.LetterName</a></td>
+                <td>@(String.IsNullOrEmpty(item.Value.ReadAs) ? item.Value.Mxedruli : $"{item.Value.Mxedruli} ({item.Value.ReadAs})")</td>
+                <td>@item.Value.Asomtavruli</td>
+                <td>@item.Value.Nuskhuru</td>
+                <td>@item.Value.NumberEquivalent</td>
+            </tr>
+
+        }
+    </table>
+</h4>

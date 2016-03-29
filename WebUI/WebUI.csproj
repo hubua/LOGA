@@ -96,6 +96,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Download\anbani.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -110,6 +111,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\LogErrorAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DownloadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -133,6 +135,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\TranslateResults.cshtml" />
     <Content Include="Scripts\jquery-2.2.1.min.map" />
+    <Content Include="Download\anbani.pdf" />
+    <Content Include="Download\anbani1.pdf" />
+    <Content Include="Download\anbani2.pdf" />
+    <Content Include="Download\locvebi.pdf" />
+    <Content Include="Download\qaragmebi.pdf" />
+    <Content Include="Views\Downloads\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,14 +1,22 @@
 ﻿@model LOGA.WebUI.Models.Translate
 
 @{
-    ViewBag.Title = "სწავლა";
+    ViewBag.Title = "თარგმანი";
 }
 
 @using (Html.BeginForm("Translate", "Home"))
 {
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 col-sm-push-6">
+            <!--ROW 1 COL 2-->
+            @if (Model.CorrectCount > 0 || Model.IncorrectCount > 0)
+            {
+                <h4><span class="label label-success margin-8">@Model.CorrectCount</span> სწორია</h4>
+                <h4><span class="label label-danger margin-8">@Model.IncorrectCount</span> არასწორია</h4>
+            }
+        </div>
+        <div class="col-sm-6 col-sm-pull-6">
             <!--ROW 1 COL 1-->
 
             <div class="panel panel-default">
@@ -16,19 +24,12 @@
                     გადათარგმნეთ
                 </div>
                 <div class="panel-body">
-                    <div class="h2" style="padding-bottom: 15px; padding-top: 5px">@Model.Khucuri</div>
-                    <div style="width: 100%">
+                    <span class="h2" style="margin-bottom: 15px; display: inline-block">@Model.Khucuri</span>
+                    <div>
                         @Html.TextBox("tbTranslation", null, new { @class = "form-control input-lg", placeholder = "შეიყვანეთ თარგმანი", autofocus = "" })
                     </div>
                 </div>
             </div>
-
-        </div>
-        <div class="col-sm-6">
-            <!--ROW 1 COL 1-->
-
-            <h4><span class="label label-success" style="margin: 8px">@Model.CorrectCount</span>სწორია</h4>
-            <h4><span class="label label-danger" style="margin: 8px">@Model.IncorrectCount</span>არასწორია</h4>
 
         </div>
     </div>

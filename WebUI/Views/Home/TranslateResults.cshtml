@@ -1,7 +1,7 @@
 ﻿@model LOGA.WebUI.Models.Translate
 
 @{
-    ViewBag.Title = "შედეგი";
+    ViewBag.Title = "თარგმანის შედეგები";
 }
 
 
@@ -10,27 +10,34 @@
         შედეგი
     </div>
     <div class="panel-body">
-        <h2>ასო @Model.Mxedruli / @Model.Khucuri</h2>
+        <h2>ასო "@Model.Khucuri" ("@Model.Mxedruli") </h2>
 
-        @if (Model.CorrectCount == 0)
-        {
-            <b>ცუდია</b>
-        }
-        else if (Model.IncorrectCount == 0)
-        {
-            <b>ბრწყინვალეა</b>
-        }
-        else if (Model.CorrectCount < Model.IncorrectCount)
-        {
-            <b>არადამაკმაყოფილებელია</b>
-        }
-        else // CorrectCount >= IncorrectCount
-        {
-            <b>კარგია</b>
-        }
+        <h3>
+            <span class="label label-success"><span class="lead">@Model.CorrectCount</span>  სწორი თარგმანი</span>
+            <span class="label label-danger"><span class="lead">@Model.IncorrectCount</span> არასწორი თარგმანი</span>
+        </h3>
 
-        <h3><span class="label label-success">სწორი თარგმანი<span class="badge">@Model.CorrectCount</span></span></h3>
-        <h3><span class="label label-danger">არასწორი თარგმანი<span class="badge">@Model.IncorrectCount</span></span></h3>
+        <h2>
+            @if (Model.CorrectCount == 0)
+            {
+                <b>ცუდია</b>
+                <span class="glyphicon glyphicon-thumbs-down"></span>
+            }
+            else if (Model.IncorrectCount == 0)
+            {
+                <b>ბრწყინვალეა</b>
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+            }
+            else if (Model.CorrectCount < Model.IncorrectCount)
+            {
+                <b>არადამაკმაყოფილებელია</b>
+            }
+            else // CorrectCount >= IncorrectCount
+            {
+                <b>კარგია</b>
+            }
+        </h2>
+
 
     </div>
 </div>
