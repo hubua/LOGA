@@ -11,6 +11,7 @@ namespace LOGA.WebUI
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new LogErrorAttribute());
+            filters.Add(new LogActionAttribute());
         }
     }
 }

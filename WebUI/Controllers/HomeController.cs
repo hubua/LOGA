@@ -11,6 +11,12 @@ namespace LOGA.WebUI.Controllers
     public class HomeController : Controller
     {
         private static string SESSION_WORDS_TO_TRANSLATE = "SESSION_WORDS_TO_TRANSLATE";
+
+        public HomeController()
+        {
+            ViewData["ActiveMenu"] = "Home";
+        }
+
         // GET: Home
         public ActionResult Index()
         {

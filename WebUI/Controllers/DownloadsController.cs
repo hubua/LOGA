@@ -10,6 +10,11 @@ namespace LOGA.WebUI.Controllers
 {
     public class DownloadsController : Controller
     {
+
+        public DownloadsController()
+        {
+            ViewData["ActiveMenu"] = "Downloads";
+        }
         
         // GET: Home
         public ActionResult Index()

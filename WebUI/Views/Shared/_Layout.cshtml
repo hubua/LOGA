@@ -32,9 +32,8 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Index", "Home")"></a></li>
-                    <li class="active"><a href="@Url.Action("Index", "Downloads")">სასარგებლო PDF</a></li>
-
+                    <li class="@(ViewData["ActiveMenu"].ToString() == "Home" ? "active" : "")"><a href="@Url.Action("Index", "Home")">სწავლა</a></li>
+                    <li class="@(ViewData["ActiveMenu"].ToString() == "Downloads" ? "active" : "")"><a href="@Url.Action("Index", "Downloads")">სასარგებლო PDF</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign up</a></li>
@@ -44,7 +43,7 @@
         </div>
     </div>
 
-    <img class="img-responsive" src="~/Download/anbani.png" />
+    @*<img class="img-responsive" src="~/Download/anbani.png" />*@
 
     <div class="container body-content">
         @RenderBody()
