@@ -4,7 +4,6 @@
     ViewBag.Title = "თარგმანის შედეგები";
 }
 
-
 <div class="panel panel-default">
     <div class="panel-heading h4">
         შედეგი
@@ -42,17 +41,23 @@
     </div>
 </div>
 <div>
-    @{ int letterId = Convert.ToInt32(Request.RequestContext.RouteData.Values["lid"]); }
+    @{
+        int letterLId = Convert.ToInt32(Request.RequestContext.RouteData.Values["lid"]);
+        int nextLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(letterLId);
+    }
+
+    @if (Model.IncorrectCount != 0)
+    {
+        @Html.ActionLink("ვცადოთ ხელახლა", "Letter", "Learn", new { lid = letterLId }, new { @class = "btn btn-primary btn-lg" })
+    }
 
     @if (Model.CorrectCount != 0)
     {
-        @Html.ActionLink("NEXT LETTER", "LearnLetter", "Home", new { lid = letterId + 1 }, new { @class = "btn btn-info btn-lg" })
-    }
-    @if (Model.IncorrectCount != 0)
-    {
-        @Html.ActionLink("LEARN AGAIN", "LearnLetter", "Home", new { lid = letterId }, new { @class = "btn btn-info btn-lg" })
+        @Html.ActionLink("შემდეგი ასო", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg" })
     }
 
-    @Html.ActionLink("LIST ALL", "Index", "Home", null, new { @class = "btn btn-info btn-lg" })
+    @*
+    @Html.ActionLink("ანბანი", "Index", "Learn", null, new { @class = "btn btn-default btn-lg" })
+    *@
 
 </div>

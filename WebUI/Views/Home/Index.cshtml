@@ -1,9 +1,12 @@
-﻿@model Dictionary<char, LOGA.WebUI.Models.GeorgianLetter>
+﻿@using LOGA.WebUI.Models
+@model Dictionary<char, LOGA.WebUI.Models.GeorgianLetter>
 
 @{
     ViewBag.Title = "ქართული ანბანი";
 }
 
+@if (Html.IsDebugMode())
+{
 <pre>
 <strong>TODO:</strong>
 * How to learn words in asomtavruli and numbers
@@ -28,6 +31,7 @@
 * Fix redirection links - translation, styling, availability
 * Remove unused code
 </pre>
+}
 
 <h2>ქართული ანბანი</h2>
 
@@ -40,28 +44,5 @@
     <br />
 </p>
 <p class="text-center">
-    @Html.ActionLink("დავიწყოთ", "LearnLetter", "Home", new { lid = 1 }, new { @class = "btn btn-info btn-lg" })
+    @Html.ActionLink("დავიწყოთ სწავლა!", "Letter", "Learn", new { lid = 1 }, new { @class = "btn btn-info btn-lg" })
 </p>
-
-<h4>
-    <table class="table text-center table-bordered">
-        <tr>
-            <th>სახელი</th>
-            <th>მხედრული</th>
-            <th>ასომთავრული</th>
-            <th>ნუსხური</th>
-            <th>რიცხვითი მნიშვნელობა</th>
-        </tr>
-        @foreach (var item in @Model)
-        {
-            <tr>
-                <td><a href='@Url.Action("LearnLetter", "Home", new { lid = @item.Value.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@item.Value.LetterName</a></td>
-                <td>@(String.IsNullOrEmpty(item.Value.ReadAs) ? item.Value.Mxedruli : $"{item.Value.Mxedruli} ({item.Value.ReadAs})")</td>
-                <td>@item.Value.Asomtavruli</td>
-                <td>@item.Value.Nuskhuru</td>
-                <td>@item.Value.NumberEquivalent</td>
-            </tr>
-
-        }
-    </table>
-</h4>

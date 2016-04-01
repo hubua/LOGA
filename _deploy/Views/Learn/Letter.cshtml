@@ -1,0 +1,58 @@
+﻿@model LOGA.WebUI.Models.GeorgianLetter
+
+@{
+    ViewBag.Title = "სწავლა";
+}
+
+
+<table class="table text-center table-bordered" style="width: 500px">
+    <colgroup>
+        <col style="width: 25%; background-color: lightgray" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+    </colgroup>
+
+    <tr>
+        <td><strong>ასო</strong></td>
+        <td>ასომთავრული</td>
+        <td>ნუსხური</td>
+        <td>რიცხვი</td>
+    </tr>
+    <tr>
+        <td class="h1">@(String.IsNullOrEmpty(Model.ReadAs) ? Model.Mxedruli : $"{Model.Mxedruli} ({Model.ReadAs})")</td>
+        <td class="h1">@Model.Asomtavruli</td>
+        <td class="h1">@Model.Nuskhuru</td>
+        <td class="h1">@Model.NumberEquivalent</td>
+    </tr>
+</table>
+
+
+@{
+    int nextLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(Model.LearnOrder);
+    int prevLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(Model.LearnOrder, true);
+}
+
+@if (Model.Words.Count() > 0)
+{
+    @Html.ActionLink("შევამოწმოთ ცოდნა", "Translate", "Learn", new { lid = Model.LearnOrder }, new { @class = "btn btn-primary btn-lg" })
+}
+
+@Html.ActionLink("დავიმახსოვრე, შემდეგი", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg" })
+
+@if (Model.LearnOrder != 1)
+{
+    @Html.ActionLink("წინა", "Letter", "Learn", new { lid = prevLetterLId }, new { @class = "btn btn-default btn-lg" })
+}
+
+@*
+@Html.ActionLink("ანბანი", "Index", "Learn", new { @class = "btn btn-default btn-lg" })
+*@
+
+@*
+@using (Html.BeginForm("LetterRemembered", "Learn", new { lid = Model.LearnOrder }))
+{
+    @Html.Hidden("learnorder", Model.LearnOrder); // @Html.HiddenFor(m => m.LearnOrder);
+    <input type="submit" id="remembered" name="remembered" value="დავიმახოვრე" class="btn btn-default" /> // formaction="LetterRemembered" formmethod="post"
+}
+*@

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Mvc;
 
 namespace LOGA.WebUI.Models
 {
@@ -36,6 +37,22 @@ namespace LOGA.WebUI.Models
         public static GeorgianLetter GetLetterByLearnIndex(int lid)
         {
             return LettersDictionary.Single(item => item.Value.LearnOrder == lid).Value;
+        }
+
+        public static int GetNextLetterLearnIndex(int lid, bool back = false)
+        {
+            var order = LettersDictionary.Select(item => item.Value.LearnOrder).OrderBy(item => item).ToList();
+            int currentIndex = order.IndexOf(lid);
+            int nextIndex;
+            if (!back)
+            {
+                nextIndex = (currentIndex == order.Count - 1) ? 0 : currentIndex + 1;
+            }
+            else
+            {
+                nextIndex = (currentIndex == 0) ? order.Count - 1 : currentIndex - 1;
+            }
+            return order[nextIndex];
         }
 
         /// <summary>
@@ -164,6 +181,19 @@ namespace LOGA.WebUI.Models
                 }
             }
             return result.ToString();
+        }
+    }
+
+
+    public static class HtmlHelperExtension
+    {
+        public static bool IsDebugMode(this HtmlHelper html)
+        {
+#if DEBUG
+            return true;
+#else
+            return false;
+#endif
         }
     }
 
