@@ -15,18 +15,32 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GetRandomWordsToTranslateForLetter_Test()
+        public void GetNextLetterLearnIndex_Test()
         {
-            var a = GeorgianABC.GetRandomWordsToTranslateForLetter(4);
-            Assert.IsTrue(a.Count == 4);
+            Assert.IsTrue(GeorgianABC.GetNextLetterLearnIndex(1) == 2);
+            Assert.IsTrue(GeorgianABC.GetNextLetterLearnIndex(2) == 3);
+            Assert.IsTrue(GeorgianABC.GetNextLetterLearnIndex(33) == 101);
+            Assert.IsTrue(GeorgianABC.GetNextLetterLearnIndex(105) == 1);
+
+            Assert.IsTrue(GeorgianABC.GetNextLetterLearnIndex(105, true) == 104);
+            Assert.IsTrue(GeorgianABC.GetNextLetterLearnIndex(101, true) == 33);
+            Assert.IsTrue(GeorgianABC.GetNextLetterLearnIndex(2, true) == 1);
+            Assert.IsTrue(GeorgianABC.GetNextLetterLearnIndex(1, true) == 105);
         }
 
         [TestMethod]
-        public void GetRandomWordsToTranslateForLetters_Test()
+        public void GetWordsToTranslateForLetter_Shuffled_Test()
         {
-            var a = GeorgianABC.GetRandomWordsToTranslateForLetters(4);
-            Assert.IsTrue(a.Length == 8);
+            int lid = new Random().Next(5, 30);
+            var w = GeorgianABC.GetWordsToTranslateForLetter(lid);
+            var ws = GeorgianABC.GetWordsToTranslateForLetter(lid, true);
+
+            foreach (var item in w)
+            {
+                Assert.IsTrue(ws.ContainsKey(item.Key));
+            }
         }
+        
         
     }
 }

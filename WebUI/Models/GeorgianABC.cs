@@ -65,11 +65,13 @@ namespace LOGA.WebUI.Models
             return GetLetterByLearnIndex(lid).Words[0];
         }
 
-        public static Dictionary<string, bool?> GetWordsToTranslateForLetter(int lid)
+        public static Dictionary<string, bool?> GetWordsToTranslateForLetter(int lid, bool shuffle = false)
         {
-            return GetLetterByLearnIndex(lid).Words.ToDictionary(item => item, item => default(bool?));
+            var letter = GetLetterByLearnIndex(lid);
+            var words = shuffle ? letter.Words.OrderBy(item => random.Next()).ToList() : letter.Words.ToList();
+            return words.ToDictionary(item => item, item => default(bool?));
         }
-
+        
         /// <summary>
         /// Gets word/sentence to translate for given Letter ID
         /// </summary>

@@ -37,14 +37,14 @@ namespace LOGA.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Translate([DefaultValue(2)] int lid)
+        public ActionResult Translate([DefaultValue(2)] int lid, string shuffle)
         {
-            if (!GeorgianABC.IsValidLearnIndex(lid) || lid == 1) // Change magic numbers to consts
+            if (!GeorgianABC.IsValidLearnIndex(lid) || lid == 1) // TODO: Change magic numbers and strings to consts
             {
                 return RedirectToAction("Translate", new { lid = 2 });
             }
 
-            var words = GeorgianABC.GetWordsToTranslateForLetter(lid);
+            var words = GeorgianABC.GetWordsToTranslateForLetter(lid, (shuffle?.ToUpper() == "YES"));
 
             Session[SESSION_WORDS_TO_TRANSLATE] = words;
             
@@ -95,6 +95,7 @@ namespace LOGA.WebUI.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult TranslateResults(int lid)
         {
             string letterMxedruli = GeorgianABC.GetLetterByLearnIndex(lid).Mxedruli;
