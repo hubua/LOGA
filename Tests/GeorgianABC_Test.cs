@@ -31,13 +31,16 @@ namespace Tests
         [TestMethod]
         public void GetWordsToTranslateForLetter_Shuffled_Test()
         {
-            int lid = new Random().Next(5, 30);
-            var w = GeorgianABC.GetWordsToTranslateForLetter(lid);
-            var ws = GeorgianABC.GetWordsToTranslateForLetter(lid, true);
-
-            foreach (var item in w)
+            foreach (var l in GeorgianABC.LettersDictionary)
             {
-                Assert.IsTrue(ws.ContainsKey(item.Key));
+                var lid = l.Value.LearnOrder;
+                var w = GeorgianABC.GetWordsToTranslateForLetter(lid);
+                var ws = GeorgianABC.GetWordsToTranslateForLetter(lid, true);
+
+                foreach (var item in w)
+                {
+                    Assert.IsTrue(ws.ContainsKey(item.Key), lid.ToString());
+                }
             }
         }
         

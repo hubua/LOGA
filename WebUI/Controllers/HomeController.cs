@@ -18,7 +18,17 @@ namespace LOGA.WebUI.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            
+
+
             return View("Index");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateSettings(UserSettings settings)
+        {
+            HttpContextStorage.SetUserSettings(HttpContext, settings);
+            return PartialView("UserSettingsPartial", settings);
         }
 
         public ActionResult LogError()

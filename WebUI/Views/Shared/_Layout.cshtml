@@ -1,4 +1,5 @@
 ﻿@using LOGA.WebUI.Models
+@using LOGA.WebUI
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/jquery-2.2.2.min.js"></script> <!-- must appear before bootstrap.js -->
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 
@@ -27,15 +29,55 @@
         });
     </script>
 
+    <script>
+        function onSuccess() {
+            $('#modalUserSettings').modal('hide');
+        }
+    </script>
+
     @if (Html.IsDebugMode())
     {
         <p class="bg-warning text-center">
             <br />
-            DEBUG MODE
+            DEBUG MODE @DateTime.Now.ToString()
             <br />
             <br />
         </p>
     }
+
+    <button type="button" data-toggle="modal" data-target="#modalUserSettings" autofocus="">modal</button>
+
+    <div id="modalUserSettings" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-large">
+
+        @using (Ajax.BeginForm(new AjaxOptions { Url = "/Home/UpdateSettings", UpdateTargetId = "", OnSuccess = "onSuccess", LoadingElementId = "loading", LoadingElementDuration = 1000 }))
+        {
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dissmiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h3>registracia</h3>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Partial("UserSettingsPartial", HttpContextStorage.GetUserSettings(Context))
+                    </div>
+                    <div class="modal-footer">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="3" aria-valuemin="1" aria-valuemax="10"></div>
+
+                        </div>
+                        <button type="submit" id="id" name="name" value="Save">დავიმახოვროთ</button>
+                        <button type="button" data-dissmiss="modal">close</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div id="id1"></div>
+    <div id="loading" class="load" style="display:none">Loading...</div>
 
     <div class="navbar navbar-default">
         <div class="container">
