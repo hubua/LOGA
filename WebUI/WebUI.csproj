@@ -93,6 +93,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\Adobe_PDF_file_icon_24x24.png" />
+    <Content Include="Content\img\Adobe_PDF_file_icon_32x32.png" />
+    <Content Include="Content\img\Get_Adobe_Acrobat_Reader_DC_web_button_158x39.fw.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Download\anbani.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -100,6 +103,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Data\oga.csv" />
+    <Content Include="Download\anbani-targmanit.pdf" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
     <Content Include="Scripts\jquery-2.2.2.min.js" />

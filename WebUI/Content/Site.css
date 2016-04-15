@@ -19,3 +19,7 @@ textarea {
 .margin-8{
     margin: 8px;
 }
+
+.auto-width{
+    width: auto !important;
+}

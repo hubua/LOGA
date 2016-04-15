@@ -27,8 +27,20 @@ namespace LOGA.WebUI.Controllers
         [HttpPost]
         public ActionResult UpdateSettings(UserSettings settings)
         {
+#if DEBUG
+            System.Threading.Thread.Sleep(2000);
+#endif
             HttpContextStorage.SetUserSettings(HttpContext, settings);
-            return PartialView("UserSettingsPartial", settings);
+
+            if (Request.IsAjaxRequest())
+            {
+                var data = new { HasDisplayName = HttpContextStorage.HasSettingsSaved(HttpContext), DisplayName = HttpContextStorage.GetUserSettings(HttpContext).DisplayName };
+                return Json(data); // JsonResult
+            }
+            else
+            {
+                return PartialView("UserSettingsPartial", settings);
+            }
         }
 
         public ActionResult LogError()

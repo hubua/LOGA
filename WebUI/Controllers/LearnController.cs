@@ -32,6 +32,8 @@ namespace LOGA.WebUI.Controllers
                 return RedirectToAction("Letter", new { lid = 1 });
             }
 
+            HttpContextStorage.SetUserLearnProgressLId(HttpContext, lid);
+
             GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(lid);
             return View("Letter", letter);
         }
@@ -47,8 +49,9 @@ namespace LOGA.WebUI.Controllers
             var words = GeorgianABC.GetWordsToTranslateForLetter(lid, (shuffle?.ToUpper() == "YES"));
 
             Session[SESSION_WORDS_TO_TRANSLATE] = words;
-            
-            return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri()));
+
+            bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
+            return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri(capitalize)));
             
         }
 
@@ -85,7 +88,8 @@ namespace LOGA.WebUI.Controllers
 
             if (!String.IsNullOrEmpty(word))
             {
-                return View("Translate", new Translate(word, word.ToKhucuri(), correctCount, incorrectCount));
+                bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
+                return View("Translate", new Translate(word, word.ToKhucuri(capitalize), correctCount, incorrectCount));
             }
             else
             {

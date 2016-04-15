@@ -9,5 +9,6 @@ namespace LOGA.WebUI.Models
     {
         public string DisplayName { get; set; }
         public bool LearnAsomtavruli { get; set; }
+        //public int CurrentLearnProgressLId { get; set; }
     }
 }
