@@ -1,0 +1,40 @@
+﻿@model LOGA.WebUI.Models.Translate
+
+@{
+    ViewBag.Title = "თარგმანი";
+}
+
+@using (Html.BeginForm("Translate", "Learn"))
+{
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-push-6">
+            <!--ROW 1 COL 2-->
+            @if (Model.CorrectCount > 0 || Model.IncorrectCount > 0)
+            {
+                <h4><span class="label label-success margin-8">@Model.CorrectCount</span> სწორია</h4>
+                <h4><span class="label label-danger margin-8">@Model.IncorrectCount</span> არასწორია</h4>
+            }
+        </div>
+        <div class="col-sm-6 col-sm-pull-6">
+            <!--ROW 1 COL 1-->
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    გადათარგმნეთ
+                </div>
+                <div class="panel-body">
+                    <span class="h2" style="margin-bottom: 15px; display: inline-block">@Model.Khucuri</span>
+                    <div>
+                        @Html.TextBox("tbTranslation", null, new { @class = "form-control input-lg", placeholder = "შეიყვანეთ თარგმანი", autofocus = "" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @Html.Hidden("hdnMxedruli", Model.Mxedruli);
+    <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-default" />
+
+}

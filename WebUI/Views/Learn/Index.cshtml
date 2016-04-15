@@ -1,0 +1,38 @@
+﻿@using LOGA.WebUI
+@model Dictionary<char, LOGA.WebUI.Models.GeorgianLetter>
+
+@{
+    ViewBag.Title = "ქართული ანბანი";
+
+    int progressLId = HttpContextStorage.GetUserLearnProgressLId(Context);
+}
+
+<h2>ქართული ანბანი</h2>
+
+
+<div>
+    @Html.ActionLink(progressLId == 0 ? "დავიწყოთ" : "გავარძელოთ" + " სწავლა", "Letter", "Learn", new { lid = progressLId == 0 ? 1 : progressLId }, new { @class = "btn btn-info btn-lg" })
+</div>
+
+<div class="h4">
+    <table class="table text-center table-bordered">
+        <tr>
+            <th>სახელი</th>
+            <th>მხედრული</th>
+            <th>ასომთავრული</th>
+            <th>ნუსხური</th>
+            <th>რიცხვითი მნიშვნელობა</th>
+        </tr>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td><a href='@Url.Action("Letter", "Learn", new { lid = @item.Value.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@item.Value.LetterName</a></td>
+                <td>@(String.IsNullOrEmpty(item.Value.ReadAs) ? item.Value.Mxedruli : $"{item.Value.Mxedruli} ({item.Value.ReadAs})")</td>
+                <td>@item.Value.Asomtavruli</td>
+                <td>@item.Value.Nuskhuru</td>
+                <td>@item.Value.NumberEquivalent</td>
+            </tr>
+
+        }
+    </table>
+</div>
