@@ -9,23 +9,23 @@
 {
 <pre>
 <strong>TODO:</strong>
-* Add section with PDFs to download
-** http://martlmadidebloba.ge/ganmarteba19.html
-** Georgian on http://www.memrise.com/home/
-** Tips http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/
-* Add excersizes with translations
-** Add large orthodox texts to translate
+- P1 (MVP) -
 * Introducution text
 ** Add from Wikipedia, with reference to it
+* khucuri.me / beboena.me
+* Google analitycs
+- P2 -
+* Add explanation of asomtavruli and nuskhuri in settings dialog
+* Add excersizes with translations
+** Add large orthodox texts to translate
 * Show settings with disabled JS
 * How to learn unavailable letters - index more then 100
 * Service page to calculate letter for given sentence
 * Add more sentences to translate
 * Associations with images or mnemonics
-* Add google analitycs
-* deploy
+** Georgian on http://www.memrise.com/home/
+** Tips http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/
 * Service page for logs
-* khucuri.me / beboena.me
 <strong>BUGS:</strong>
 * Translation fails when session expires
 * Fix redirection links - translation, styling, availability
@@ -42,14 +42,25 @@
     <h2>ქართული ანბანი <small>ვისწავლოთ ხუცური</small> </h2>
 </div>
 
+<blockquote class="blockquote-reverse">
+    <p>ხუცური — ასომთავრულისა და ნუსხურის საერთო სახელწოდება.</p>
+    <footer>აღწერა აღებულია <cite title="Source title"><a href="ka.wikipedia.org/wiki/ხუცური">ქართული ვიკიპედიიდან</a></cite></footer>
+</blockquote>
+
 <p>
-    მოგესალმებით, საჭიროება მოითხოვს ხუცურის შესწავლას, რაშიც დაგეხმარებათ ჩვენი საიტი...
+    მოგესალმებით, საჭიროება მოითხოვს ძველი ქართული დამწერლობის შესწავლას, ეს შეიძლება იყოს საჭირო საეკლესიო მოღვაწეობაში მედავითნესთვის ან სტიქაროსნისათვის,
+    ან სამეცნიერო საქმიანობისთვის ისტორიკოსისთვის, ან სასკოლო პროგრამაში მოსწავლესთვის
+    ამ საიტის ამოცანაა დაგეხმაროთ ამ საქმეში
+    <br />
+    შესწავლა ხდება ისევე, როგორც სწავლობენ ბავშვები ქართულ ასოებს დედა ენაში. შესასწავლად აღებულია დედა-ენის პრინციპი,
+    როდესაც სწავლით თითოეულ ნაბიჯზე გეძლევათ ახალი ასო-ბგერა, და უკვე შესწავლილი ასოებითან ხდება სიტყვების და წინადადებების შედგენა.
     <br />
     შესწავლა ხდება ინტერაქტიულად, ჩვენ გიწერთ ტექსტს ხუცურად, თქვენ უნდა დაწეროთ თარგმანი...
     <br />
-    ვსწავლობთ როგორც დედა ენაში...
-    <br />
+    https://ka.wikipedia.org/wiki/მხედრული
 </p>
+
+
 
 <p class="text-center">
     @Html.ActionLink("დავიწყოთ სწავლა!", "Letter", "Learn", new { lid = 1 }, new { @class = "btn btn-info btn-lg" })

@@ -162,7 +162,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\To folder.pubxml" />
     <Content Include="Scripts\jquery-2.2.2.min.map" />
-    <Content Include="Views\Shared\UserSettingsPartial.cshtml" />
+    <Content Include="Views\Shared\_UserSettingsPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
