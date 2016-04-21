@@ -1,30 +1,87 @@
 ﻿@using LOGA.WebUI.Models
-@model Dictionary<char, LOGA.WebUI.Models.GeorgianLetter>
 
 @{
-    ViewBag.Title = "ქართული ანბანი";
+    ViewBag.Title = "\"ბებო ენა\"";
 }
+
+<div class="page-header">
+    <h2>"ბებო ენა" <small>&ndash; ვისწავლოთ ხუცური</small> </h2>
+</div>
+
+<blockquote class="blockquote-reverse">
+    <p>ხუცური — ასომთავრულისა და ნუსხურის საერთო სახელწოდება.</p>
+    <footer>აღწერა აღებულია <cite title="Source title"><a class="text-muted" href="ka.wikipedia.org/wiki/ხუცური">ქართული ვიკიპედიიდან</a></cite></footer>
+</blockquote>
+
+<div class="container">
+
+    <div class="row row-spaced">
+        <div class="col-md-12 text-justify">
+            <p class="h3 text-info padding-spaced">
+                თუკი გესაჭიროებათ დაიმახსოვროთ ძველი ქართული ანბანის ასოები და ისწავლოთ ხუცურის კითხვა, ჩვენი საიტის ამოცანაა დაგეხმაროთ ამაში.
+            </p>
+        </div>
+    </div>
+    <div class="row row-spaced" style="display: flex">
+        <div class="col-md-8 text-justify panel panel-default">
+            <p class="h4 text-spaced">
+                "ბებო ენის" საშუალებით ძველი ქართულის შესწავლა ხდება მსგავსად იმისა, როგორც სწავლობენ ბავშვები (და უცხოელები) თანამედროვე ქართულ ასოებს "დედა ენით":
+                სწავლის თითოეულ ნაბიჯზე თქვენ გეძლევათ ახალი ასო-ბგერა, და უკვე შესწავლილი ასოებისგან ხდება სიტყვების და წინადადებების შედგენა.
+            </p>
+        </div>
+        <div class="col-md-4 text-left">
+            <img class="img-thumbnail" alt="Bootstrap Image Preview" src="~/Content/img/1_damwerloba.png" />
+        </div>
+    </div>
+    <div class="row row-spaced" style="display: flex">
+        <div class="col-md-4 text-right">
+            <img class="img-thumbnail" alt="Bootstrap Image Preview" src="~/Content/img/2_SvetickxovlisGulani.png" />
+        </div>
+        <div class="col-md-8 text-justify panel panel-default">
+            <p class="h4 text-v-middle margin-8">
+                თქვენი ცოდნის შემოწმება ხდება ინტერაქტიულად - "ბებო ენა" გიწერთ სიტყვას ან წინადადებას ხუცურად, ხოლო თქვენ უნდა შეიყვანოთ მისი შესაბამისი თარგმანი თანამედროვე ქართულად.
+                ყოველი ასოს შესწავლის შემდეგ "ბებო ენა" გაძლევთ შეფასებას, და რეკომნდაციას - გააგრძელოთ შემდეგ თუ ხელახლა გადაიმეოროთ მასალა.
+            </p>
+        </div>
+    </div>
+    <div class="row row-spaced" style="display: flex">
+        <div class="col-md-8 text-justify panel panel-default">
+            <p class="h4 text-v-middle margin-8">
+                "ბებო ენა" - ეს არის ხუცურის შესწავლის საინტერესო და ეფექტური საშუალება.
+                <br />
+                <br />
+                <strong>ისწავლეთ ძველი ქართული ჩვენთან ერთად!</strong>
+            </p>
+        </div>
+        <div class="col-md-4 text-left">
+            <img class="img-thumbnail" alt="Bootstrap Image Preview" src="~/Content/img/3_Jruchi.png" />
+        </div>
+    </div>
+    <div class="row row-spaced">
+        <div class="col-md-12 text-center panel panel-default padding-spaced">
+            @Html.ActionLink("დავიწყოთ სწავლა!", "Letter", "Learn", new { lid = 1 }, new { @class = "btn btn-success btn-lg" })
+        </div>
+    </div>
+
+</div>
 
 @if (Html.IsDebugMode())
 {
 <pre>
 <strong>TODO:</strong>
 - P1 (MVP) -
-* Introducution text
-** Add from Wikipedia, with reference to it
 * khucuri.me / beboena.me
 * Google analitycs
 - P2 -
+* Learn unavailable letters
+** With letter cards
 * Add explanation of asomtavruli and nuskhuri in settings dialog
 * Add excersizes with translations
 ** Add large orthodox texts to translate
 * Show settings with disabled JS
-* How to learn unavailable letters - index more then 100
 * Service page to calculate letter for given sentence
 * Add more sentences to translate
 * Associations with images or mnemonics
-** Georgian on http://www.memrise.com/home/
-** Tips http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/
 * Service page for logs
 <strong>BUGS:</strong>
 * Translation fails when session expires
@@ -37,31 +94,3 @@
 * http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_NET.quickstart.html
 </pre>
 }
-
-<div class="page-header">
-    <h2>ქართული ანბანი <small>ვისწავლოთ ხუცური</small> </h2>
-</div>
-
-<blockquote class="blockquote-reverse">
-    <p>ხუცური — ასომთავრულისა და ნუსხურის საერთო სახელწოდება.</p>
-    <footer>აღწერა აღებულია <cite title="Source title"><a href="ka.wikipedia.org/wiki/ხუცური">ქართული ვიკიპედიიდან</a></cite></footer>
-</blockquote>
-
-<p>
-    მოგესალმებით, საჭიროება მოითხოვს ძველი ქართული დამწერლობის შესწავლას, ეს შეიძლება იყოს საჭირო საეკლესიო მოღვაწეობაში მედავითნესთვის ან სტიქაროსნისათვის,
-    ან სამეცნიერო საქმიანობისთვის ისტორიკოსისთვის, ან სასკოლო პროგრამაში მოსწავლესთვის
-    ამ საიტის ამოცანაა დაგეხმაროთ ამ საქმეში
-    <br />
-    შესწავლა ხდება ისევე, როგორც სწავლობენ ბავშვები ქართულ ასოებს დედა ენაში. შესასწავლად აღებულია დედა-ენის პრინციპი,
-    როდესაც სწავლით თითოეულ ნაბიჯზე გეძლევათ ახალი ასო-ბგერა, და უკვე შესწავლილი ასოებითან ხდება სიტყვების და წინადადებების შედგენა.
-    <br />
-    შესწავლა ხდება ინტერაქტიულად, ჩვენ გიწერთ ტექსტს ხუცურად, თქვენ უნდა დაწეროთ თარგმანი...
-    <br />
-    https://ka.wikipedia.org/wiki/მხედრული
-</p>
-
-
-
-<p class="text-center">
-    @Html.ActionLink("დავიწყოთ სწავლა!", "Letter", "Learn", new { lid = 1 }, new { @class = "btn btn-info btn-lg" })
-</p>

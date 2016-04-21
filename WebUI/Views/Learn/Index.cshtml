@@ -1,17 +1,23 @@
 ﻿@using LOGA.WebUI
+@using LOGA.WebUI.Models
 @model Dictionary<char, LOGA.WebUI.Models.GeorgianLetter>
 
 @{
     ViewBag.Title = "ქართული ანბანი";
 
     int progressLId = HttpContextStorage.GetUserLearnProgressLId(Context);
+    var progressLetter = GeorgianABC.GetLetterByLearnIndex(progressLId);
+    string btnText = progressLId == 0 ? "დავიწყოთ სწავლა" : $"გავარძელოთ სწავლა (ასო '{progressLetter.Mxedruli}'-დან)";
+    int btnLId = progressLId == 0 ? 1 : progressLId;
 }
 
-<h2>ქართული ანბანი</h2>
+<div class="page-header">
+    <h2>სწავლა <small>ქართული ანბანი</small></h2>
+</div>
 
 
-<div>
-    @Html.ActionLink(progressLId == 0 ? "დავიწყოთ" : "გავარძელოთ" + " სწავლა", "Letter", "Learn", new { lid = progressLId == 0 ? 1 : progressLId }, new { @class = "btn btn-info btn-lg" })
+<div class="panel panel-default" style="padding: 30px;">
+    @Html.ActionLink(btnText, "Letter", "Learn", new { lid = btnLId }, new { @class = "btn btn-info btn-lg" })
 </div>
 
 <div class="h4">

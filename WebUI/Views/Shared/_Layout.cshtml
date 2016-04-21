@@ -88,7 +88,9 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="@(ViewData["ActiveMenu"].ToString() == "Learn" ? "active" : "")"><a href="@Url.Action("Index", "Learn")">სწავლა</a></li>
+                    @*
                     <li class="@(ViewData["ActiveMenu"].ToString() == "_Learn_" ? "active" : "")"><a href="@Url.Action("Index", "Excersices")">სავარჯიშოები</a></li>
+                    *@
                     <li class="@(ViewData["ActiveMenu"].ToString() == "Downloads" ? "active" : "")"><a href="@Url.Action("Index", "Downloads")">სასარგებლო მასალა</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -112,9 +114,18 @@
         @RenderBody()
         <hr />
         <footer class="text-muted">
-            <p>&copy; @DateTime.Now.Year "ბებო ენა" :) - ვისწავლოთ ხუცური</p>
-            <p>საკონტაქტო ელ-ფოსტა: <a class="text-muted" href="mailto:khubua@gmail.com">khubua@gmail.com</a></p>
-            <p>github/LOGA</p>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                        <p>&copy; @DateTime.Now.Year "ბებო ენა" :) - ვისწავლოთ ხუცური</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <p class="text-nowrap">საკონტაქტო ელ-ფოსტა: <a class="text-muted" href="mailto:khubua@gmail.com">khubua@gmail.com</a></p>
+                        <p class="text-nowrap">შემოგვიერთდით გაუმჯობესებაში: <a class="text-muted" href="https://github.com/hubua/LOGA" target="_blank">https://github.com/hubua/LOGA</a></p>
+                    </div>
+                </div>
+            </div>
+
         </footer>
     </div>
 

@@ -16,10 +16,28 @@ textarea {
     max-width: 480px;
 }
 
-.margin-8{
+.margin-8 {
     margin: 8px;
 }
 
-.auto-width{
+.padding-spaced {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.row-spaced {
+    margin-bottom: 12px;
+}
+
+.auto-width {
     width: auto !important;
+}
+
+.text-v-middle {
+    vertical-align: middle;
+}
+
+.text-spaced {
+    line-height: 200%;
+    
 }
