@@ -3,80 +3,73 @@
 
 @{
     ViewBag.Title = "თარგმანის შედეგები";
-}
 
-@{
     int letterLId = Convert.ToInt32(Request.RequestContext.RouteData.Values["lid"]);
     int nextLetterLId = GeorgianABC.GetNextLetterLearnIndex(letterLId);
     GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(letterLId);
 }
 
-<div class="panel panel-default">
-    <div class="panel-heading h4">
-        შედეგი
-    </div>
-    <div class="panel-body">
-
-        <table class="table text-center table-bordered">
-            <colgroup>
-                <col style="width: 40%; background-color: lightgray" />
-                <col style="width: 20%" />
-                <col style="width: 20%" />
-                <col style="width: 20%" />
-            </colgroup>
-
-            <tr>
-                <td class="h3">@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mxedruli : $"{letter.Mxedruli} ({letter.ReadAs})")</td>
-                <td class="h3">@letter.Asomtavruli</td>
-                <td class="h3">@letter.Nuskhuru</td>
-                <td class="h3">@letter.NumberEquivalent</td>
-            </tr>
-        </table>
-
-
-        <h3>
-            <span class="label label-success"><span class="lead">@Model.CorrectCount</span>  სწორი თარგმანი</span>
-            <span class="label label-danger"><span class="lead">@Model.IncorrectCount</span> არასწორი თარგმანი</span>
-        </h3>
-
-        <h2>
-            @if (Model.CorrectCount == 0)
-            {
-                <b>ცუდია</b>
-                <span class="glyphicon glyphicon-thumbs-down"></span>
-            }
-            else if (Model.IncorrectCount == 0)
-            {
-                <b>ბრწყინვალეა</b>
-                <span class="glyphicon glyphicon-thumbs-up"></span>
-            }
-            else if (Model.CorrectCount < Model.IncorrectCount)
-            {
-                <b>არადამაკმაყოფილებელია</b>
-            }
-            else // CorrectCount >= IncorrectCount
-            {
-                <b>კარგია</b>
-            }
-        </h2>
-
-
-    </div>
+<div class="page-header">
+    <h2>სწავლა <small>შედეგი</small></h2>
 </div>
-<div>
 
-    @if (Model.IncorrectCount != 0)
-    {
-        @Html.ActionLink("ვცადოთ ხელახლა", "Translate", "Learn", new { lid = letterLId, shuffle = "yes" }, new { @class = "btn btn-primary btn-lg", id = "default-focus-a" })
-    }
 
-    @if (Model.CorrectCount != 0)
-    {
-        @Html.ActionLink("შემდეგი ასო", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg" })
-    }
+<table class="table text-center table-bordered auto-width">
+    <colgroup>
+        <col style="width: 25%; background-color: lightgray" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+    </colgroup>
+    <tr>
+        <td><strong>ასო</strong></td>
+        <td>ასომთავრული</td>
+        <td>ნუსხური</td>
+        <td>რიცხვი</td>
+    </tr>
+    <tr>
+        <td class="h3">@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mxedruli : $"{letter.Mxedruli} ({letter.ReadAs})")</td>
+        <td class="h3">@letter.Asomtavruli</td>
+        <td class="h3">@letter.Nuskhuru</td>
+        <td class="h3">@letter.NumberEquivalent</td>
+    </tr>
+</table>
 
-    @*
-        @Html.ActionLink("ანბანი", "Index", "Learn", null, new { @class = "btn btn-default btn-lg" })
-    *@
+<div class="panel panel-default padding-8">
+
+    <h3>
+        <span class="label label-success"><span class="lead">@Model.CorrectCount</span> სწორი თარგმანი</span>
+        <span class="label label-danger"><span class="lead">@Model.IncorrectCount</span> არასწორი თარგმანი</span>
+    </h3>
+
+    <h2>
+        @if (Model.CorrectCount == 0)
+        {
+            <b>ცუდია</b><span class="glyphicon glyphicon-thumbs-down" style="margin-left: 10px;"></span>
+        }
+        else if (Model.IncorrectCount == 0)
+        {
+            <b>ბრწყინვალეა</b><span class="glyphicon glyphicon-thumbs-up" style="margin-left: 10px;"></span>
+        }
+        else if (Model.CorrectCount < Model.IncorrectCount)
+        {
+            <b>არადამაკმაყოფილებელია</b>
+        }
+        else // CorrectCount >= IncorrectCount
+        {
+            <b>კარგია</b>
+        }
+    </h2>
 
 </div>
+
+@if (Model.IncorrectCount != 0)
+{
+    @Html.ActionLink("ვცადოთ ხელახლა", "Translate", "Learn", new { lid = letterLId, shuffle = "yes" }, new { @class = "btn btn-primary btn-lg", id = "default-focus-a" })
+}
+
+@if (Model.CorrectCount != 0)
+{
+    @Html.ActionLink("შემდეგი ასო", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg" })
+}
+

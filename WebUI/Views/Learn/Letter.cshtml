@@ -2,17 +2,22 @@
 
 @{
     ViewBag.Title = "სწავლა";
+
+    int nextLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(Model.LearnOrder);
+    int prevLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(Model.LearnOrder, true);
 }
 
+<div class="page-header">
+    <h2>სწავლა <small>დაიმახსოვრეთ დამწერლობა</small></h2>
+</div>
 
-<table class="table text-center table-bordered" style="width: 500px">
+<table class="table text-center table-bordered auto-width">
     <colgroup>
-        <col style="width: 40%; background-color: lightgray" />
-        <col style="width: 20%" />
-        <col style="width: 20%" />
-        <col style="width: 20%" />
+        <col style="width: 25%; background-color: lightgray" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
     </colgroup>
-
     <tr>
         <td><strong>ასო</strong></td>
         <td>ასომთავრული</td>
@@ -27,12 +32,6 @@
     </tr>
 </table>
 
-
-@{
-    int nextLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(Model.LearnOrder);
-    int prevLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(Model.LearnOrder, true);
-}
-
 @if (Model.Words.Count() > 0)
 {
     @Html.ActionLink("შევამოწმოთ ცოდნა", "Translate", "Learn", new { lid = Model.LearnOrder }, new { @class = "btn btn-primary btn-lg", id = "default-focus-a" })
@@ -44,9 +43,3 @@
 {
     @Html.ActionLink("წინა", "Letter", "Learn", new { lid = prevLetterLId }, new { @class = "btn btn-default btn-lg" })
 }
-
-
-
-@*
-    @Html.ActionLink("ანბანი", "Index", "Learn", new { @class = "btn btn-default btn-lg" })
-*@

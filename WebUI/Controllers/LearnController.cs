@@ -32,7 +32,6 @@ namespace LOGA.WebUI.Controllers
                 return RedirectToAction("Letter", new { lid = 1 });
             }
 
-            HttpContextStorage.SetUserLearnProgressLId(HttpContext, lid);
 
             GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(lid);
             return View("Letter", letter);
@@ -107,6 +106,10 @@ namespace LOGA.WebUI.Controllers
 
             int correctCount = Convert.ToInt32(TempData["CorrectCount"]);
             int incorrectCount = Convert.ToInt32(TempData["IncorrectCount"]);
+            if (correctCount > incorrectCount)
+            {
+                HttpContextStorage.SetUserLearnProgressLId(HttpContext, lid);
+            }
 
             return View("TranslateResults", new Translate(letterMxedruli, letterKhucuri, correctCount, incorrectCount));
         }

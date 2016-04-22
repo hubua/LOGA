@@ -23,7 +23,20 @@ namespace LOGA.WebUI
                 var settings = new UserSettings();
                 int progressLId = 0;
 
-                settings.DisplayName = cookie.Values[COOKIE_VALUE_DISPLAYNAME];
+                string displayname = String.Empty;
+                try
+                {
+                    var b = Convert.FromBase64String(cookie.Values[COOKIE_VALUE_DISPLAYNAME]);
+                    displayname = new String(System.Text.Encoding.UTF8.GetChars(b));
+
+                    throw new Exception("a");
+                }
+                catch (Exception)
+                {
+                    // TODO: Log conversion exception                    
+                }
+
+                settings.DisplayName = displayname;
                 settings.LearnAsomtavruli = Convert.ToBoolean(cookie.Values[COOKIE_VALUE_LEARN_ASOMTAVRULI]);
                 Int32.TryParse(cookie.Values[COOKIE_VALUE_LEARN_PROGRESS_LID], out progressLId);
 
@@ -41,7 +54,17 @@ namespace LOGA.WebUI
             cookie.HttpOnly = true; // TODO: why do need this
             cookie.Expires = DateTime.Now.AddYears(1); // TODO: set past date if no user name
 
-            cookie.Values.Add(COOKIE_VALUE_DISPLAYNAME, settings.DisplayName);
+            string asciiname = String.Empty;
+            try
+            {
+                asciiname = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(settings.DisplayName));
+            }
+            catch (Exception)
+            {
+                // TODO: Log conversion error
+            }
+
+            cookie.Values.Add(COOKIE_VALUE_DISPLAYNAME, asciiname);
             cookie.Values.Add(COOKIE_VALUE_LEARN_ASOMTAVRULI, settings.LearnAsomtavruli.ToString());
             cookie.Values.Add(COOKIE_VALUE_LEARN_PROGRESS_LID, progressLId.ToString());
 
@@ -62,7 +85,8 @@ namespace LOGA.WebUI
 
         public static UserSettings GetUserSettings(HttpContextBase context)
         {
-            return new UserSettings {
+            return new UserSettings
+            {
                 DisplayName = context.Items[USER_DISPLAYNAME]?.ToString(),
                 LearnAsomtavruli = context.Items[USER_LEARN_ASOMTAVRULI]?.ToString() == true.ToString(),
             };
@@ -76,7 +100,12 @@ namespace LOGA.WebUI
 
         public static int GetUserLearnProgressLId(HttpContextBase context)
         {
-            return (context.Items[USER_LEARN_PROGRESS_LID] != null ? Convert.ToInt32(context.Items[USER_LEARN_PROGRESS_LID]) : 0);
+            int progressLId = 0;
+            if (!String.IsNullOrEmpty(context.Items[USER_DISPLAYNAME]?.ToString()))
+            {
+                Int32.TryParse(context.Items[USER_LEARN_PROGRESS_LID]?.ToString(), out progressLId);
+            }
+            return progressLId;
         }
 
         public static void SetUserLearnProgressLId(HttpContextBase context, int lid)

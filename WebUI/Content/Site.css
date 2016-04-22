@@ -16,11 +16,17 @@ textarea {
     max-width: 480px;
 }
 
+/* Outer margin */
 .margin-8 {
     margin: 8px;
 }
 
-.padding-spaced {
+/* Inner padding */
+.padding-8 {
+    padding: 8px;
+}
+
+.padding-v-spaced {
     padding-top: 20px;
     padding-bottom: 20px;
 }

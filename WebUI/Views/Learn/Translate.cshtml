@@ -4,6 +4,10 @@
     ViewBag.Title = "თარგმანი";
 }
 
+<div class="page-header">
+    <h2>სწავლა <small>შევამოწმოთ ცოდნა</small></h2>
+</div>
+
 @using (Html.BeginForm("Translate", "Learn"))
 {
 
@@ -18,7 +22,6 @@
         </div>
         <div class="col-sm-6 col-sm-pull-6">
             <!--ROW 1 COL 1-->
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                     გადათარგმნეთ
@@ -35,6 +38,6 @@
     </div>
 
     @Html.Hidden("hdnMxedruli", Model.Mxedruli);
-    <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-default" />
+    <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-lg btn-default" />
 
 }
