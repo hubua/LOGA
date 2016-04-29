@@ -27,7 +27,8 @@
                     გადათარგმნეთ
                 </div>
                 <div class="panel-body">
-                    <span class="h2" style="margin-bottom: 15px; display: inline-block">@Model.Khucuri</span>
+                    <img class="imgtext-spaced" src="@Url.Action("GetImg", "Learn", new { text = Model.Khucuri, size = 28 })" alt="@Model.Khucuri" />
+                    @*<span class="h2 imgtext-spaced">@Model.Khucuri</span>*@
                     <div>
                         @Html.TextBox("tbTranslation", null, new { @class = "form-control input-lg", placeholder = "შეიყვანეთ თარგმანი", autofocus = "" })
                     </div>

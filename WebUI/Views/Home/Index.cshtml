@@ -30,12 +30,18 @@
             </p>
         </div>
         <div class="col-md-4 text-left">
-            <img class="img-thumbnail" alt="Bootstrap Image Preview" src="~/Content/img/1_damwerloba.png" />
+            <a href="https://ka.wikipedia.org/wiki/მრავალთავი" target="_blank">
+                <img class="img-thumbnail" alt="სვანური მრავალთავი (X ს.)" src="~/Content/img/1_SvanuriMravaltavi.png" />
+            </a>
+            <div>
+                <a href="https://ka.wikipedia.org/wiki/მრავალთავი" target="_blank">სვანური მრავალთავი (X ს.)</a>
+            </div>
         </div>
     </div>
     <div class="row row-spaced" style="display: flex">
         <div class="col-md-4 text-right">
-            <img class="img-thumbnail" alt="Bootstrap Image Preview" src="~/Content/img/2_SvetickxovlisGulani.png" />
+            <img class="img-thumbnail" alt="სვეტიცხოვლის გულანი (1681 წ.)" src="~/Content/img/2_SvetickxovlisGulani.png" />
+            <div>სვეტიცხოვლის გულანი (1681 წ.)</div>
         </div>
         <div class="col-md-8 text-justify panel panel-default">
             <p class="h4 text-v-middle margin-8">
@@ -48,13 +54,14 @@
         <div class="col-md-8 text-justify panel panel-default">
             <p class="h4 text-v-middle margin-8">
                 "ბებო ენა" - ეს არის ხუცურის შესწავლის საინტერესო და ეფექტური საშუალება.
-                <br />
-                <br />
-                <strong>ისწავლეთ ძველი ქართული ჩვენთან ერთად!</strong>
+                <p class="h3 text-center" style="margin-top: 20px">
+                    <strong>ისწავლეთ ძველი ქართული ჩვენთან ერთად!</strong>
+                </p>
             </p>
         </div>
         <div class="col-md-4 text-left">
-            <img class="img-thumbnail" alt="Bootstrap Image Preview" src="~/Content/img/3_Jruchi.png" />
+            <img class="img-thumbnail" alt="ჯრუჭის ოთხთავი (936-940 წწ.)" src="~/Content/img/3_JruchisOtxtavi.png" />
+            <div>ჯრუჭის ოთხთავი (936-940 წწ.)</div>
         </div>
     </div>
     <div class="row row-spaced">
@@ -70,7 +77,12 @@
 <pre>
 <strong>TODO:</strong>
 - P1 (MVP) -
-* khucuri.me / beboena.me
+* Process no letters issue
+** Ask if letters are visible at start
+** Understand which letters look better as printed in books - text or images
+** Remove khucuri letters from heading logo and page titles
+* Narrow screens support
+* khucuri.me / beboena.me ბებოენა.მე
 * Google analitycs
 - P2 -
 * Learn unavailable letters
@@ -84,8 +96,9 @@
 * Associations with images or mnemonics
 * Service page for logs
 <strong>BUGS:</strong>
+* Can check Asomtavtruli if name is not set
+** Disable checkbox
 * Translation fails when session expires
-* Fix redirection links - translation, styling, availability
 * Remove unused code
 <strong>Links:</strong>
 * https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/concepts.html

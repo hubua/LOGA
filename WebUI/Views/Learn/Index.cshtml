@@ -34,12 +34,19 @@
         </tr>
         @foreach (var item in @Model)
         {
+            var letter = item.Value;
             <tr>
-                <td><a href='@Url.Action("Letter", "Learn", new { lid = @item.Value.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@item.Value.LetterName</a></td>
-                <td>@(String.IsNullOrEmpty(item.Value.ReadAs) ? item.Value.Mxedruli : $"{item.Value.Mxedruli} ({item.Value.ReadAs})")</td>
-                <td>@item.Value.Asomtavruli</td>
-                <td>@item.Value.Nuskhuru</td>
-                <td>@item.Value.NumberEquivalent</td>
+                <td><a href='@Url.Action("Letter", "Learn", new { lid = @letter.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@letter.LetterName</a></td>
+                <td>@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mxedruli : $"{letter.Mxedruli} ({letter.ReadAs})")</td>
+                <td>
+                    @letter.Asomtavruli
+                    <img class="imgtext-spaced" src="@Url.Action("GetImg", "Learn", new { text = letter.Asomtavruli, size = 14 })" alt="@letter.Asomtavruli" />
+                </td>
+                <td>
+                    @letter.Nuskhuru
+                    <img class="imgtext-spaced" src="@Url.Action("GetImg", "Learn", new { text = letter.Nuskhuru, size = 14 })" alt="@letter.Asomtavruli" />
+                </td>
+                <td>@letter.NumberEquivalent</td>
             </tr>
 
         }

@@ -45,5 +45,9 @@ textarea {
 
 .text-spaced {
     line-height: 200%;
-    
+}
+
+.imgtext-spaced {
+    margin: 3px;
+    margin-bottom: 5px;
 }
