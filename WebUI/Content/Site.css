@@ -1,4 +1,9 @@
-﻿body {
+﻿@font-face {
+    font-family: GeoUnicodeFont;
+    src: url('../../fonts/sylfaen.ttf')
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -14,6 +19,10 @@ input,
 select,
 textarea {
     max-width: 480px;
+}
+
+.geo-font {
+    font-family: GeoUnicodeFont;
 }
 
 /* Outer margin */
@@ -45,9 +54,4 @@ textarea {
 
 .text-spaced {
     line-height: 200%;
-}
-
-.imgtext-spaced {
-    margin: 3px;
-    margin-bottom: 5px;
 }

@@ -1,7 +1,7 @@
 ﻿@using LOGA.WebUI.Models
 
 @{
-    ViewBag.Title = "\"ბებო ენა\"";
+    ViewBag.Title = "ხუცურის სწავლა";
 }
 
 <div class="page-header">
@@ -52,12 +52,12 @@
     </div>
     <div class="row row-spaced" style="display: flex">
         <div class="col-md-8 text-justify panel panel-default">
-            <p class="h4 text-v-middle margin-8">
+            <div class="h4 text-v-middle margin-8">
                 "ბებო ენა" - ეს არის ხუცურის შესწავლის საინტერესო და ეფექტური საშუალება.
                 <p class="h3 text-center" style="margin-top: 20px">
                     <strong>ისწავლეთ ძველი ქართული ჩვენთან ერთად!</strong>
                 </p>
-            </p>
+            </div>
         </div>
         <div class="col-md-4 text-left">
             <img class="img-thumbnail" alt="ჯრუჭის ოთხთავი (936-940 წწ.)" src="~/Content/img/3_JruchisOtxtavi.png" />
@@ -77,14 +77,10 @@
 <pre>
 <strong>TODO:</strong>
 - P1 (MVP) -
-* Process no letters issue
-** Ask if letters are visible at start
-** Understand which letters look better as printed in books - text or images
-** Remove khucuri letters from heading logo and page titles
 * Narrow screens support
-* khucuri.me / beboena.me ბებოენა.მე
 * Google analitycs
 - P2 -
+* Add transliteration for En keyboard
 * Learn unavailable letters
 ** With letter cards
 * Add explanation of asomtavruli and nuskhuri in settings dialog
@@ -95,6 +91,7 @@
 * Add more sentences to translate
 * Associations with images or mnemonics
 * Service page for logs
+* khucuri.me
 <strong>BUGS:</strong>
 * Can check Asomtavtruli if name is not set
 ** Disable checkbox

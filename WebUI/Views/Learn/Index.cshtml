@@ -38,13 +38,13 @@
             <tr>
                 <td><a href='@Url.Action("Letter", "Learn", new { lid = @letter.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@letter.LetterName</a></td>
                 <td>@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mxedruli : $"{letter.Mxedruli} ({letter.ReadAs})")</td>
-                <td>
+                <td class="geo-font">
                     @letter.Asomtavruli
-                    <img class="imgtext-spaced" src="@Url.Action("GetImg", "Learn", new { text = letter.Asomtavruli, size = 14 })" alt="@letter.Asomtavruli" />
+                    @*<img class="imgtext-spaced" src="@Url.Action("GetTextImage", "Learn", new { text = letter.Asomtavruli, size = TEXT_IMAGE_SIZE })" alt="@letter.Asomtavruli" />*@
                 </td>
-                <td>
+                <td class="geo-font">
                     @letter.Nuskhuru
-                    <img class="imgtext-spaced" src="@Url.Action("GetImg", "Learn", new { text = letter.Nuskhuru, size = 14 })" alt="@letter.Asomtavruli" />
+                    @*<img class="imgtext-spaced" src="@Url.Action("GetTextImage", "Learn", new { text = letter.Nuskhuru, size = TEXT_IMAGE_SIZE })" alt="@letter.Asomtavruli" />*@
                 </td>
                 <td>@letter.NumberEquivalent</td>
             </tr>

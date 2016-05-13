@@ -18,9 +18,6 @@ namespace LOGA.WebUI.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            
-
-
             return View("Index");
         }
 
@@ -34,7 +31,7 @@ namespace LOGA.WebUI.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                var data = new { HasDisplayName = HttpContextStorage.HasSettingsSaved(HttpContext), DisplayName = HttpContextStorage.GetUserSettings(HttpContext).DisplayName };
+                var data = new { HasDisplayName = HttpContextStorage.HasProgressSaved(HttpContext), DisplayName = HttpContextStorage.GetUserSettings(HttpContext).DisplayName };
                 return Json(data); // JsonResult
             }
             else

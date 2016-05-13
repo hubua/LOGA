@@ -24,11 +24,11 @@
         <td>ნუსხური</td>
         <td>რიცხვი</td>
     </tr>
-    <tr>
-        <td class="h1">@(String.IsNullOrEmpty(Model.ReadAs) ? Model.Mxedruli : $"{Model.Mxedruli} ({Model.ReadAs})")</td>
-        <td class="h1">@Model.Asomtavruli</td>
-        <td class="h1">@Model.Nuskhuru</td>
-        <td class="h1">@Model.NumberEquivalent</td>
+    <tr class="h1 geo-font">
+        <td>@(String.IsNullOrEmpty(Model.ReadAs) ? Model.Mxedruli : $"{Model.Mxedruli} ({Model.ReadAs})")</td>
+        <td>@Model.Asomtavruli</td>
+        <td>@Model.Nuskhuru</td>
+        <td>@Model.NumberEquivalent</td>
     </tr>
 </table>
 

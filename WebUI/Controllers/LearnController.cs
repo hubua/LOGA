@@ -51,7 +51,7 @@ namespace LOGA.WebUI.Controllers
 
             bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
             return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri(capitalize)));
-            
+
         }
 
         [HttpPost]
@@ -114,37 +114,44 @@ namespace LOGA.WebUI.Controllers
             return View("TranslateResults", new Translate(letterMxedruli, letterKhucuri, correctCount, incorrectCount));
         }
 
+        /*
+        Does not generate multiline returns
         [HttpGet]
-        public ActionResult GetImg(string text, int size)
+        public ActionResult GetTextImage(string text, int size)
         {
-            var font = new System.Drawing.Font("Sylfaen", size, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            byte[] result;
+            using (var font = new System.Drawing.Font("Sylfaen", size, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point))
+            {
+                var graphics = System.Drawing.Graphics.FromImage(new System.Drawing.Bitmap(1, 1));
+                int w = (int)graphics.MeasureString(text, font).Width;
+                int h = (int)graphics.MeasureString(text, font).Height;
 
-            var graphics = System.Drawing.Graphics.FromImage(new System.Drawing.Bitmap(1, 1));
-            int w = (int)graphics.MeasureString(text, font).Width;
-            int h = (int)graphics.MeasureString(text, font).Height;
-
-            var bitmap = new System.Drawing.Bitmap(w, h);
-            graphics = System.Drawing.Graphics.FromImage(bitmap);
-
-            graphics.Clear(System.Drawing.Color.White);
-            graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            graphics.DrawString(text, font, System.Drawing.Brushes.Black, 0, 0);
-            graphics.Flush();
-
-            var ms = new System.IO.MemoryStream();
-            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            ms.Position = 0;
-
+                using (var bitmap = new System.Drawing.Bitmap(w, h))
+                {
+                    graphics = System.Drawing.Graphics.FromImage(bitmap);
+                    graphics.Clear(System.Drawing.Color.White);
+                    graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+                    graphics.DrawString(text, font, System.Drawing.Brushes.Black, 0, 0);
+                    graphics.Flush();
+                    using (var ms = new System.IO.MemoryStream())
+                    {
+                        bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                        //msResult.Position = 0;
+                        result = ms.ToArray();
+                    }
+                }
+            }
+            
             Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
             Response.Cache.SetValidUntilExpires(false);
             Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetNoStore();
-
-            return new FileStreamResult(ms, "image/png");
+            
+            return new FileContentResult(result, "image/png");
         }
+        */
 
-        
     }
 }

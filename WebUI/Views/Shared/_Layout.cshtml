@@ -5,7 +5,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - "Ⴁⴄⴁⴍ Ⴄⴌⴀ" ვისწავლოთ ხუცური</title>
+    <meta name="description" content="ხუცურის სწავლის ადვილი საშუალება">
+    <meta name="google" content="notranslate">
+    <meta name="robots" content="noarchive">
+    <meta name="" content="">
+    <title>@ViewBag.Title - ბებო ენა .მე</title> <!-- Ⴁⴄⴁⴍ Ⴄⴌⴀ -->
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/jquery-2.2.2.min.js"></script> <!-- must appear before bootstrap.js -->
@@ -64,11 +68,12 @@
     {
         <p>
             <button type="button" data-toggle="modal" data-target="#modalUserSettings" autofocus="">Show settings modal</button>
+            <span> | ProgressLId: @HttpContextStorage.GetUserLearnProgressLId(Context)</span>
+            <span> | LearnAsomtavruli: @HttpContextStorage.GetUserSettings(Context).LearnAsomtavruli</span>
         </p>
     }
 
     <div id="modalUserSettings" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-large">
-
         @using (Ajax.BeginForm(new AjaxOptions { Url = "/Home/UpdateSettings", UpdateTargetId = "", OnBegin = "onBegin", OnSuccess = "onSuccess", LoadingElementId = "lblSaveInProgress", LoadingElementDuration = 500 }))
         {
             @Html.Partial("_UserSettingsPartial", HttpContextStorage.GetUserSettings(Context))
@@ -83,7 +88,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Ⴁⴄⴁⴍ Ⴄⴌⴀ", "Index", "Home", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("Ⴁⴄⴁⴍ Ⴄⴌⴀ", "Index", "Home", null, new { @class = "navbar-brand geo-font" })
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
