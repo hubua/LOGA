@@ -1,4 +1,4 @@
-﻿
+﻿@using LOGA.WebUI.Models
 @{
     ViewBag.Title = "სასარგებლო მასალა";
 }
@@ -51,6 +51,8 @@
     </a>
 </div>
 
+@if (Html.IsDebugMode())
+{
 <pre>
     https://ka.wikipedia.org/wiki/მხედრული
     http://www.ambioni.ge/qartuli-damwerloba
@@ -58,6 +60,6 @@
     Georgian on http://www.memrise.com/home/
     Tips http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/
 </pre>
-
+}
 
 
