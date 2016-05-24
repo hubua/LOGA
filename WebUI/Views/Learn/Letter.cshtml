@@ -8,7 +8,7 @@
 }
 
 <div class="page-header">
-    <h2>სწავლა <small>დაიმახსოვრეთ დამწერლობა</small></h2>
+    <h2>სწავლა <small>დაიმახსოვრეთ ასოს დამწერლობა</small></h2>
 </div>
 
 <table class="table text-center table-bordered auto-width">
@@ -32,14 +32,27 @@
     </tr>
 </table>
 
-@if (Model.Words.Count() > 0)
-{
-    @Html.ActionLink("შევამოწმოთ ცოდნა", "Translate", "Learn", new { lid = Model.LearnOrder }, new { @class = "btn btn-primary btn-lg", id = "default-focus-a" })
+@{
+    var showTranslate = (Model.Words.Count() > 0);
+    var showNext = true;
+    var showPrev = (Model.LearnOrder != 1);
 }
 
-@Html.ActionLink("დავიმახსოვრე, შემდეგი", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg" })
-
-@if (Model.LearnOrder != 1)
+@if (showTranslate)
 {
-    @Html.ActionLink("წინა", "Letter", "Learn", new { lid = prevLetterLId }, new { @class = "btn btn-default btn-lg" })
+    <div class="margin-8 btn-min-width">
+        @Html.ActionLink("შევამოწმოთ ცოდნა", "Translate", "Learn", new { lid = Model.LearnOrder }, new { @class = "btn btn-primary btn-lg btn-block", id = "default-focus-a" })
+    </div>
+}
+@if (showNext)
+{
+    <div class="margin-8 btn-min-width">
+        @Html.ActionLink("დავიმახსოვრე - შემდეგი ასო", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg btn-block" })
+    </div>
+}
+@if (showPrev)
+{
+    <div class="margin-8 btn-min-width">
+        @Html.ActionLink("წინა ასო", "Letter", "Learn", new { lid = prevLetterLId }, new { @class = "btn btn-default btn-lg btn-block" })
+    </div>
 }

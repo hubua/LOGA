@@ -1,0 +1,34 @@
+﻿@model IEnumerable<LOGA.WebUI.Models.GeorgianLetter>
+
+<div class="h4">
+    <table class="table text-center table-bordered">
+        <tr>
+            <th>სახელი</th>
+            <th>მხედრული</th>
+            <th>ასომთავრული</th>
+            <th>ნუსხური</th>
+            <th>
+                <span class="hidden-lg">რიც.</span>
+                <span class="visible-lg">რიცხვითი მნიშვნელობა</span>
+            </th>
+        </tr>
+        @foreach (var item in @Model)
+        {
+            var letter = item;
+            <tr>
+                <td><a href='@Url.Action("Letter", "Learn", new { lid = @letter.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@letter.LetterName</a></td>
+                <td>@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mxedruli : $"{letter.Mxedruli} ({letter.ReadAs})")</td>
+                <td class="geo-font">
+                    @letter.Asomtavruli
+                    @*<img class="imgtext-spaced" src="@Url.Action("GetTextImage", "Learn", new { text = letter.Asomtavruli, size = TEXT_IMAGE_SIZE })" alt="@letter.Asomtavruli" />*@
+                </td>
+                <td class="geo-font">
+                    @letter.Nuskhuru
+                    @*<img class="imgtext-spaced" src="@Url.Action("GetTextImage", "Learn", new { text = letter.Nuskhuru, size = TEXT_IMAGE_SIZE })" alt="@letter.Asomtavruli" />*@
+                </td>
+                <td>@letter.NumberEquivalent</td>
+            </tr>
+        }
+    </table>
+</div>
+

@@ -48,6 +48,11 @@ textarea {
     width: auto !important;
 }
 
+.btn-min-width {
+    min-width: 300px;
+    max-width: 300px;
+}
+
 .text-v-middle {
     vertical-align: middle;
 }

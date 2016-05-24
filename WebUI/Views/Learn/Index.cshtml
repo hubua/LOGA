@@ -18,37 +18,24 @@
     <h2>სწავლა <small>ქართული ანბანი</small></h2>
 </div>
 
-
 <div class="panel panel-default" style="padding: 30px;">
     @Html.ActionLink(btnText, "Letter", "Learn", new { lid = progressLId }, new { @class = "btn btn-info btn-lg" })
 </div>
 
-<div class="h4">
-    <table class="table text-center table-bordered">
-        <tr>
-            <th>სახელი</th>
-            <th>მხედრული</th>
-            <th>ასომთავრული</th>
-            <th>ნუსხური</th>
-            <th>რიცხვითი მნიშვნელობა</th>
-        </tr>
-        @foreach (var item in @Model)
-        {
-            var letter = item.Value;
-            <tr>
-                <td><a href='@Url.Action("Letter", "Learn", new { lid = @letter.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@letter.LetterName</a></td>
-                <td>@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mxedruli : $"{letter.Mxedruli} ({letter.ReadAs})")</td>
-                <td class="geo-font">
-                    @letter.Asomtavruli
-                    @*<img class="imgtext-spaced" src="@Url.Action("GetTextImage", "Learn", new { text = letter.Asomtavruli, size = TEXT_IMAGE_SIZE })" alt="@letter.Asomtavruli" />*@
-                </td>
-                <td class="geo-font">
-                    @letter.Nuskhuru
-                    @*<img class="imgtext-spaced" src="@Url.Action("GetTextImage", "Learn", new { text = letter.Nuskhuru, size = TEXT_IMAGE_SIZE })" alt="@letter.Asomtavruli" />*@
-                </td>
-                <td>@letter.NumberEquivalent</td>
-            </tr>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+        <a href="#tabOrderDE" aria-controls="tabOrderDE" role="tab" data-toggle="tab">დედა ენის მიმდევრობა (ი, ა, თ...)</a>
+    </li>
+    <li role="presentation">
+        <a href="#tabOrderABC" aria-controls="tabOrderABC" role="tab" data-toggle="tab">ანბანის მიმდევრობა (ა, ბ, გ...)</a>
+    </li>
+</ul>
 
-        }
-    </table>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="tabOrderDE">
+        @Html.Partial("_LettersListPartial", Model.Values.OrderBy(item => item.LearnOrder))
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tabOrderABC">
+        @Html.Partial("_LettersListPartial", Model.Values)
+    </div>
 </div>

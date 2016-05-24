@@ -8,7 +8,6 @@
 </div>
 
 <div>
-
     @{
         var pdfs = new Dictionary<string, string>()
         {
@@ -35,7 +34,8 @@
         <tfoot>
             <tr>
                 <th colspan="2">
-                    <span class="text-muted small">აღებულია საიტიდან
+                    <span class="text-muted small">
+                        აღებულია საიტიდან
                         <a class="text-muted" href="http://martlmadidebloba.ge/ganmarteba19.html" target="_blank">http://martlmadidebloba.ge/ganmarteba19.html</a>
                     </span>
                 </th>
@@ -45,21 +45,40 @@
 </div>
 
 <div>
+    @{
+        var links = new Dictionary<string, string>()
+        {
+            { "https://ka.wikipedia.org/wiki/ქართული_დამწერლობა", "ქართული დამწერლობა (ვიკიპედიაზე)" },
+            { "https://ka.wikipedia.org/wiki/მხედრული", "მხედრული (ვიკიპედიაზე)" },
+            { "http://www.ambioni.ge/qartuli-damwerloba", "ქართული დამწერლობა (ამბიონზე)" },
+            { "http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/", "როგორ ვისწავლოთ სწრაფად (ინგლისური სტატია. იქნემ ვინმემ გადათარგმნოს ქართულად?)" },
+            //{ "http://www.memrise.com/home/", "" },
+            { "", "" } // To render a horizontal separator line
+        };
+    }
+
+    <table class="table table-hover auto-width">
+        <tr>
+            <th style="border: none">სასარგებლო ბმულები</th>
+        </tr>
+        @foreach (var item in links)
+        {
+            <tr>
+                <td>
+                    <a href="@item.Key" target="_blank">@item.Value</a> @item.Key
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<div>
     <div style="padding-bottom: 3px">"pdf" ფორმატის ფაილების სანახავად საჭიროა გქონდეთ Adobe Acrobat Reader</div>
     <a href="https://get.adobe.com/reader/">
         <img src="~/Content/img/Get_Adobe_Acrobat_Reader_DC_web_button_158x39.fw.png" />
     </a>
 </div>
 
-@if (Html.IsDebugMode())
-{
-<pre>
-    https://ka.wikipedia.org/wiki/მხედრული
-    http://www.ambioni.ge/qartuli-damwerloba
-    https://ka.wikipedia.org/wiki/ქართული_დამწერლობა
-    Georgian on http://www.memrise.com/home/
-    Tips http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/
-</pre>
-}
 
 
