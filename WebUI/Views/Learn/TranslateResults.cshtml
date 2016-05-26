@@ -63,13 +63,18 @@
 
 </div>
 
-@if (Model.IncorrectCount != 0)
+@{ 
+    var hasIncorrectAnswers = (Model.IncorrectCount != 0);
+    var hasCorrectAnswers = (Model.CorrectCount != 0);
+}
+
+@if (hasIncorrectAnswers)
 {
     @Html.ActionLink("ვცადოთ ხელახლა", "Translate", "Learn", new { lid = letterLId, shuffle = "yes" }, new { @class = "btn btn-primary btn-lg", id = "default-focus-a" })
 }
 
-@if (Model.CorrectCount != 0)
+@if (hasCorrectAnswers)
 {
-    @Html.ActionLink("შემდეგი ასო", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg" })
+    @Html.ActionLink("შემდეგი ასო", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg", id = (!hasIncorrectAnswers ? "default-focus-a" : "" ) })
 }
 

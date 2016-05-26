@@ -71,7 +71,8 @@ namespace LOGA.WebUI.Models
             var words = shuffle ? letter.Words.OrderBy(item => random.Next()).ToList() : letter.Words.ToList();
             return words.ToDictionary(item => item, item => default(bool?));
         }
-        
+
+        /*
         /// <summary>
         /// Gets word/sentence to translate for given Letter ID
         /// </summary>
@@ -132,6 +133,7 @@ namespace LOGA.WebUI.Models
 
             return result.OrderBy(item => random.Next()).ToArray();
         }
+        */
 
         public static void Initialize(string csvpath)
         {
@@ -168,7 +170,11 @@ namespace LOGA.WebUI.Models
 #if DEBUG
             return mxedruli;
 #endif
+
+#pragma warning disable CS0162 // Unreachable code
             StringBuilder result = new StringBuilder();
+#pragma warning restore
+
             foreach (var c in mxedruli)
             {
                 if (GeorgianABC.LettersDictionary.ContainsKey(c))

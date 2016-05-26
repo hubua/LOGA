@@ -16,13 +16,24 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="panel panel-danger">
-        <p class="h3">
-            სამწუხაროდ მოხდა გაუთვალიწინებელი შეცდომა. ჩვენ ვეცდებით გამოვასწოროთ ის უახლოეს პერიოდში.
-        </p>
-        <p class="h2">
-            ბოდიშს გიხდით უხერხულობისათვის.
-        </p>
+    <div class="container">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                შეცდომა პროგრამაში
+            </div>
+            <div class="panel-body">
+                <p class="h3">
+                    სამწუხაროდ მოხდა გაუთვალიწინებელი შეცდომა. ჩვენ ვეცდებით გამოვასწოროთ ის უახლოეს პერიოდში.
+                </p>
+                <p class="h2">
+                    ბოდიშს გიხდით უხერხულობისათვის.
+                </p>
+                <hr />
+                <p class="h4">
+                    @Html.ActionLink("საწყისს გვერდზე დაბრუნება", "Index", "Home")
+                </p>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -32,7 +32,6 @@ namespace LOGA.WebUI.Controllers
                 return RedirectToAction("Letter", new { lid = 1 });
             }
 
-
             GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(lid);
             return View("Letter", letter);
         }

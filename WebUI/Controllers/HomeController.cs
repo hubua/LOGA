@@ -36,7 +36,7 @@ namespace LOGA.WebUI.Controllers
             }
             else
             {
-                return PartialView("UserSettingsPartial", settings);
+                return PartialView("UserSettingsPartial", settings); // TODO: return correct view when not js enabled
             }
         }
 
