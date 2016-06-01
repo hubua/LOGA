@@ -8,9 +8,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>შეცდომა</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/jquery-2.2.2.min.js"></script> <!-- must appear before bootstrap.js -->
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-2.2.2.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -19,18 +19,19 @@
     <div class="container">
         <div class="panel panel-danger">
             <div class="panel-heading">
-                შეცდომა პროგრამაში
+                შეცდომა ვებ-გვერდზე
             </div>
             <div class="panel-body">
                 <p class="h3">
-                    სამწუხაროდ მოხდა გაუთვალიწინებელი შეცდომა. ჩვენ ვეცდებით გამოვასწოროთ ის უახლოეს პერიოდში.
+                    სამწუხაროდ მოხდა გაუთვალიწინებელი შეცდომა. ჩვენ ვეცდებით გავასწოროთ ის უახლოეს მომავალში.
                 </p>
                 <p class="h2">
-                    ბოდიშს გიხდით უხერხულობისათვის.
+                    ბოდიშს გიხდით უხერხულობისათვის.<br />
+                    გმადლობთ რომ სარგებლობთ "ბებოენით"!
                 </p>
                 <hr />
                 <p class="h4">
-                    @Html.ActionLink("საწყისს გვერდზე დაბრუნება", "Index", "Home")
+                    @Html.ActionLink("საწყის გვერდზე დაბრუნება", "Index", "Home")
                 </p>
             </div>
         </div>

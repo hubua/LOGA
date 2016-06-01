@@ -42,6 +42,8 @@ textarea {
 
 .row-spaced {
     margin-bottom: 12px;
+    display: flex;
+    display: -webkit-flex; /* Safari */
 }
 
 .auto-width {
@@ -59,4 +61,83 @@ textarea {
 
 .text-spaced {
     line-height: 200%;
+}
+
+/* Virtual Geo Keyboard */
+
+.ul-reset {
+    width: 100%;
+    padding: 0;
+}
+
+.keyboard {
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    padding-top: 20px;
+}
+
+.keyboard-letter {
+    float: left;
+
+    font-weight: bolder;
+
+    width: 8%;
+    height: 30px;
+    margin: 2px;
+    padding: 1px;
+
+    border: dashed;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 5px;
+
+    text-align: center;
+    list-style: none;
+}
+
+li.keyboard-letter:active {
+    background-color: aqua;
+}
+
+
+.keyboard-letter-blank {
+    height: 30px;
+    margin: 2px;
+    
+    border: dashed;
+    border-width: 1px;
+    border-color: green;
+    border-radius: 5px;
+
+    text-align: center;
+    float: left;
+    list-style: none;
+}
+
+.keyboard-letter-blank-1 {
+    width: 3%;
+}
+
+.keyboard-letter-blank-2 {
+    width: 6%;
+}
+
+.keyboard-letter-shift {
+    width: 9%;
+}
+
+.keyboard-letter-backspace {
+    width: 12%;
+}
+
+.keyboard-letter-blank-4 {
+    width: 12%;
+}
+
+.keyboard-letter-space {
+    width: 70%
+}
+
+.keyboard-letter-newrow {
+    clear: left;
 }

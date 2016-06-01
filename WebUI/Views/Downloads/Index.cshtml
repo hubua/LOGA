@@ -46,14 +46,14 @@
 
 <div>
     @{
-        var links = new Dictionary<string, string>()
+        var links = new List<Tuple<string, string, string>>()
         {
-            { "https://ka.wikipedia.org/wiki/ქართული_დამწერლობა", "ქართული დამწერლობა (ვიკიპედიაზე)" },
-            { "https://ka.wikipedia.org/wiki/მხედრული", "მხედრული (ვიკიპედიაზე)" },
-            { "http://www.ambioni.ge/qartuli-damwerloba", "ქართული დამწერლობა (ამბიონზე)" },
-            { "http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/", "როგორ ვისწავლოთ სწრაფად (ინგლისური სტატია. იქნემ ვინმემ გადათარგმნოს ქართულად?)" },
+            Tuple.Create("https://ka.wikipedia.org/wiki/ქართული_დამწერლობა", "ქართული დამწერლობა", "(სტატია ვიკიპედიაში)"),
+            Tuple.Create("https://ka.wikipedia.org/wiki/მხედრული", "მხედრული", "(სტატია ვიკიპედიაში)"),
+            Tuple.Create("http://www.ambioni.ge/qartuli-damwerloba", "ქართული დამწერლობა", "(სტატია \"ამბიონზე\")"),
+            Tuple.Create("http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/", "როგორ ვისწავლოთ ანბანი სწრაფად", "(საინტერესო ინგლისური სტატია. იქნემ ვინმემ შეძლოს გადათარგმნოს ქართულად?)"),
             //{ "http://www.memrise.com/home/", "" },
-            { "", "" } // To render a horizontal separator line
+            Tuple.Create("", "", "") // To render a horizontal separator line
         };
     }
 
@@ -65,7 +65,7 @@
         {
             <tr>
                 <td>
-                    <a href="@item.Key" target="_blank">@item.Value</a> @item.Key
+                    <a href="@item.Item1" target="_blank" title="@item.Item1">@item.Item2</a> @item.Item3
                 </td>
             </tr>
         }
