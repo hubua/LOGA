@@ -21,6 +21,7 @@ textarea {
     max-width: 480px;
 }
 
+/* Use Sylfaen explicitely */
 .geo-font {
     font-family: GeoUnicodeFont;
 }

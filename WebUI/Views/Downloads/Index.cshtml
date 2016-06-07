@@ -35,8 +35,7 @@
             <tr>
                 <th colspan="2">
                     <span class="text-muted small">
-                        აღებულია საიტიდან
-                        <a class="text-muted" href="http://martlmadidebloba.ge/ganmarteba19.html" target="_blank">http://martlmadidebloba.ge/ganmarteba19.html</a>
+                        <a class="text-muted" href="http://martlmadidebloba.ge/ganmarteba19.html" target="_blank">აღებულია საიტიდან martlmadidebloba.ge</a>
                     </span>
                 </th>
             </tr>
@@ -46,14 +45,16 @@
 
 <div>
     @{
-        var links = new List<Tuple<string, string, string>>()
+        const int LINK_ID = 0;
+        const int TEXT_ID = 1;
+        const int DESC_ID = 2;
+        var links = new string[,]
         {
-            Tuple.Create("https://ka.wikipedia.org/wiki/ქართული_დამწერლობა", "ქართული დამწერლობა", "(სტატია ვიკიპედიაში)"),
-            Tuple.Create("https://ka.wikipedia.org/wiki/მხედრული", "მხედრული", "(სტატია ვიკიპედიაში)"),
-            Tuple.Create("http://www.ambioni.ge/qartuli-damwerloba", "ქართული დამწერლობა", "(სტატია \"ამბიონზე\")"),
-            Tuple.Create("http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/", "როგორ ვისწავლოთ ანბანი სწრაფად", "(საინტერესო ინგლისური სტატია. იქნემ ვინმემ შეძლოს გადათარგმნოს ქართულად?)"),
+            { "https://ka.wikipedia.org/wiki/ქართული_დამწერლობა", "ქართული დამწერლობა", "(სტატია ვიკიპედიაში)" },
+            { "https://ka.wikipedia.org/wiki/მხედრული", "მხედრული", "(სტატია ვიკიპედიაში)" },
+            { "http://www.ambioni.ge/qartuli-damwerloba", "ქართული დამწერლობა", "(სტატია \"ამბიონზე\")" },
+            { "http://www.fluentin3months.com/phonetic-script-can-be-learned-quickly/", "როგორ ვისწავლოთ ანბანი სწრაფად", "(საინტერესო ინგლისური სტატია. იქნემ ვინმემ შეძლოს გადათარგმნოს ქართულად?)" },
             //{ "http://www.memrise.com/home/", "" },
-            Tuple.Create("", "", "") // To render a horizontal separator line
         };
     }
 
@@ -61,23 +62,31 @@
         <tr>
             <th style="border: none">სასარგებლო ბმულები</th>
         </tr>
-        @foreach (var item in links)
+        @* foreach (var item in links) *@
+        @for (int i = links.GetLowerBound(0); i <= links.GetUpperBound(0); i++)
         {
             <tr>
                 <td>
-                    <a href="@item.Item1" target="_blank" title="@item.Item1">@item.Item2</a> @item.Item3
+                    <a href="@links[i, LINK_ID]" target="_blank" title="@links[i, TEXT_ID]">@links[i, TEXT_ID]</a> @links[i, DESC_ID]
                 </td>
             </tr>
         }
+        <tfoot>
+            <tr><td><!-- to draw a horizontal line above --></td></tr>
+        </tfoot>
     </table>
 </div>
 
 
-<div>
-    <div style="padding-bottom: 3px">"pdf" ფორმატის ფაილების სანახავად საჭიროა გქონდეთ Adobe Acrobat Reader</div>
-    <a href="https://get.adobe.com/reader/">
-        <img src="~/Content/img/Get_Adobe_Acrobat_Reader_DC_web_button_158x39.fw.png" />
-    </a>
+<div class="row">
+    <div class="col-md-2">
+        <a href="https://get.adobe.com/reader/">
+            <img src="~/Content/img/Get_Adobe_Acrobat_Reader_DC_web_button_158x39.fw.png" />
+        </a>
+    </div>
+    <div class="col-md-4">
+        <span class="text-muted small">"pdf" ფორმატის ფაილების სანახავად საჭიროა გქონდეთ Adobe Acrobat Reader ან მსგავსი პროგრამა</span>
+    </div>
 </div>
 
 

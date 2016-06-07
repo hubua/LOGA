@@ -98,6 +98,8 @@
     <Content Include="Content\img\3_JruchisOtxtavi.png" />
     <Content Include="Content\img\Adobe_PDF_file_icon_24x24.png" />
     <Content Include="Content\img\Adobe_PDF_file_icon_32x32.png" />
+    <Content Include="Content\img\browser-web-icon-24.png" />
+    <Content Include="Content\img\browser-web-icon-32.png" />
     <Content Include="Content\img\Get_Adobe_Acrobat_Reader_DC_web_button_158x39.fw.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
