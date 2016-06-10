@@ -2,14 +2,12 @@
 
 @{
     ViewBag.Title = "სწავლა";
+    ViewBag.PageHead = ViewBag.Title;
+    ViewBag.PageHeadSmall = "დაიმახსოვრეთ ასოს დამწერლობა";
 
     int nextLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(Model.LearnOrder);
     int prevLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(Model.LearnOrder, true);
 }
-
-<div class="page-header">
-    <h2>სწავლა <small>დაიმახსოვრეთ ასოს დამწერლობა</small></h2>
-</div>
 
 <table class="table text-center table-bordered auto-width">
     <colgroup>
@@ -24,10 +22,24 @@
         <td>ნუსხური</td>
         <td>რიცხვი</td>
     </tr>
-    <tr class="h1 geo-font">
-        <td>@(String.IsNullOrEmpty(Model.ReadAs) ? Model.Mxedruli : $"{Model.Mxedruli} ({Model.ReadAs})")</td>
-        <td>@Model.Asomtavruli</td>
-        <td>@Model.Nuskhuru</td>
+    <tr class="h1">
+        <td class="geo-font">@(String.IsNullOrEmpty(Model.ReadAs) ? Model.Mkhedruli : $"{Model.Mkhedruli} ({Model.ReadAs})")</td>
+        <td>
+            <span class="geo-m-font">
+                @Model.LatEquivalent
+            </span>
+            <span class="geo-font">
+                @Model.Asomtavruli
+            </span>
+        </td>
+        <td>
+            <span class="geo-n-font">
+                @Model.LatEquivalent
+            </span>
+            <span class="geo-font">
+                @Model.Nuskhuri
+            </span>
+        </td>
         <td>@Model.NumberEquivalent</td>
     </tr>
 </table>

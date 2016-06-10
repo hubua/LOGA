@@ -49,7 +49,7 @@ namespace LOGA.WebUI.Controllers
             Session[SESSION_WORDS_TO_TRANSLATE] = words;
 
             bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
-            return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri(capitalize)));
+            return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri(Writing.Hand, capitalize)));
 
         }
 
@@ -87,7 +87,7 @@ namespace LOGA.WebUI.Controllers
             if (!String.IsNullOrEmpty(word))
             {
                 bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
-                return View("Translate", new Translate(word, word.ToKhucuri(capitalize), correctCount, incorrectCount));
+                return View("Translate", new Translate(word, word.ToKhucuri(Writing.Hand, capitalize), correctCount, incorrectCount));
             }
             else
             {
@@ -100,8 +100,8 @@ namespace LOGA.WebUI.Controllers
         [HttpGet]
         public ActionResult TranslateResults(int lid)
         {
-            string letterMxedruli = GeorgianABC.GetLetterByLearnIndex(lid).Mxedruli;
-            string letterKhucuri = GeorgianABC.GetLetterByLearnIndex(lid).Nuskhuru;
+            string letterMxedruli = GeorgianABC.GetLetterByLearnIndex(lid).Mkhedruli;
+            string letterKhucuri = GeorgianABC.GetLetterByLearnIndex(lid).Nuskhuri;
 
             int correctCount = Convert.ToInt32(TempData["CorrectCount"]);
             int incorrectCount = Convert.ToInt32(TempData["IncorrectCount"]);

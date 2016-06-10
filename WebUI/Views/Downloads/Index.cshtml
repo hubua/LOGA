@@ -1,11 +1,9 @@
 ﻿@using LOGA.WebUI.Models
 @{
     ViewBag.Title = "სასარგებლო მასალა";
+    ViewBag.PageHead = ViewBag.Title;
+    ViewBag.PageHeadSmall = "ამოსაბეჭდად";
 }
-
-<div class="page-header">
-    <h2>სასარგებლო მასალა <small>ამოსაბეჭდად</small> </h2>
-</div>
 
 <div>
     @{
@@ -27,8 +25,15 @@
         @foreach (var item in pdfs)
         {
             <tr>
-                <td><a href="~/Download/@item.Key"><img src="~/Content/img/Adobe_PDF_file_icon_32x32.png" /></a></td>
-                <td><a href="~/Download/@item.Key">@item.Value</a></td>
+                <td>
+                    <a href="~/Download/@item.Key">
+                        <img class="visible-lg" src="~/Content/img/Adobe_PDF_file_icon_32x32.png" />
+                        <img class="hidden-lg" src="~/Content/img/Adobe_PDF_file_icon_24x24.png" />
+                    </a>
+                </td>
+                <td>
+                    <a href="~/Download/@item.Key">@item.Value</a>
+                </td>
             </tr>
         }
         <tfoot>
@@ -60,14 +65,21 @@
 
     <table class="table table-hover auto-width">
         <tr>
-            <th style="border: none">სასარგებლო ბმულები</th>
+            <th colspan="2" style="border: none">სასარგებლო ბმულები</th>
         </tr>
         @* foreach (var item in links) *@
         @for (int i = links.GetLowerBound(0); i <= links.GetUpperBound(0); i++)
         {
             <tr>
                 <td>
-                    <a href="@links[i, LINK_ID]" target="_blank" title="@links[i, TEXT_ID]">@links[i, TEXT_ID]</a> @links[i, DESC_ID]
+                    <a href="@links[i, LINK_ID]">
+                        <img class="visible-lg" src="~/Content/img/browser-web-icon-32.png" />
+                        <img class="hidden-lg" src="~/Content/img/browser-web-icon-24.png" />
+                    </a>
+                </td>
+                <td>
+                    <a href="@links[i, LINK_ID]" target="_blank" title="@links[i, TEXT_ID]">@links[i, TEXT_ID]</a>
+                    <span>@links[i, DESC_ID]</span>
                 </td>
             </tr>
         }

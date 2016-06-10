@@ -2,11 +2,9 @@
 
 @{
     ViewBag.Title = "თარგმანი";
+    ViewBag.PageHead = ViewBag.Title;
+    ViewBag.PageHeadSmall = "შევამოწმოთ ცოდნა";
 }
-
-<div class="page-header">
-    <h2>სწავლა <small>შევამოწმოთ ცოდნა</small></h2>
-</div>
 
 @using (Html.BeginForm("Translate", "Learn"))
 {

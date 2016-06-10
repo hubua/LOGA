@@ -3,7 +3,9 @@
 @model Dictionary<char, LOGA.WebUI.Models.GeorgianLetter>
 
 @{
-    ViewBag.Title = "ქართული ანბანი";
+    ViewBag.Title = "სწავლა";
+    ViewBag.PageHead = ViewBag.Title;
+    ViewBag.PageHeadSmall = "ქართული ანბანი";
 
     int progressLId = HttpContextStorage.GetUserLearnProgressLId(Context);
     if (!GeorgianABC.IsValidLearnIndex(progressLId))
@@ -11,12 +13,8 @@
         progressLId = 1;
     }
     var progressLetter = GeorgianABC.GetLetterByLearnIndex(progressLId);
-    string btnText = progressLId == 1 ? "დავიწყოთ სწავლა" : $"გავარძელოთ სწავლა (ასო \"{progressLetter.Mxedruli}\"-დან)";
+    string btnText = progressLId == 1 ? "დავიწყოთ სწავლა" : $"გავარძელოთ სწავლა (ასო \"{progressLetter.Mkhedruli}\"-დან)";
 }
-
-<div class="page-header">
-    <h2>სწავლა <small>ქართული ანბანი</small></h2>
-</div>
 
 <div class="panel panel-default" style="padding: 30px;">
     @Html.ActionLink(btnText, "Letter", "Learn", new { lid = progressLId }, new { @class = "btn btn-info btn-lg" })
@@ -24,10 +22,16 @@
 
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active">
-        <a href="#tabOrderDE" aria-controls="tabOrderDE" role="tab" data-toggle="tab">დედა ენის მიმდევრობა (ი, ა, თ...)</a>
+        <a href="#tabOrderDE" aria-controls="tabOrderDE" role="tab" data-toggle="tab">
+            <span class="hidden-lg">დედა ენა (ი, ა, თ...)</span>
+            <span class="visible-lg">დედა ენის მიმდევრობა (ი, ა, თ...)</span>
+        </a>
     </li>
     <li role="presentation">
-        <a href="#tabOrderABC" aria-controls="tabOrderABC" role="tab" data-toggle="tab">ანბანის მიმდევრობა (ა, ბ, გ...)</a>
+        <a href="#tabOrderABC" aria-controls="tabOrderABC" role="tab" data-toggle="tab">
+            <span class="hidden-lg">ანბანი (ა, ბ, გ...)</span>
+            <span class="visible-lg">ანბანის მიმდევრობა (ა, ბ, გ...)</span>
+        </a>
     </li>
 </ul>
 

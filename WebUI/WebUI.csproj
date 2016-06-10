@@ -112,6 +112,8 @@
     <Content Include="fonts\sylfaen.ttf" />
     <Content Include="Content\StyleSheet1.less" />
     <Content Include="_ErrorLogs\readme.txt" />
+    <Content Include="fonts\dkr-hu1.ttf" />
+    <Content Include="fonts\dkr-mt1.ttf" />
     <None Include="Properties\PublishProfiles\To AWS.pubxml" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />

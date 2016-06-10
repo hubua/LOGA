@@ -3,6 +3,14 @@
     src: url('../../fonts/sylfaen.ttf')
 }
 
+@font-face {
+    font-family: GeoNuskhuriFont;
+    src: url('../../fonts/dkr-hu1.ttf')
+}
+@font-face {
+    font-family: GeoMtavruliFont;
+    src: url('../../fonts/dkr-mt1.ttf')
+}
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -24,6 +32,18 @@ textarea {
 /* Use Sylfaen explicitely */
 .geo-font {
     font-family: GeoUnicodeFont;
+}
+
+/* Use Mtavruli explicitely */
+.geo-m-font {
+    font-family: GeoMtavruliFont;
+    font-size: 130%;
+}
+
+/* Use Nuskhuri explicitely */
+.geo-n-font {
+    font-family: GeoNuskhuriFont;
+    font-size: 130%;
 }
 
 /* Outer margin */
@@ -99,7 +119,6 @@ textarea {
 li.keyboard-letter:active {
     background-color: aqua;
 }
-
 
 .keyboard-letter-blank {
     height: 30px;

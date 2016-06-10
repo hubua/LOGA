@@ -2,17 +2,14 @@
 @model LOGA.WebUI.Models.Translate
 
 @{
-    ViewBag.Title = "თარგმანის შედეგები";
+    ViewBag.Title = "სწავლა";
+    ViewBag.PageHead = ViewBag.Title;
+    ViewBag.PageHeadSmall = "შედეგი";
 
     int letterLId = Convert.ToInt32(Request.RequestContext.RouteData.Values["lid"]);
     int nextLetterLId = GeorgianABC.GetNextLetterLearnIndex(letterLId);
     GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(letterLId);
 }
-
-<div class="page-header">
-    <h2>სწავლა <small>შედეგი</small></h2>
-</div>
-
 
 <table class="table text-center table-bordered auto-width">
     <colgroup>
@@ -27,10 +24,24 @@
         <td>ნუსხური</td>
         <td>რიცხვი</td>
     </tr>
-    <tr class="geo-font">
-        <td class="h3">@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mxedruli : $"{letter.Mxedruli} ({letter.ReadAs})")</td>
-        <td class="h3">@letter.Asomtavruli</td>
-        <td class="h3">@letter.Nuskhuru</td>
+    <tr>
+        <td class="h3 geo-font">@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mkhedruli : $"{letter.Mkhedruli} ({letter.ReadAs})")</td>
+        <td class="h3">
+            <span class="geo-m-font">
+                @letter.LatEquivalent
+            </span>
+            <span class="geo-font">
+                @letter.Asomtavruli
+            </span>
+        </td>
+        <td class="h3">
+            <span class="geo-n-font">
+                @letter.LatEquivalent
+            </span>
+            <span class="geo-font">
+                @letter.Nuskhuri
+            </span>
+        </td>
         <td class="h3">@letter.NumberEquivalent</td>
     </tr>
 </table>

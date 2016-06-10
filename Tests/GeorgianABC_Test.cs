@@ -16,6 +16,18 @@ namespace Tests
         }
 
         [TestMethod]
+        public void Translation_Test()
+        {
+            string mkhedruli = "ბებო ენა";
+            string asomtavruli = "Ⴁⴄⴁⴍ ⴄⴌⴀ";
+            string nuskhuri = "ⴁⴄⴁⴍ ⴄⴌⴀ";
+            string bechduri = "bebo ena";
+            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.Hand, true) == asomtavruli);
+            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.Hand, false) == nuskhuri);
+            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.Print, true) == bechduri);
+        }
+
+        [TestMethod]
         public void GetNextLetterLearnIndex_Test()
         {
             Assert.IsTrue(GeorgianABC.GetNextLetterLearnIndex(1) == 2);

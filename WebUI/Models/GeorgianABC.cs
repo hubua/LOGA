@@ -143,11 +143,11 @@ namespace LOGA.WebUI.Models
 
             foreach (var item in ogafile)
             {
-                var data = item.Split(','); // [0]მხედრული [1]ასომთავრული [2]ნუსხური [3]რიცხვი [4]სახელი [5]იკითხება [6]მიმდევრობა [7]სიტყვები
+                var data = item.Split(','); // [0]Modern [1]Asomtavruli [2]Nuskhuri [3]LatinEquivalent [4]NumberEquivalent [5]LetterName [6]ReadAs [7]LearnOrder [8]Words
 
-                var LearnOrder = Convert.ToInt32(data[6]);
+                var LearnOrder = Convert.ToInt32(data[7]);
 
-                var sRaw = data[7].Split(';').ToList();
+                var sRaw = data[8].Split(';').ToList();
                 var sProc = new List<string>();
                 foreach (var s in sRaw)
                 {
@@ -158,14 +158,20 @@ namespace LOGA.WebUI.Models
                 }
                 var Words = sProc.ToArray();
 
-                LettersDictionary.Add(Convert.ToChar(data[0]), new GeorgianLetter(data[0], data[1], data[2], data[3], data[4], data[5], LearnOrder, Words));
+                LettersDictionary.Add(Convert.ToChar(data[0]), new GeorgianLetter(data[0], data[1], data[2], data[3], data[4], data[5], data[6], LearnOrder, Words));
             }
         }
     }
 
+    public enum Writing
+    {
+        Print, // 
+        Hand, // with asomtavruli
+    }
+
     public static class StringTranslationExtension
     {
-        public static string ToKhucuri(this string mxedruli, bool withCapital = false)
+        public static string ToKhucuri(this string mxedruli, Writing writing, bool withCapital = false)
         {
 #if DEBUG
             return mxedruli;
@@ -179,8 +185,22 @@ namespace LOGA.WebUI.Models
             {
                 if (GeorgianABC.LettersDictionary.ContainsKey(c))
                 {
-                    string khucuriLetter = withCapital ? GeorgianABC.LettersDictionary[c].Asomtavruli : GeorgianABC.LettersDictionary[c].Nuskhuru;
+                    string khucuriLetter;
+                    if (writing == Writing.Hand && withCapital)
+                    {
+                        khucuriLetter = GeorgianABC.LettersDictionary[c].Asomtavruli;
+                    }
+                    else if (writing == Writing.Hand && !withCapital)
+                    {
+                        khucuriLetter = GeorgianABC.LettersDictionary[c].Nuskhuri;
+                    }
+                    else if (writing == Writing.Print)
+                    {
+                        khucuriLetter = GeorgianABC.LettersDictionary[c].LatEquivalent;
+                    }
                     withCapital = false; // Only first letter should be capitalized
+
+                    
                     result.Append(khucuriLetter);
                 }
                 else
