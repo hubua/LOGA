@@ -19,23 +19,28 @@
                 <td><a href='@Url.Action("Letter", "Learn", new { lid = @letter.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@letter.LetterName</a></td>
                 <td>@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mkhedruli : $"{letter.Mkhedruli} ({letter.ReadAs})")</td>
                 <td>
-                    <span class="geo-m-font">
-                        @letter.LatEquivalent
+                    @*<span class="geo-m-font">
+                        @letter.LatinEquivalent
+                    </span>*@
+                    <span class="geo-font-bechduri">
+                        @letter.Asomtavruli
                     </span>
                     <span class="geo-font">
-                        @letter.Asomtavruli
+                        (&nbsp;@letter.Asomtavruli&nbsp;)
                     </span>
                 </td>
                 <td>
-                    <span class="geo-n-font">
-                        @letter.LatEquivalent
+                    @*<span class="geo-n-font geo-zoom g-1">
+                        @letter.LatinEquivalent
+                    </span>*@
+                    <span class="geo-font-bechduri">
+                        @letter.Nuskhuri
                     </span>
                     <span class="geo-font">
-                        @letter.Nuskhuri
+                        (&nbsp;@letter.Nuskhuri&nbsp;)
                     </span>
                 </td>
                 <td>@letter.NumberEquivalent</td>
-
             </tr>
         }
     </table>

@@ -8,32 +8,36 @@ namespace LOGA.WebUI.Models
 {
     public class GeorgianLetter
     {
+        public int Order { get; }
         public string Mkhedruli { get; }
         public string Asomtavruli { get; }
         public string Nuskhuri { get; }
-        public string LatEquivalent { get; }
+        public string AlternativeAsomtavruliSpelling { get; }
+        public string LatinEquivalent { get; }
         public string NumberEquivalent { get; }
         public string LetterName { get; }
         public string ReadAs { get; }
         public int LearnOrder { get; }
         public string[] Words  { get; }
 
-        public GeorgianLetter(string mkhedruli, string asomtavruli, string nuskhuri, string latequivalent, string number, string name, string read, int order, string[] words)
+        public GeorgianLetter(int order, string mkhedruli, string asomtavruli, string nuskhuri, string alternativeasomtavrulispelling, string latinequivalent, string number, string name, string read, int learnorder, string[] words)
         {
+            Order = order;
             Mkhedruli = mkhedruli;
             Asomtavruli = asomtavruli;
             Nuskhuri = nuskhuri;
-            LatEquivalent = latequivalent;
+            AlternativeAsomtavruliSpelling = alternativeasomtavrulispelling;
+            LatinEquivalent = latinequivalent;
             NumberEquivalent = number;
             LetterName = name;
             ReadAs = read;
-            LearnOrder = order;
+            LearnOrder = learnorder;
             Words = words;
         }
         
         public override string ToString()
         {
-            return $"{Mkhedruli} ({Asomtavruli}, {Nuskhuri}, {LatEquivalent}) [{ReadAs}]";
+            return $"{Mkhedruli} ({Asomtavruli}, {Nuskhuri}, {LatinEquivalent}) [{ReadAs}]";
         }
     }
 }

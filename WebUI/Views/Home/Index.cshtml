@@ -3,8 +3,16 @@
 @{
     ViewBag.Title = "ხუცურის სწავლა";
     ViewBag.PageHead = "ბებო ენა";
-    ViewBag.PageHeadSmall = "&ndash; ვისწავლოთ ხუცური";
+    ViewBag.PageHeadSmall = "- ვისწავლოთ ხუცური";
 }
+
+<script>
+    $(document).ready(function () {
+        $('.carousel').carousel({
+            interval: 15000
+        });
+    });
+</script>
 
 <blockquote class="blockquote-reverse">
     <p>ხუცური — ასომთავრულისა და ნუსხურის საერთო სახელწოდება.</p>
@@ -13,23 +21,79 @@
     </footer>
 </blockquote>
 
+
+    @*
+    <div id="carousel-a" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-a" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-a" data-slide-to="1"></li>
+            <li data-target="#carousel-a" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+            
+            <div class="item active text-center">
+                <img style="width: 100%" src="~/Content/img/1_SvanuriMravaltavi.png" alt="სვანური მრავალთავი (X ს.)" />
+                <div class="carousel-caption">
+                    <p>
+                        "ბებო ენის" საშუალებით ძველი ქართულის შესწავლა ხდება მსგავსად იმისა, როგორც სწავლობენ ბავშვები (და უცხოელები) თანამედროვე ქართულ ასოებს "დედა ენით":
+                        სწავლის თითოეულ ნაბიჯზე თქვენ გეძლევათ ახალი ასო-ბგერა, და უკვე შესწავლილი ასოებისგან ხდება სიტყვების და წინადადებების შედგენა.
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img style="width: 100%" src="~/Content/img/2_SvetickxovlisGulani.png" alt="123" />
+                <div class="carousel-caption">
+                    rame
+                </div>
+            </div>
+
+            <div class="item">
+                <img style="width: 100%" src="~/Content/img/3_JruchisOtxtavi.png" alt="123" />
+                <div class="carousel-caption">
+                    rame
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+        *@
+
+
 <div>
 
-    <div class="row row-spaced">
-        <div class="col-md-12 text-justify">
-            <div class="panel panel-default h3 text-info text-center text-spaced padding-8">
-                თუკი გესაჭიროებათ დაიმახსოვროთ ძველი ქართული ანბანის ასოები და ისწავლოთ ხუცურის კითხვა, ჩვენი საიტის ამოცანაა დაგეხმაროთ ამაში.
+    <div class="row row-spaced"> <!-- Introduction header -->
+        <div class="col-md-12">
+            <div class="panel panel-default h4 text-info text-center text-spaced padding-8">
+                <strong>
+                    თუკი გესაჭიროებათ შეისწავლოთ ძველი ქართული ანბანი და იკითხოთ ხუცური, ჩვენი საიტის ამოცანაა დაგეხმაროთ ამაში.
+                </strong>
             </div>
         </div>
     </div>
-    <div class="row row-spaced">
-        <div class="col-md-8 text-justify panel panel-default">
-            <p class="h4 text-spaced">
-                "ბებო ენის" საშუალებით ძველი ქართულის შესწავლა ხდება მსგავსად იმისა, როგორც სწავლობენ ბავშვები (და უცხოელები) თანამედროვე ქართულ ასოებს "დედა ენით":
-                სწავლის თითოეულ ნაბიჯზე თქვენ გეძლევათ ახალი ასო-ბგერა, და უკვე შესწავლილი ასოებისგან ხდება სიტყვების და წინადადებების შედგენა.
-            </p>
+
+    <!-- div class="row">
+        <div class="col-xs-12">
+            <div class="thumbnail">
+                <img class="img-thumbnail" src="~/Content/img/1_SvanuriMravaltavi.png" alt="სვანური მრავალთავი (X ს.)" />
+                <div class="caption">
+                    <p class="text-justify">
+                        "ბებო ენის" საშუალებით ძველი ქართულის შესწავლა ხდება მსგავსად იმისა, როგორც სწავლობენ ბავშვები (და უცხოელები)
+                        თანამედროვე ქართულ ასოებს "დედა ენით" &mdash; სწავლის თითოეულ ნაბიჯზე თქვენ გეძლევათ ახალი ასო-ბგერა,
+                        და უკვე შესწავლილი ასოებისგან ხდება სიტყვების და წინადადებების შედგენა.
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4 text-left">
+    </div -->
+
+    <div class="row row-spaced"> <!-- Introduction block 1 -->
+        <div class="col-md-4 col-md-push-8">
             <a href="https://ka.wikipedia.org/wiki/მრავალთავი" target="_blank">
                 <img class="img-thumbnail img-responsive" alt="სვანური მრავალთავი (X ს.)" src="~/Content/img/1_SvanuriMravaltavi.png" />
             </a>
@@ -37,22 +101,35 @@
                 სვანური მრავალთავი (X&nbsp;ს.)
             </div>
         </div>
+        <div class="col-md-8 col-md-pull-4">
+            <div class="panel panel-default h4 text-justify text-spaced padding-8">
+                "ბებო ენის" საშუალებით ძველი ქართულის შესწავლა ხდება მსგავსად იმისა, როგორც სწავლობენ ბავშვები (და უცხოელები)
+                თანამედროვე ქართულ ასოებს "დედა ენით" &mdash; სწავლის თითოეულ ნაბიჯზე თქვენ გეძლევათ ახალი ასო-ბგერა,
+                და უკვე შესწავლილი ასოებისგან ხდება სიტყვების და წინადადებების შედგენა.
+            </div>
+        </div>
     </div>
-    <div class="row row-spaced">
+    <div class="row row-spaced"> <!-- Introduction block 2 -->
         <div class="col-md-4 text-right">
             <a href="http://qartulidamwerloba.blogspot.com/2012/04/blog-post_6869.html" target="_blank">
                 <img class="img-thumbnail img-responsive" alt="სვეტიცხოვლის გულანი (1681 წ.)" src="~/Content/img/2_SvetickxovlisGulani.png" />
             </a>
             <div>სვეტიცხოვლის გულანი (1681&nbsp;წ.)</div>
         </div>
-        <div class="col-md-8 text-justify panel panel-default">
-            <p class="h4 text-spaced">
+        <div class="col-md-8">
+            <div class="panel panel-default h4 text-justify text-spaced padding-8">
                 თქვენი ცოდნის შემოწმება ხდება ინტერაქტიულად - "ბებო ენა" გიწერთ სიტყვას ან წინადადებას ხუცურად, ხოლო თქვენ უნდა შეიყვანოთ მისი შესაბამისი თარგმანი თანამედროვე ქართულად.
                 ყოველი ასოს შესწავლის შემდეგ "ბებო ენა" გაძლევთ შეფასებას, და რეკომნდაციას - გააგრძელოთ შემდეგ თუ ხელახლა გადაიმეოროთ მასალა.
-            </p>
+            </div>
         </div>
     </div>
-    <div class="row row-spaced">
+    <div class="row row-spaced"> <!-- Introduction block 3 -->
+        <div class="col-md-4 col-md-push-8">
+            <a href="https://ka.wikipedia.org/wiki/ჯრუჭის_I_ოთხთავი" target="_blank">
+                <img class="img-thumbnail img-responsive" alt="ჯრუჭის ოთხთავი (936-940 წწ.)" src="~/Content/img/3_JruchisOtxtavi.png" />
+            </a>
+            <div>ჯრუჭის ოთხთავი (936-940&nbsp;წწ.)</div>
+        </div>
         <div class="col-md-8 text-justify panel panel-default">
             <div class="h4 text-spaced padding-v-spaced">
                 "ბებო ენა" - ეს არის ხუცურის შესწავლის საინტერესო და ეფექტური საშუალება.
@@ -61,16 +138,13 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-4 text-left">
-            <a href="https://ka.wikipedia.org/wiki/ჯრუჭის_I_ოთხთავი" target="_blank">
-                <img class="img-thumbnail img-responsive" alt="ჯრუჭის ოთხთავი (936-940 წწ.)" src="~/Content/img/3_JruchisOtxtavi.png" />
-            </a>
-            <div>ჯრუჭის ოთხთავი (936-940&nbsp;წწ.)</div>
-        </div>
     </div>
-    <div class="row row-spaced">
-        <div class="col-md-12 text-center panel panel-default padding-v-spaced">
-            @Html.ActionLink("დავიწყოთ სწავლა!", "Letter", "Learn", new { lid = 1 }, new { @class = "btn btn-success btn-lg btn-block" })
+
+    <div class="row row-spaced"> <!-- Start -->
+        <div class="col-md-12">
+            <div class="panel panel-default text-center padding-8 padding-v-spaced">
+                @Html.ActionLink("დავიწყოთ სწავლა!", "Letter", "Learn", new { lid = 1 }, new { @class = "btn btn-success btn-lg btn-block" })
+            </div>
         </div>
     </div>
 

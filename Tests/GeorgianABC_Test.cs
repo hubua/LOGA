@@ -21,10 +21,8 @@ namespace Tests
             string mkhedruli = "ბებო ენა";
             string asomtavruli = "Ⴁⴄⴁⴍ ⴄⴌⴀ";
             string nuskhuri = "ⴁⴄⴁⴍ ⴄⴌⴀ";
-            string bechduri = "bebo ena";
-            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.Hand, true) == asomtavruli);
-            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.Hand, false) == nuskhuri);
-            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.Print, true) == bechduri);
+            Assert.IsTrue(mkhedruli.ToKhucuri(true) == asomtavruli);
+            Assert.IsTrue(mkhedruli.ToKhucuri(false) == nuskhuri);
         }
 
         [TestMethod]

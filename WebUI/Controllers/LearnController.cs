@@ -49,7 +49,7 @@ namespace LOGA.WebUI.Controllers
             Session[SESSION_WORDS_TO_TRANSLATE] = words;
 
             bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
-            return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri(Writing.Hand, capitalize)));
+            return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri(capitalize)));
 
         }
 
@@ -87,7 +87,7 @@ namespace LOGA.WebUI.Controllers
             if (!String.IsNullOrEmpty(word))
             {
                 bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
-                return View("Translate", new Translate(word, word.ToKhucuri(Writing.Hand, capitalize), correctCount, incorrectCount));
+                return View("Translate", new Translate(word, word.ToKhucuri(capitalize), correctCount, incorrectCount));
             }
             else
             {

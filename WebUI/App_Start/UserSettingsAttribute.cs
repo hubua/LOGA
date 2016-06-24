@@ -69,7 +69,7 @@ namespace LOGA.WebUI
             int progressLId = HttpContextStorage.GetUserLearnProgressLId(filterContext.HttpContext);
 
             var cookie = new HttpCookie(COOKIE_USERSETTINGS);
-            cookie.HttpOnly = true; // TODO: why do need this
+            cookie.HttpOnly = true; // Prevents XSS cookie stealing with clientside JS
             cookie.Expires = DateTime.Now.AddYears(1); // TODO: set past date if no user name
 
             string displaynameUTF = settings.DisplayName;

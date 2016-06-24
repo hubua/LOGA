@@ -4,6 +4,12 @@
 }
 
 @font-face {
+    font-family: GeoUnicodeFontBechduri;
+    src: url('../../fonts/sylfaen_W10.ttf')
+}
+
+/*
+@font-face {
     font-family: GeoNuskhuriFont;
     src: url('../../fonts/dkr-hu1.ttf')
 }
@@ -15,6 +21,7 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
+*/
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -34,17 +41,25 @@ textarea {
     font-family: GeoUnicodeFont;
 }
 
-/* Use Mtavruli explicitely */
-.geo-m-font {
-    font-family: GeoMtavruliFont;
-    font-size: 130%;
+/* Use Sylfaen-W10 explicitely */
+.geo-font-bechduri {
+    font-family: GeoUnicodeFontBechduri;
 }
 
-/* Use Nuskhuri explicitely */
+/*
+.geo-m-font {
+    font-family: GeoMtavruliFont;
+    
+}
+
 .geo-n-font {
     font-family: GeoNuskhuriFont;
-    font-size: 130%;
 }
+.geo-zoom_ {
+    font-size: 120%;
+}
+*/
+
 
 /* Outer margin */
 .margin-8 {
@@ -63,7 +78,7 @@ textarea {
 
 .row-spaced {
     margin-bottom: 12px;
-    display: flex;
+    /*display: flex;
     display: -webkit-flex; /* Safari */
 }
 

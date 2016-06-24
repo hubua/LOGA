@@ -24,25 +24,25 @@
         <td>ნუსხური</td>
         <td>რიცხვი</td>
     </tr>
-    <tr>
-        <td class="h3 geo-font">@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mkhedruli : $"{letter.Mkhedruli} ({letter.ReadAs})")</td>
-        <td class="h3">
-            <span class="geo-m-font">
-                @letter.LatEquivalent
-            </span>
-            <span class="geo-font">
+    <tr class="h3">
+        <td class="geo-font">@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mkhedruli : $"{letter.Mkhedruli} ({letter.ReadAs})")</td>
+        <td>
+            <span class="geo-font-bechduri">
                 @letter.Asomtavruli
             </span>
-        </td>
-        <td class="h3">
-            <span class="geo-n-font">
-                @letter.LatEquivalent
-            </span>
             <span class="geo-font">
+                (&nbsp;@letter.Asomtavruli&nbsp;)
+            </span>
+        </td>
+        <td>
+            <span class="geo-font-bechduri">
                 @letter.Nuskhuri
             </span>
+            <span class="geo-font">
+                (&nbsp;@letter.Nuskhuri&nbsp;)
+            </span>
         </td>
-        <td class="h3">@letter.NumberEquivalent</td>
+        <td>@letter.NumberEquivalent</td>
     </tr>
 </table>
 
