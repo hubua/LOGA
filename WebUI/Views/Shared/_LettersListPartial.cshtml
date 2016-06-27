@@ -3,19 +3,18 @@
 <div class="h4">
     <table class="table text-center table-bordered">
         <tr>
+            <th class="text-center">რიგითი ნომერი</th>
             <th class="text-center">სახელი</th>
             <th class="text-center">მხედრული</th>
-            <th class="text-center">ასომთავრული<br>(და&nbsp;ხელნაწერი)</th>
-            <th class="text-center">ნუსხური<br>(და&nbsp;ხელნაწერი)</th>
-            <th class="text-center">
-                <span class="hidden-lg">რიცხვი</span>
-                <span class="visible-lg">რიცხვითი<br>მნიშვნელობა</span>
-            </th>
+            <th class="text-center">ასომთავრული<br><small>ბეჭდური (და&nbsp;ხელნაწერი)</small></th>
+            <th class="text-center">ნუსხური<br><small>ბეჭდური (და&nbsp;ხელნაწერი)</small></th>
+            <th class="text-center">რიცხვითი<br>მნიშვნელობა</th>
         </tr>
         @foreach (var item in @Model)
         {
             var letter = item;
             <tr>
+                <td>@letter.Order</td>
                 <td><a href='@Url.Action("Letter", "Learn", new { lid = @letter.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@letter.LetterName</a></td>
                 <td>@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mkhedruli : $"{letter.Mkhedruli} ({letter.ReadAs})")</td>
                 <td>

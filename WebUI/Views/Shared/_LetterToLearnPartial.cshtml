@@ -1,0 +1,39 @@
+﻿@model LOGA.WebUI.Models.GeorgianLetter
+@{
+    bool isMobile = Request.Browser.IsMobileDevice;
+}
+
+<table class="table text-center table-bordered auto-width">
+    <colgroup>
+        <col style="width: 25%; background-color: lightgray" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+    </colgroup>
+    <tr>
+        <td><strong>ასო</strong></td>
+        <td>ასომთავრული</td>
+        <td>ნუსხური</td>
+        <td>რიცხვი</td>
+    </tr>
+    <tr class="@ViewData["size"]">
+        <td class="geo-font">@(String.IsNullOrEmpty(Model.ReadAs) ? Model.Mkhedruli : $"{Model.Mkhedruli} ({Model.ReadAs})")</td>
+        <td>
+            <span class="geo-font-bechduri">
+                @Model.Asomtavruli
+            </span>
+            <span class="geo-font">
+                (&nbsp;@Model.Asomtavruli&nbsp;)
+            </span>
+        </td>
+        <td>
+            <span class="geo-font-bechduri">
+                @Model.Nuskhuri
+            </span>
+            <span class="geo-font">
+                (&nbsp;@Model.Nuskhuri&nbsp;)
+            </span>
+        </td>
+        <td>@Model.NumberEquivalent</td>
+    </tr>
+</table>

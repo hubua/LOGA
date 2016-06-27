@@ -94,6 +94,7 @@
         </p>
     }
 
+    @*
     <div class="panel panel-warning visible-xs margin-8">
         <div class="panel-heading text-center">
             <strong>შენიშვნა</strong>
@@ -110,6 +111,7 @@
             </p>
         </div>
     </div>
+    *@
 
     <div id="modalUserSettings" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-large">
         @using (Ajax.BeginForm(new AjaxOptions { Url = "/Home/UpdateSettings", UpdateTargetId = "", OnBegin = "onBegin", OnSuccess = "onSuccess", LoadingElementId = "lblSaveInProgress", LoadingElementDuration = 500 }))

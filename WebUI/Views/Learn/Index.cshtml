@@ -14,6 +14,8 @@
     }
     var progressLetter = GeorgianABC.GetLetterByLearnIndex(progressLId);
     string btnText = progressLId == 1 ? "დავიწყოთ სწავლა" : $"გავარძელოთ სწავლა (ასო \"{progressLetter.Mkhedruli}\"-დან)";
+
+    string viewname = Request.Browser.IsMobileDevice ? "_LettersListMobilePartial" : "_LettersListPartial";
 }
 
 <div class="panel panel-default" style="padding: 30px;">
@@ -23,13 +25,13 @@
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active">
         <a href="#tabOrderDE" aria-controls="tabOrderDE" role="tab" data-toggle="tab">
-            <span class="hidden-lg">დედა ენა (ი, ა, თ...)</span>
+            <span class="hidden-lg">დედა ენა (ი, ა...)</span>
             <span class="visible-lg">დედა ენის მიმდევრობა (ი, ა, თ...)</span>
         </a>
     </li>
     <li role="presentation">
         <a href="#tabOrderABC" aria-controls="tabOrderABC" role="tab" data-toggle="tab">
-            <span class="hidden-lg">ანბანი (ა, ბ, გ...)</span>
+            <span class="hidden-lg">ანბანი (ა, ბ...)</span>
             <span class="visible-lg">ანბანის მიმდევრობა (ა, ბ, გ...)</span>
         </a>
     </li>
@@ -37,9 +39,9 @@
 
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane fade in active" id="tabOrderDE">
-        @Html.Partial("_LettersListPartial", Model.Values.OrderBy(item => item.LearnOrder))
+        @Html.Partial(viewname, Model.Values.OrderBy(item => item.LearnOrder))
     </div>
     <div role="tabpanel" class="tab-pane" id="tabOrderABC">
-        @Html.Partial("_LettersListPartial", Model.Values)
+        @Html.Partial(viewname, Model.Values)
     </div>
 </div>

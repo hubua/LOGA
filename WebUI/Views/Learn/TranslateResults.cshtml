@@ -9,48 +9,19 @@
     int letterLId = Convert.ToInt32(Request.RequestContext.RouteData.Values["lid"]);
     int nextLetterLId = GeorgianABC.GetNextLetterLearnIndex(letterLId);
     GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(letterLId);
+
+    string viewname = Request.Browser.IsMobileDevice ? "_LetterToLearnMobilePartial" : "_LetterToLearnPartial";
 }
 
-<table class="table text-center table-bordered auto-width">
-    <colgroup>
-        <col style="width: 25%; background-color: lightgray" />
-        <col style="width: 25%" />
-        <col style="width: 25%" />
-        <col style="width: 25%" />
-    </colgroup>
-    <tr>
-        <td><strong>ასო</strong></td>
-        <td>ასომთავრული</td>
-        <td>ნუსხური</td>
-        <td>რიცხვი</td>
-    </tr>
-    <tr class="h3">
-        <td class="geo-font">@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mkhedruli : $"{letter.Mkhedruli} ({letter.ReadAs})")</td>
-        <td>
-            <span class="geo-font-bechduri">
-                @letter.Asomtavruli
-            </span>
-            <span class="geo-font">
-                (&nbsp;@letter.Asomtavruli&nbsp;)
-            </span>
-        </td>
-        <td>
-            <span class="geo-font-bechduri">
-                @letter.Nuskhuri
-            </span>
-            <span class="geo-font">
-                (&nbsp;@letter.Nuskhuri&nbsp;)
-            </span>
-        </td>
-        <td>@letter.NumberEquivalent</td>
-    </tr>
-</table>
+@Html.Partial(viewname, letter, new ViewDataDictionary { { "size", "h4" } })
 
 <div class="panel panel-default padding-8">
 
     <h3>
-        <span class="label label-success"><span class="lead">@Model.CorrectCount</span> სწორი თარგმანი</span>
-        <span class="label label-danger"><span class="lead">@Model.IncorrectCount</span> არასწორი თარგმანი</span>
+        <span class="label label-success margin-8"><span class="lead">@Model.CorrectCount</span> სწორი თარგმანი</span>
+    </h3>
+    <h3>
+        <span class="label label-danger margin-8"><span class="lead">@Model.IncorrectCount</span> არასწორი თარგმანი</span>
     </h3>
 
     <h2>
@@ -74,18 +45,22 @@
 
 </div>
 
-@{ 
+@{
     var hasIncorrectAnswers = (Model.IncorrectCount != 0);
     var hasCorrectAnswers = (Model.CorrectCount != 0);
 }
 
 @if (hasIncorrectAnswers)
 {
-    @Html.ActionLink("ვცადოთ ხელახლა", "Translate", "Learn", new { lid = letterLId, shuffle = "yes" }, new { @class = "btn btn-primary btn-lg", id = "default-focus-a" })
+    <div class="margin-8 btn-min-width">
+        @Html.ActionLink("ვცადოთ ხელახლა", "Translate", "Learn", new { lid = letterLId, shuffle = "yes" }, new { @class = "btn btn-primary btn-lg btn-block", id = "default-focus-a" })
+    </div>
 }
 
 @if (hasCorrectAnswers)
 {
-    @Html.ActionLink("შემდეგი ასო", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg", id = (!hasIncorrectAnswers ? "default-focus-a" : "" ) })
+    <div class="margin-8 btn-min-width">
+        @Html.ActionLink("შემდეგი ასო", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg btn-block", id = (!hasIncorrectAnswers ? "default-focus-a" : "") })
+    </div>
 }
 

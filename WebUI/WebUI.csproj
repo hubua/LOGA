@@ -114,6 +114,7 @@
     <Content Include="_ErrorLogs\readme.txt" />
     <Content Include="fonts\dkr-hu1.ttf" />
     <Content Include="fonts\dkr-mt1.ttf" />
+    <Content Include="fonts\sylfaen_W10.ttf" />
     <None Include="Properties\PublishProfiles\To AWS.pubxml" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
@@ -176,6 +177,9 @@
     <Content Include="Views\Shared\_UserSettingsPartial.cshtml" />
     <Content Include="Views\Shared\_LettersListPartial.cshtml" />
     <Content Include="Views\Shared\_VirtualGeoKeyboard.cshtml" />
+    <Content Include="Views\Shared\_LettersListMobilePartial.cshtml" />
+    <Content Include="Views\Shared\_LetterToLearnPartial.cshtml" />
+    <Content Include="Views\Shared\_LetterToLearnMobilePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
