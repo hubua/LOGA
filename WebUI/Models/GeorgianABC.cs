@@ -143,12 +143,13 @@ namespace LOGA.WebUI.Models
 
             foreach (var item in ogafile)
             {
-                var data = item.Split(','); // [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]Words
+                var data = item.Split(','); // [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
 
                 var Order = Convert.ToInt32(data[0]);
                 var LearnOrder = Convert.ToInt32(data[9]);
+                var LearnOrder2 = Convert.ToInt32(data[10]);
 
-                var sRaw = data[10].Split(';').ToList();
+                var sRaw = data[11].Split(';').ToList();
                 var sProc = new List<string>();
                 foreach (var s in sRaw)
                 {

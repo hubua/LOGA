@@ -18,6 +18,7 @@ namespace LOGA.WebUI.Models
         public string LetterName { get; }
         public string ReadAs { get; }
         public int LearnOrder { get; }
+        public int LearnOrder2 { get; }
         public string[] Words  { get; }
 
         public GeorgianLetter(int order, string mkhedruli, string asomtavruli, string nuskhuri, string alternativeasomtavrulispelling, string latinequivalent, string number, string name, string read, int learnorder, string[] words)

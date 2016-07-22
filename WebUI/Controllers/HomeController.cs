@@ -40,6 +40,12 @@ namespace LOGA.WebUI.Controllers
             }
         }
 
+        public ActionResult DisplayAll()
+        {
+            GeorgianABC.Initialize(Server.MapPath(@"~\App_Data\oga.csv"));
+            return View(GeorgianABC.LettersDictionary.OrderBy(item => item.Value.LearnOrder));
+        }
+
         public ActionResult LogError()
         {
             throw new ApplicationException("Sample error message", new ApplicationException("Sample inner error message"));

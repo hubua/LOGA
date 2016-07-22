@@ -107,7 +107,6 @@
     <Content Include="sandbox.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="App_Data\oga.csv" />
     <Content Include="Download\anbani-targmanit.pdf" />
     <Content Include="fonts\sylfaen.ttf" />
     <Content Include="Content\StyleSheet1.less" />
@@ -115,6 +114,7 @@
     <Content Include="fonts\dkr-hu1.ttf" />
     <Content Include="fonts\dkr-mt1.ttf" />
     <Content Include="fonts\sylfaen_W10.ttf" />
+    <Content Include="App_Data\oga.csv" />
     <None Include="Properties\PublishProfiles\To AWS.pubxml" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
@@ -180,6 +180,7 @@
     <Content Include="Views\Shared\_LettersListMobilePartial.cshtml" />
     <Content Include="Views\Shared\_LetterToLearnPartial.cshtml" />
     <Content Include="Views\Shared\_LetterToLearnMobilePartial.cshtml" />
+    <Content Include="Views\Home\DisplayAll.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
