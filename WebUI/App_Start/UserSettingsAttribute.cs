@@ -21,9 +21,9 @@ namespace LOGA.WebUI
             {
                 result = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(text));
             }
-            catch (Exception)
+            catch
             {
-                // TODO: Log conversion error
+                // String corrupted
             }
             return result;
         }
@@ -36,9 +36,9 @@ namespace LOGA.WebUI
                 var b = Convert.FromBase64String(text);
                 result = new String(System.Text.Encoding.UTF8.GetChars(b));
             }
-            catch (Exception)
+            catch
             {
-                // TODO: Log conversion exception                    
+                // String corrupted
             }
             return result;
         }

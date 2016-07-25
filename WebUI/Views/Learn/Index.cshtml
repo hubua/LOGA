@@ -10,10 +10,10 @@
     int progressLId = HttpContextStorage.GetUserLearnProgressLId(Context);
     if (!GeorgianABC.IsValidLearnIndex(progressLId))
     {
-        progressLId = 1;
+        progressLId = GeorgianABC.FIRST_LETTER_LID;
     }
     var progressLetter = GeorgianABC.GetLetterByLearnIndex(progressLId);
-    string btnText = progressLId == 1 ? "დავიწყოთ სწავლა" : $"გავარძელოთ სწავლა (ასო \"{progressLetter.Mkhedruli}\"-დან)";
+    string btnText = progressLId == GeorgianABC.FIRST_LETTER_LID ? "დავიწყოთ სწავლა" : $"გავარძელოთ სწავლა (ასო \"{progressLetter.Mkhedruli}\"-დან)";
 
     string viewname = Request.Browser.IsMobileDevice ? "_LettersListMobilePartial" : "_LettersListPartial";
 }

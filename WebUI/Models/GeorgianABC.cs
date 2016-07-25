@@ -14,6 +14,9 @@ namespace LOGA.WebUI.Models
 
         public static Dictionary<char, GeorgianLetter> LettersDictionary;
 
+        public const int FIRST_LETTER_LID = 1;
+        public const int FIRST_LETTER_TRANSLATION_LID = 2;
+
         /*
         private static List<GeorgianLetter> LettersOrdered
         {

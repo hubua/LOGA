@@ -11,6 +11,8 @@ namespace LOGA.WebUI.Controllers
     public class LearnController : Controller
     {
         private static string SESSION_WORDS_TO_TRANSLATE = "SESSION_WORDS_TO_TRANSLATE";
+        private static string CORRECT_COUNT = "CORRECT_COUNT";
+        private static string INCORRECT_COUNT = "INCORRECT_COUNT";
 
         public LearnController()
         {
@@ -25,11 +27,11 @@ namespace LOGA.WebUI.Controllers
             return View("Index", abc);
         }
 
-        public ActionResult Letter([DefaultValue(1)] int lid)
+        public ActionResult Letter([DefaultValue(GeorgianABC.FIRST_LETTER_LID)] int lid)
         {
             if (!GeorgianABC.IsValidLearnIndex(lid))
             {
-                return RedirectToAction("Letter", new { lid = 1 });
+                return RedirectToAction("Letter", new { lid = GeorgianABC.FIRST_LETTER_LID });
             }
 
             GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(lid);
@@ -37,14 +39,14 @@ namespace LOGA.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Translate([DefaultValue(2)] int lid, string shuffle)
+        public ActionResult Translate([DefaultValue(GeorgianABC.FIRST_LETTER_TRANSLATION_LID)] int lid, bool shuffle = false)
         {
-            if (!GeorgianABC.IsValidLearnIndex(lid) || lid == 1) // TODO: Change magic numbers and strings to consts
+            if (!GeorgianABC.IsValidLearnIndex(lid) || lid == GeorgianABC.FIRST_LETTER_LID)
             {
-                return RedirectToAction("Translate", new { lid = 2 });
+                return RedirectToAction("Translate", new { lid = GeorgianABC.FIRST_LETTER_TRANSLATION_LID });
             }
 
-            var words = GeorgianABC.GetWordsToTranslateForLetter(lid, (shuffle?.ToUpper() == "YES"));
+            var words = GeorgianABC.GetWordsToTranslateForLetter(lid, shuffle);
 
             Session[SESSION_WORDS_TO_TRANSLATE] = words;
 
@@ -56,7 +58,7 @@ namespace LOGA.WebUI.Controllers
         [HttpPost]
         public ActionResult Translate(int lid, string hdnMxedruli, string tbTranslation) // TODO: TextBox from model
         {
-            var WordsToTranslate = (Dictionary<string, bool?>)Session[SESSION_WORDS_TO_TRANSLATE]; // TODO: Move to property
+            var WordsToTranslate = (Dictionary<string, bool?>)Session[SESSION_WORDS_TO_TRANSLATE];
             if (WordsToTranslate == null)
             {
                 return RedirectToAction("Translate", new { lid = lid });
@@ -91,8 +93,8 @@ namespace LOGA.WebUI.Controllers
             }
             else
             {
-                TempData["CorrectCount"] = correctCount;
-                TempData["IncorrectCount"] = incorrectCount;
+                TempData[CORRECT_COUNT] = correctCount;
+                TempData[INCORRECT_COUNT] = incorrectCount;
                 return RedirectToAction("TranslateResults", new { lid = lid });
             }
         }
@@ -103,8 +105,8 @@ namespace LOGA.WebUI.Controllers
             string letterMxedruli = GeorgianABC.GetLetterByLearnIndex(lid).Mkhedruli;
             string letterKhucuri = GeorgianABC.GetLetterByLearnIndex(lid).Nuskhuri;
 
-            int correctCount = Convert.ToInt32(TempData["CorrectCount"]);
-            int incorrectCount = Convert.ToInt32(TempData["IncorrectCount"]);
+            int correctCount = Convert.ToInt32(TempData[CORRECT_COUNT]);
+            int incorrectCount = Convert.ToInt32(TempData[INCORRECT_COUNT]);
             if (correctCount > incorrectCount)
             {
                 HttpContextStorage.SetUserLearnProgressLId(HttpContext, lid);

@@ -35,7 +35,7 @@
             foreach (var word in item.Value.Words)
             {
                 var err = word.Any(c => !learned.Contains(c)) ? "bg-danger" : "";
-                var errlist = word.Where(c => !learned.Contains(c)).ToList().Distinct();
+                var errlist = word.Where(c => !learned.Contains(c)).ToList().Distinct() ;
                 <tr>
                     <td class="text-right @err">
                         @String.Format("{0})", n++)
