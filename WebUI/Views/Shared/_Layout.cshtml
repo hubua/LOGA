@@ -1,5 +1,6 @@
-﻿@using LOGA.WebUI.Models
-@using LOGA.WebUI
+﻿@using LOGA.WebUI
+@using LOGA.WebUI.HtmlHelpers
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
     <meta name="" content="">
     <title>@ViewBag.Title - ბებო ენა .მე</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" /> <!-- must appear before any other css-->
+    <link href="~/Content/Custom-bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/jquery-2.2.2.min.js"></script> <!-- must appear before bootstrap.js -->
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
@@ -54,6 +56,7 @@
         });
     </script>
 
+    <!-- /Home/UpdateSettings Ajax -->
     <script>
         function onBegin() {
             $('#btnSaveUserSettings').addClass('disabled');
@@ -95,22 +98,22 @@
     }
 
     @*
-    <div class="panel panel-warning visible-xs margin-8">
-        <div class="panel-heading text-center">
-            <strong>შენიშვნა</strong>
+        <div class="panel panel-warning visible-xs margin-8">
+            <div class="panel-heading text-center">
+                <strong>შენიშვნა</strong>
+            </div>
+            <div class="panel-body">
+                <p>
+                    ვებ-გვერდი ჯერ არ არის ოპტიმიზირებული მობილური (მცირე ეკრანის მქონე) მოწყობილობებისათვის.
+                </p>
+                <p>
+                    თქვენი კომფორტისთვის უმჯობესია იხმაროთ კომპიუტერი ან პლანშეტი.
+                </p>
+                <p>
+                    ბოდიშს გიხდით დროებითი უხერხულობისათვის.
+                </p>
+            </div>
         </div>
-        <div class="panel-body">
-            <p>
-                ვებ-გვერდი ჯერ არ არის ოპტიმიზირებული მობილური (მცირე ეკრანის მქონე) მოწყობილობებისათვის.
-            </p>
-            <p>
-                თქვენი კომფორტისთვის უმჯობესია იხმაროთ კომპიუტერი ან პლანშეტი.
-            </p>
-            <p>
-                ბოდიშს გიხდით დროებითი უხერხულობისათვის.
-            </p>
-        </div>
-    </div>
     *@
 
     <div id="modalUserSettings" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-large">
@@ -155,12 +158,15 @@
         </div>
     </div>
 
-    <div class="container body-content">
+    <div class="container body-content-container">
         <div class="page-header">
             <h2>@ViewBag.PageHead&nbsp;<small>@ViewBag.PageHeadSmall</small></h2>
         </div>
         @RenderBody()
         <hr />
+    </div>
+
+    <div class="container padding-v-spaced">
         <footer class="text-muted">
             <div>
                 <div class="row">
@@ -181,7 +187,6 @@
                     </div>
                 </div>
             </div>
-
         </footer>
     </div>
 

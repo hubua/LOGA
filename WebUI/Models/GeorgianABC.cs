@@ -12,7 +12,7 @@ namespace LOGA.WebUI.Models
 
         private static readonly Random random = new Random(DateTime.Now.Millisecond);
 
-        public static Dictionary<char, GeorgianLetter> LettersDictionary;
+        public static readonly Dictionary<char, GeorgianLetter> LettersDictionary = new Dictionary<char, GeorgianLetter>();
 
         public const int FIRST_LETTER_LID = 1;
         public const int FIRST_LETTER_TRANSLATION_LID = 2;
@@ -141,12 +141,11 @@ namespace LOGA.WebUI.Models
         public static void Initialize(string csvpath)
         {
             var ogafile = System.IO.File.ReadAllLines(csvpath);
+            var ogadata = ogafile.Skip(1).Select(item => item.Split(','));
 
-            LettersDictionary = new Dictionary<char, GeorgianLetter>();
-
-            foreach (var item in ogafile)
+            foreach (var data in ogadata)
             {
-                var data = item.Split(','); // [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
+                // [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
 
                 var Order = Convert.ToInt32(data[0]);
                 var LearnOrder = Convert.ToInt32(data[9]);
@@ -194,19 +193,6 @@ namespace LOGA.WebUI.Models
                 }
             }
             return result.ToString();
-        }
-    }
-
-
-    public static class HtmlHelperExtension
-    {
-        public static bool IsDebugMode(this HtmlHelper html)
-        {
-#if DEBUG
-            return true;
-#else
-            return false;
-#endif
         }
     }
 
