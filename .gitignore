@@ -296,3 +296,6 @@ paket-files/
 # Deploy folder
 _deploy
 _deploy.zip
+
+# Error log folder
+/WebUI/_ErrorLogs

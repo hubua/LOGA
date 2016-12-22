@@ -138,20 +138,46 @@ namespace LOGA.WebUI.Models
         }
         */
 
-        public static void Initialize(string csvpath)
+        public static void Initialize(string csvdir)
         {
-            var ogafile = System.IO.File.ReadAllLines(csvpath);
-            var ogadata = ogafile.Skip(1).Select(item => item.Split(','));
+            LettersDictionary.Clear(); // In case Initialize was already called before
+            var ogaCSV = System.IO.File.ReadAllLines(csvdir + "oga.csv");
+            var sentencesCSV = System.IO.File.ReadAllLines(csvdir + "sentences.csv");
+            /*
+             * [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent
+             * [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
+             */
+            var ogaData = ogaCSV.Skip(1).Select(item => item.Split(','));
+            var sentencesData = sentencesCSV.Distinct().ToList();
 
-            foreach (var data in ogadata)
+            var letterSentences = new Dictionary<char, List<string>>();
+
+            var letters = ogaData
+                .Select(item => new KeyValuePair<char, int>(Convert.ToChar(item[1]), Convert.ToInt32(item[9])))
+                .OrderBy(item => item.Value)
+                .Select(item => item.Key)
+                .ToList();
+            letters.ForEach(letter => { letterSentences.Add(letter, new List<string>()); });
+
+            foreach (var sentence in sentencesData)
             {
-                // [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
+                int max = 0;
+                foreach (char letter in sentence)
+                {
+                    int lid = letters.IndexOf(letter);
+                    max = Math.Max(max, lid);
+                }
+                letterSentences[letters[max]].Add(sentence);
+            }
 
+            foreach (var data in ogaData)
+            {
+                var LetterMxedruli = Convert.ToChar(data[1]);
                 var Order = Convert.ToInt32(data[0]);
                 var LearnOrder = Convert.ToInt32(data[9]);
                 var LearnOrder2 = Convert.ToInt32(data[10]);
 
-                var sRaw = data[11].Split(';').ToList();
+                /*var sRaw = data[11].Split(';').ToList();
                 var sProc = new List<string>();
                 foreach (var s in sRaw)
                 {
@@ -160,9 +186,11 @@ namespace LOGA.WebUI.Models
                         sProc.Add(s.Trim());
                     }
                 }
-                var Words = sProc.ToArray();
+                var Words = sProc.ToArray();*/
 
-                LettersDictionary.Add(Convert.ToChar(data[1]), new GeorgianLetter(Order, data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], LearnOrder, Words));
+                var Words = letterSentences[LetterMxedruli].OrderBy(item => item.Length).ToArray();
+
+                LettersDictionary.Add(Convert.ToChar(data[1]), new GeorgianLetter(Order, LetterMxedruli.ToString(), data[2], data[3], data[4], data[5], data[6], data[7], data[8], LearnOrder, Words));
             }
         }
     }

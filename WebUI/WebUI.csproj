@@ -93,6 +93,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Custom-bootstrap.css" />
     <Content Include="Content\img\1_SvanuriMravaltavi.png" />
     <Content Include="Content\img\2_SvetickxovlisGulani.png" />
     <Content Include="Content\img\3_JruchisOtxtavi.png" />
@@ -109,12 +110,12 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Download\anbani-targmanit.pdf" />
     <Content Include="fonts\sylfaen.ttf" />
-    <Content Include="Content\StyleSheet1.less" />
     <Content Include="_ErrorLogs\readme.txt" />
     <Content Include="fonts\dkr-hu1.ttf" />
     <Content Include="fonts\dkr-mt1.ttf" />
     <Content Include="fonts\sylfaen_W10.ttf" />
     <Content Include="App_Data\oga.csv" />
+    <Content Include="App_Data\sentences.csv" />
     <None Include="Properties\PublishProfiles\To AWS.pubxml" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
@@ -139,6 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HtmlHelpers\HtmlHelperExtension.cs" />
     <Compile Include="Models\GeorgianABC.cs" />
     <Compile Include="Models\GeorgianLetter.cs" />
     <Compile Include="Models\Translate.cs" />

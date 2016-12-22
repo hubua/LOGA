@@ -12,7 +12,7 @@ namespace Tests
         [TestInitialize]
         public void Initialize()
         {
-            GeorgianABC.Initialize(@".\..\..\..\WebUI\App_Data\oga.csv");
+            GeorgianABC.Initialize(@".\..\..\..\WebUI\App_Data\");
         }
 
         [TestMethod]

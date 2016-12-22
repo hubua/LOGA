@@ -42,7 +42,7 @@ namespace LOGA.WebUI.Controllers
 
         public ActionResult DisplayAll()
         {
-            GeorgianABC.Initialize(Server.MapPath(@"~\App_Data\oga.csv"));
+            GeorgianABC.Initialize(Server.MapPath(@"~\App_Data\")); // Re-initializing dictionary
             return View(GeorgianABC.LettersDictionary.OrderBy(item => item.Value.LearnOrder));
         }
 
