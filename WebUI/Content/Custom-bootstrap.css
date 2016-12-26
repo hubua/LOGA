@@ -1,0 +1,85 @@
+﻿.body-content-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*
+    Bootstrap
+*/
+
+body {
+    background: #e9e9e9;
+}
+
+
+/* Button */
+.btn {
+    border-radius: 100px;
+}
+
+.btn:focus {
+    outline: none;
+    outline-style: none; /* http://www.outlinenone.com/#test1 */
+}
+
+.btn:active {
+    outline: none;
+    outline-style: none;
+}
+
+/*
+.btn-success {
+    background: #94c500;
+    border-color: #94c500;
+}
+
+.btn-success:hover {
+    background: #7eb530;
+    border-color: #7eb530;
+}*/
+
+/* Nagivation bar */
+.navbar-default {
+    background: rgb(32,166,231);
+    background-color: rgb(32,166,231);
+    font-size: larger;
+    letter-spacing: 0.0625em;
+}
+
+/* Nagivation bar logo */
+.navbar-default .navbar-brand {
+    color: #fff;
+    font-size: larger;
+    letter-spacing: normal;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:active {
+    color: #e9e9e9;
+}
+
+/* Nagivation bar menu item */
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+    background: rgb(32,166,231);
+    background-color: rgb(32,166,231);
+}
+
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:active,
+.navbar-default .navbar-nav>li>a:hover {
+    color: #e9e9e9;
+    background: rgb(32,166,231);
+    background-color: rgb(32,166,231);
+}
+
+/* Nagivation bar active menu item */
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+    background: rgb(18,131,186);
+    background-color: rgb(18,131,186);
+    color: #fff;
+}

@@ -8,25 +8,9 @@
     src: url('../../fonts/sylfaen_W10.ttf')
 }
 
-/*
-@font-face {
-    font-family: GeoNuskhuriFont;
-    src: url('../../fonts/dkr-hu1.ttf')
-}
-@font-face {
-    font-family: GeoMtavruliFont;
-    src: url('../../fonts/dkr-mt1.ttf')
-}
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-*/
-
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.body-content-container {
+    padding: 0px 30px 10px 30px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -45,21 +29,6 @@ textarea {
 .geo-font-bechduri {
     font-family: GeoUnicodeFontBechduri;
 }
-
-/*
-.geo-m-font {
-    font-family: GeoMtavruliFont;
-    
-}
-
-.geo-n-font {
-    font-family: GeoNuskhuriFont;
-}
-.geo-zoom_ {
-    font-size: 120%;
-}
-*/
-
 
 /* Outer margin */
 .margin-8 {

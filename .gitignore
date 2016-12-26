@@ -299,3 +299,4 @@ _deploy.zip
 
 # Error log folder
 /WebUI/_ErrorLogs
+/DataGenerator
