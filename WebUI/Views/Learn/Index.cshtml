@@ -18,8 +18,8 @@
     string viewname = Request.Browser.IsMobileDevice ? "_LettersListMobilePartial" : "_LettersListPartial";
 }
 
-<div class="panel panel-default" style="padding: 30px;">
-    @Html.ActionLink(btnText, "Letter", "Learn", new { lid = progressLId }, new { @class = "btn btn-info btn-lg" })
+<div class="panel padding-8">
+    @Html.ActionLink(btnText, "Letter", "Learn", new { lid = progressLId }, new { @class = "btn btn-success btn-lg" })
 </div>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -44,4 +44,8 @@
     <div role="tabpanel" class="tab-pane" id="tabOrderABC">
         @Html.Partial(viewname, Model.Values)
     </div>
+</div>
+
+<div class="panel padding-8 text-right">
+    @Html.ActionLink(btnText, "Letter", "Learn", new { lid = progressLId }, new { @class = "btn btn-success btn-lg" })
 </div>

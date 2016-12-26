@@ -76,6 +76,8 @@
             $('#modalUserSettings').modal('hide');
             $('#btnSaveUserSettings').removeClass('disabled');
         }
+
+        //# sourceURL=InlineJS.js
     </script>
 
     @if (Html.IsDebugMode())
@@ -91,7 +93,7 @@
     @if (Html.IsDebugMode())
     {
         <p>
-            <button type="button" data-toggle="modal" data-target="#modalUserSettings" autofocus="">Show settings modal</button>
+            <!--<button type="button" data-toggle="modal" data-target="#modalUserSettings" autofocus="">Show settings modal</button>-->
             <span> | ProgressLId: @HttpContextStorage.GetUserLearnProgressLId(Context)</span>
             <span> | LearnAsomtavruli: @HttpContextStorage.GetUserSettings(Context).LearnAsomtavruli</span>
         </p>
@@ -149,8 +151,8 @@
                                 var userHasDisplayName = !String.IsNullOrWhiteSpace(userDisplayName);
                             }
                             <span class="glyphicon glyphicon-user"></span>
-                            <span class="@(userHasDisplayName ? "hide" : "")" id="spanUserAnonymous" data-toggle="tooltip" title="მიუთითეთ სწავლის პარამეტრები">პარამეტრები</span>
-                            <span class="@(userHasDisplayName ? "" : "hide")" id="spanUserNamed" data-toggle="tooltip" title="თქვენი სწავლის პარამეტრები">მოგესალმებით, <span id="spanUserDisplayName">@userDisplayName</span>!</span>
+                            <span class="@(userHasDisplayName ? "hide" : "")" id="spanUserAnonymous" data-toggle="tooltip" data-placement="bottom" title="მიუთითეთ სწავლის პარამეტრები">პარამეტრები</span>
+                            <span class="@(userHasDisplayName ? "" : "hide")" id="spanUserNamed" data-toggle="tooltip" data-placement="bottom" title="თქვენი სწავლის პარამეტრები">მოგესალმებით, <span id="spanUserDisplayName">@userDisplayName</span>!</span>
                         </a>
                     </li>
                 </ul>
@@ -163,7 +165,9 @@
             <h2>@ViewBag.PageHead&nbsp;<small>@ViewBag.PageHeadSmall</small></h2>
         </div>
         @RenderBody()
+        <!--
         <hr />
+        -->
     </div>
 
     <div class="container padding-v-spaced">

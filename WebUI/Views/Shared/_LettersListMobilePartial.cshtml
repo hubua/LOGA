@@ -11,7 +11,7 @@
             var letter = item;
             <tr>
                 <td>
-                    <a href='@Url.Action("Letter", "Learn", new { lid = @letter.LearnOrder })' data-toggle="tooltip" title="გავაგრძელოთ აქედან">@letter.LetterName</a>
+                    <a href='@Url.Action("Letter", "Learn", new { lid = @letter.LearnOrder })' data-toggle="tooltip" data-placement="top" title="გავაგრძელოთ აქედან">@letter.LetterName</a>
                 </td>
                 <td>
                     @(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mkhedruli : $"{letter.Mkhedruli} ({letter.ReadAs})")
