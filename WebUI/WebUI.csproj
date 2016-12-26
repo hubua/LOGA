@@ -114,8 +114,8 @@
     <Content Include="fonts\dkr-hu1.ttf" />
     <Content Include="fonts\dkr-mt1.ttf" />
     <Content Include="fonts\sylfaen_W10.ttf" />
-    <Content Include="App_Data\oga.csv" />
-    <Content Include="App_Data\sentences.csv" />
+    <Content Include="App_Data\oga.tsv" />
+    <Content Include="App_Data\sentences.tsv" />
     <None Include="Properties\PublishProfiles\To AWS.pubxml" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
@@ -182,7 +182,7 @@
     <Content Include="Views\Shared\_LettersListMobilePartial.cshtml" />
     <Content Include="Views\Shared\_LetterToLearnPartial.cshtml" />
     <Content Include="Views\Shared\_LetterToLearnMobilePartial.cshtml" />
-    <Content Include="Views\Home\DisplayAll.cshtml" />
+    <Content Include="Views\Home\ReloadAll.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

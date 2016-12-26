@@ -141,13 +141,13 @@ namespace LOGA.WebUI.Models
         public static void Initialize(string csvdir)
         {
             LettersDictionary.Clear(); // In case Initialize was already called before
-            var ogaCSV = System.IO.File.ReadAllLines(csvdir + "oga.csv");
-            var sentencesCSV = System.IO.File.ReadAllLines(csvdir + "sentences.csv");
+            var ogaCSV = System.IO.File.ReadAllLines(csvdir + "oga.tsv");
+            var sentencesCSV = System.IO.File.ReadAllLines(csvdir + "sentences.tsv");
             /*
              * [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent
              * [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
              */
-            var ogaData = ogaCSV.Skip(1).Select(item => item.Split(','));
+            var ogaData = ogaCSV.Skip(1).Select(item => item.Split('\t'));
             var sentencesData = sentencesCSV.Distinct().ToList();
 
             var letterSentences = new Dictionary<char, List<string>>();

@@ -40,7 +40,7 @@ namespace LOGA.WebUI.Controllers
             }
         }
 
-        public ActionResult DisplayAll()
+        public ActionResult ReloadAll()
         {
             GeorgianABC.Initialize(Server.MapPath(@"~\App_Data\")); // Re-initializing dictionary
             return View(GeorgianABC.LettersDictionary.OrderBy(item => item.Value.LearnOrder));
