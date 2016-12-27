@@ -25,7 +25,7 @@
                     გადათარგმნეთ
                 </div>
                 <div class="panel-body">
-                    <div class="h2 text-spaced geo-font-bechduri">@Model.Khucuri</div>
+                    <div class="h2 no-top-margin text-spaced geo-font-bechduri">@Model.Khucuri</div>
                     <div>
                         @Html.TextBox("tbTranslation", null, new { @class = "form-control input-lg", placeholder = "შეიყვანეთ თარგმანი", autofocus = "", autocomplete = "off" })
                     </div>
@@ -35,13 +35,14 @@
     </div>
 
     @Html.Hidden("hdnMxedruli", Model.Mxedruli);
-    <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-primary btn-lg" />
-
-    @*
-        
-    <div class="hidden-lg">
-        @Html.Partial("_VirtualGeoKeyboard", "tbTranslation")
+    <div class="margin-8 btn-min-width">
+        <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-success btn-lg" />
     </div>
-    *@
+
+        @*
+            <div class="hidden-lg">
+                @Html.Partial("_VirtualGeoKeyboard", "tbTranslation")
+            </div>
+        *@
 
 }

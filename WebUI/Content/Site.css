@@ -8,11 +8,6 @@
     src: url('../../fonts/sylfaen_W10.ttf')
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content-container {
-    padding: 0px 30px 10px 30px;
-}
-
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -30,6 +25,38 @@ textarea {
     font-family: GeoUnicodeFontBechduri;
 }
 
+/* Set padding to keep content from hitting the edges */
+.body-content-container {
+    padding: 0px 30px 25px 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* For mobile devices and tablets */
+@media (max-width: 768px) {
+    .body-content-container {
+        padding: 0px 5px 15px 5px;
+        border-radius: unset;
+        box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+    }
+
+    .page-header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* Remove extra space in navbar*/
+    .navbar-default {
+        margin-bottom: 0px;
+    }
+}
+
+/* Remove extra space */
+.no-top-margin {
+    margin-top: 0px;
+}
+
 /* Outer margin */
 .margin-8 {
     margin: 8px;
@@ -40,6 +67,7 @@ textarea {
     padding: 8px;
 }
 
+/* Inner padding vertical */
 .padding-v-spaced {
     padding-top: 20px;
     padding-bottom: 20px;

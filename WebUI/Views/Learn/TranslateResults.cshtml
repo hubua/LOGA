@@ -17,14 +17,13 @@
 
 <div class="panel panel-default padding-8">
 
-    <h3>
-        <span class="label label-success margin-8"><span class="lead">@Model.CorrectCount</span> სწორი თარგმანი</span>
+    <h3 class="margin-8">
+        <span class="label label-success"><span class="lead">@Model.CorrectCount</span> სწორი თარგმანი</span>
     </h3>
-    <h3>
-        <span class="label label-danger margin-8"><span class="lead">@Model.IncorrectCount</span> არასწორი თარგმანი</span>
+    <h3 class="margin-8">
+        <span class="label label-danger"><span class="lead">@Model.IncorrectCount</span> არასწორი თარგმანი</span>
     </h3>
-
-    <h2>
+    <h2 class="margin-8" style="margin-top: 12px">
         @if (Model.CorrectCount == 0)
         {
             <b>ცუდია</b><span class="glyphicon glyphicon-thumbs-down" style="margin-left: 10px;"></span>
