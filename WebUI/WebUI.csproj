@@ -105,12 +105,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="sandbox.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Download\anbani-targmanit.pdf" />
     <Content Include="fonts\sylfaen.ttf" />
-    <Content Include="_ErrorLogs\readme.txt" />
+    <Content Include="_ErrorLogs\README.txt" />
     <Content Include="fonts\dkr-hu1.ttf" />
     <Content Include="fonts\dkr-mt1.ttf" />
     <Content Include="fonts\sylfaen_W10.ttf" />

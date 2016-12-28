@@ -161,8 +161,11 @@
     </div>
 
     <div class="container body-content-container">
-        <div class="page-header no-top-margin">
-            <h2>@ViewBag.PageHead&nbsp;<small>@ViewBag.PageHeadSmall</small></h2>
+        <div class="page-header">
+            @{
+                string h = Request.Browser.IsMobileDevice ? "h3" : "h2";
+            }
+            <@h>@ViewBag.PageHead&nbsp;<small>@ViewBag.PageHeadSmall</small></@h>
         </div>
         
         @RenderBody()

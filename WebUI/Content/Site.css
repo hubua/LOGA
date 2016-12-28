@@ -27,7 +27,7 @@ textarea {
 
 /* Set padding to keep content from hitting the edges */
 .body-content-container {
-    padding: 0px 30px 25px 30px;
+    padding: 0 30px 25px 30px;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -36,7 +36,7 @@ textarea {
 /* For mobile devices and tablets */
 @media (max-width: 768px) {
     .body-content-container {
-        padding: 0px 5px 15px 5px;
+        padding: 0 5px 15px 5px;
         border-radius: unset;
         box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
     }
@@ -44,17 +44,24 @@ textarea {
     .page-header {
         padding-left: 10px;
         padding-right: 10px;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 8px;
     }
 
     /* Remove extra space in navbar*/
     .navbar-default {
-        margin-bottom: 0px;
+        margin-bottom: 0;
+    }
+
+    .panel-body {
+        padding-top: 0;
     }
 }
 
 /* Remove extra space */
 .no-top-margin {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 /* Outer margin */
@@ -80,7 +87,7 @@ textarea {
 }
 
 .auto-width {
-    width: auto !important;
+    width: auto /*!important*/;
 }
 
 .btn-min-width {
