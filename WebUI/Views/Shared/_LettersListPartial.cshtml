@@ -3,18 +3,19 @@
 <div class="h4">
     <table class="table text-center table-bordered">
         <tr>
-            <th class="text-center">რიგითი ნომერი</th>
+            <!-- hidden-xs used to hide first and last cells on narrow non-mobile devices, like tablets -->
+            <th class="text-center hidden-xs">რიგითი ნომერი</th>
             <th class="text-center">სახელი</th>
             <th class="text-center">მხედრული</th>
             <th class="text-center">ასომთავრული<br><small>ბეჭდური (და&nbsp;ხელნაწერი)</small></th>
             <th class="text-center">ნუსხური<br><small>ბეჭდური (და&nbsp;ხელნაწერი)</small></th>
-            <th class="text-center">რიცხვითი<br>მნიშვნელობა</th>
+            <th class="text-center hidden-xs">რიცხვითი<br>მნიშვნელობა</th>
         </tr>
         @foreach (var item in @Model)
         {
             var letter = item;
             <tr>
-                <td>@letter.Order</td>
+                <td class="hidden-xs">@letter.Order</td>
                 <td><a href='@Url.Action("Letter", "Learn", new { lid = @letter.LearnOrder })' data-toggle="tooltip" data-placement="top" title="გავაგრძელოთ აქედან">@letter.LetterName</a></td>
                 <td>@(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mkhedruli : $"{letter.Mkhedruli} ({letter.ReadAs})")</td>
                 <td>
@@ -39,7 +40,7 @@
                         (&nbsp;@letter.Nuskhuri&nbsp;)
                     </span>
                 </td>
-                <td>@letter.NumberEquivalent</td>
+                <td class="hidden-xs">@letter.NumberEquivalent</td>
             </tr>
         }
     </table>

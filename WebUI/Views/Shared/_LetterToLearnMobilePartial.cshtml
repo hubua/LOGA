@@ -9,8 +9,8 @@
     </colgroup>
     <tr>
         <td><strong>ასო</strong></td>
-        <td>ასომთავრული / ნუსხური</td>
-        <td>რიცხვი</td>
+        <td colspan="2">ასომთავრული / ნუსხური</td>
+        <td>რიცხვითი მნიშვნელობა</td>
     </tr>
     <tr class="@ViewData["size"]">
         <td class="geo-font">@(String.IsNullOrEmpty(Model.ReadAs) ? Model.Mkhedruli : $"{Model.Mkhedruli} ({Model.ReadAs})")</td>
@@ -18,13 +18,11 @@
             <span class="geo-font-bechduri">
                 @Model.Asomtavruli
             </span>
-            <span>
-                &nbsp;&nbsp;/&nbsp;&nbsp;
-            </span>
+        </td>
+        <td>
             <span class="geo-font-bechduri">
                 @Model.Nuskhuri
             </span>
-            
         </td>
         <td>@Model.NumberEquivalent</td>
     </tr>

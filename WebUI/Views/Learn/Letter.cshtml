@@ -8,6 +8,7 @@
     int nextLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(Model.LearnOrder);
     int prevLetterLId = LOGA.WebUI.Models.GeorgianABC.GetNextLetterLearnIndex(Model.LearnOrder, true);
 
+    // Tablets are NOT included into Mobile Devices
     string viewname = Request.Browser.IsMobileDevice ? "_LetterToLearnMobilePartial" : "_LetterToLearnPartial";
 }
 

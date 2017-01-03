@@ -10,6 +10,7 @@
     int nextLetterLId = GeorgianABC.GetNextLetterLearnIndex(letterLId);
     GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(letterLId);
 
+    // Tablets are NOT included into Mobile Devices
     string viewname = Request.Browser.IsMobileDevice ? "_LetterToLearnMobilePartial" : "_LetterToLearnPartial";
 }
 

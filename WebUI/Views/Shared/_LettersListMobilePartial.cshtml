@@ -2,9 +2,15 @@
 
 <div class="h4">
     <table class="table text-center table-bordered">
+        <colgroup>
+            <col style="width: 25%;" />
+            <col style="width: 25%" />
+            <col style="width: 25%" />
+            <col style="width: 25%" />
+        </colgroup>
         <tr>
-            <th class="text-center" colspan="2">სახელი მხედრული</th>
-            <th class="text-center h5">ასომთავრული / ნუსხური</th>
+            <th class="text-center" colspan="2">სახელი / მხედრული</th>
+            <th class="text-center h5" colspan="2">ასომთავრული / ნუსხური</th>
         </tr>
         @foreach (var item in @Model)
         {
@@ -20,9 +26,8 @@
                     <span class="geo-font-bechduri">
                         @letter.Asomtavruli
                     </span>
-                    <span>
-                       &nbsp;&nbsp;/&nbsp;&nbsp;
-                    </span>
+                </td>
+                <td>
                     <span class="geo-font-bechduri">
                         @letter.Nuskhuri
                     </span>

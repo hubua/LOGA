@@ -36,13 +36,22 @@
 
     @Html.Hidden("hdnMxedruli", Model.Mxedruli);
     <div class="margin-8 btn-min-width">
-        <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-success btn-lg" />
+        <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-success btn-lg" disabled="disabled" />
     </div>
 
-        @*
-            <div class="hidden-lg">
-                @Html.Partial("_VirtualGeoKeyboard", "tbTranslation")
-            </div>
-        *@
+    @*
+        <div class="hidden-lg">
+            @Html.Partial("_VirtualGeoKeyboard", "tbTranslation")
+        </div>
+    *@
 
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tbTranslation').bind('keyup blur', function () {
+            $('#btnTranslate').prop('disabled', this.value.trim().length == 0);
+        });
+
+    });
+</script>
