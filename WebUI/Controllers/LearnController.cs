@@ -51,45 +51,34 @@ namespace LOGA.WebUI.Controllers
             Session[SESSION_WORDS_TO_TRANSLATE] = words;
 
             bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
-            return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri(capitalize)));
-
+            //return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri(capitalize)));
+            return View("Translate", new Translate(words[0].Word, words[0].Word.ToKhucuri(capitalize)));
         }
 
         [HttpPost]
         public ActionResult Translate(int lid, string hdnMxedruli, string tbTranslation) // TODO: TextBox from model
         {
-            var WordsToTranslate = (Dictionary<string, bool?>)Session[SESSION_WORDS_TO_TRANSLATE];
+            //var WordsToTranslate = (Dictionary<string, bool?>)Session[SESSION_WORDS_TO_TRANSLATE];
+            var WordsToTranslate = (List<WordToTranslate>)Session[SESSION_WORDS_TO_TRANSLATE];
             if (WordsToTranslate == null)
             {
                 return RedirectToAction("Translate", new { lid = lid });
             }
 
             var isCorrectTranslation = (hdnMxedruli == tbTranslation);
-            WordsToTranslate[hdnMxedruli] = isCorrectTranslation;
+            WordsToTranslate.Single(item => item.Word == hdnMxedruli).IsTranslatedCorrectly = isCorrectTranslation;
 
             ModelState.Clear();
+            
+            int correctCount = WordsToTranslate.Where(item => item.IsTranslatedCorrectly.HasValue && item.IsTranslatedCorrectly.Value).Count();
+            int incorrectCount = WordsToTranslate.Where(item => item.IsTranslatedCorrectly.HasValue && !item.IsTranslatedCorrectly.Value).Count();
 
-            string word = String.Empty;
-            int correctCount = 0;
-            int incorrectCount = 0;
-            foreach (var item in WordsToTranslate)
-            {
-                if (!item.Value.HasValue)
-                {
-                    word = item.Key;
-                    break;
-                }
-                else
-                {
-                    correctCount += Convert.ToInt32(item.Value.Value);
-                    incorrectCount += Convert.ToInt32(!item.Value.Value);
-                }
-            }
+            var nextWordToTranslate = WordsToTranslate.FirstOrDefault(item => !item.IsTranslatedCorrectly.HasValue);
 
-            if (!String.IsNullOrEmpty(word))
+            if (nextWordToTranslate != null)
             {
                 bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
-                return View("Translate", new Translate(word, word.ToKhucuri(capitalize), correctCount, incorrectCount));
+                return View("Translate", new Translate(nextWordToTranslate.Word, nextWordToTranslate.Word.ToKhucuri(capitalize), correctCount, incorrectCount, isCorrectTranslation));
             }
             else
             {

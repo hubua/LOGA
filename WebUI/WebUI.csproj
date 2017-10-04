@@ -97,6 +97,12 @@
     <Content Include="Content\Custom-bootstrap.css" />
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\favicon.png" />
+    <Content Include="Content\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\img\1_SvanuriMravaltavi.png" />
     <Content Include="Content\img\2_SvetickxovlisGulani.png" />
     <Content Include="Content\img\3_JruchisOtxtavi.png" />
@@ -105,13 +111,28 @@
     <Content Include="Content\img\browser-web-icon-24.png" />
     <Content Include="Content\img\browser-web-icon-32.png" />
     <Content Include="Content\img\Get_Adobe_Acrobat_Reader_DC_web_button_158x39.fw.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Download\anbani-targmanit.pdf" />
     <Content Include="fonts\sylfaen.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="_ErrorLogs\README.txt" />
     <Content Include="fonts\dkr-hu1.ttf" />
     <Content Include="fonts\dkr-mt1.ttf" />
@@ -119,9 +140,6 @@
     <Content Include="App_Data\oga.tsv" />
     <Content Include="App_Data\sentences.tsv" />
     <None Include="Properties\PublishProfiles\To AWS.pubxml" />
-    <None Include="Scripts\jquery-2.2.2.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.2.js" />
-    <Content Include="Scripts\jquery-2.2.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -147,6 +165,7 @@
     <Compile Include="Models\GeorgianLetter.cs" />
     <Compile Include="Models\Translate.cs" />
     <Compile Include="Models\UserSettings.cs" />
+    <Compile Include="Models\WordToTranslate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,16 +187,7 @@
     <Content Include="Download\qaragmebi.pdf" />
     <Content Include="Views\Downloads\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\To folder.pubxml" />
-    <Content Include="Scripts\jquery-2.2.2.min.map" />
     <Content Include="Views\Shared\_UserSettingsPartial.cshtml" />
     <Content Include="Views\Shared\_LettersListPartial.cshtml" />
     <Content Include="Views\Shared\_VirtualGeoKeyboard.cshtml" />
@@ -185,6 +195,7 @@
     <Content Include="Views\Shared\_LetterToLearnPartial.cshtml" />
     <Content Include="Views\Shared\_LetterToLearnMobilePartial.cshtml" />
     <Content Include="Views\Home\ReloadAll.cshtml" />
+    <Content Include="Scripts\jquery-2.2.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
