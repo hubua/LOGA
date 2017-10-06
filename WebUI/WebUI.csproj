@@ -190,12 +190,12 @@
     <None Include="Properties\PublishProfiles\To folder.pubxml" />
     <Content Include="Views\Shared\_UserSettingsPartial.cshtml" />
     <Content Include="Views\Shared\_LettersListPartial.cshtml" />
-    <Content Include="Views\Shared\_VirtualGeoKeyboard.cshtml" />
     <Content Include="Views\Shared\_LettersListMobilePartial.cshtml" />
     <Content Include="Views\Shared\_LetterToLearnPartial.cshtml" />
     <Content Include="Views\Shared\_LetterToLearnMobilePartial.cshtml" />
     <Content Include="Views\Home\ReloadAll.cshtml" />
     <Content Include="Scripts\jquery-2.2.4.min.map" />
+    <Content Include="Views\Learn\TranslatePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

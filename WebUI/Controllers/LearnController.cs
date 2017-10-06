@@ -31,19 +31,19 @@ namespace LOGA.WebUI.Controllers
         {
             if (!GeorgianABC.IsValidLearnIndex(lid))
             {
-                return RedirectToAction("Letter", new { lid = GeorgianABC.FIRST_LETTER_LID });
+                return RedirectToAction(nameof(Letter), new { lid = GeorgianABC.FIRST_LETTER_LID });
             }
 
             GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(lid);
             return View("Letter", letter);
         }
 
-        [HttpGet]
+        [HttpGet] // Used by syncronous Get
         public ActionResult Translate([DefaultValue(GeorgianABC.FIRST_LETTER_TRANSLATION_LID)] int lid, bool shuffle = false)
         {
             if (!GeorgianABC.IsValidLearnIndex(lid) || lid == GeorgianABC.FIRST_LETTER_LID)
             {
-                return RedirectToAction("Translate", new { lid = GeorgianABC.FIRST_LETTER_TRANSLATION_LID });
+                return RedirectToAction(nameof(Translate), new { lid = GeorgianABC.FIRST_LETTER_TRANSLATION_LID });
             }
 
             var words = GeorgianABC.GetWordsToTranslateForLetter(lid, shuffle);
@@ -55,14 +55,14 @@ namespace LOGA.WebUI.Controllers
             return View("Translate", new Translate(words[0].Word, words[0].Word.ToKhucuri(capitalize)));
         }
 
-        [HttpPost]
+        [HttpPost] // Used by Ajax Post
         public ActionResult Translate(int lid, string hdnMxedruli, string tbTranslation) // TODO: TextBox from model
         {
             //var WordsToTranslate = (Dictionary<string, bool?>)Session[SESSION_WORDS_TO_TRANSLATE];
             var WordsToTranslate = (List<WordToTranslate>)Session[SESSION_WORDS_TO_TRANSLATE];
             if (WordsToTranslate == null)
             {
-                return RedirectToAction("Translate", new { lid = lid });
+                return JavaScript($"window.location='{Url.Action(nameof(Translate), new { lid = lid })}'"); // instead of RedirectToAction(nameof(Translate), new { lid = lid }); because result rendered by Ajax in div
             }
 
             var isCorrectTranslation = (hdnMxedruli == tbTranslation);
@@ -78,13 +78,13 @@ namespace LOGA.WebUI.Controllers
             if (nextWordToTranslate != null)
             {
                 bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
-                return View("Translate", new Translate(nextWordToTranslate.Word, nextWordToTranslate.Word.ToKhucuri(capitalize), correctCount, incorrectCount, isCorrectTranslation));
+                return PartialView("TranslatePartial", new Translate(nextWordToTranslate.Word, nextWordToTranslate.Word.ToKhucuri(capitalize), correctCount, incorrectCount, isCorrectTranslation));
             }
             else
             {
                 TempData[CORRECT_COUNT] = correctCount;
                 TempData[INCORRECT_COUNT] = incorrectCount;
-                return RedirectToAction("TranslateResults", new { lid = lid });
+                return JavaScript($"window.location='{Url.Action(nameof(TranslateResults), new { lid = lid })}'"); // instead of RedirectToAction("TranslateResults", new { lid = lid }); because result rendered by Ajax in div
             }
         }
 
@@ -104,44 +104,6 @@ namespace LOGA.WebUI.Controllers
             return View("TranslateResults", new Translate(letterMxedruli, letterKhucuri, correctCount, incorrectCount));
         }
 
-        /*
-        Does not generate multiline returns
-        [HttpGet]
-        public ActionResult GetTextImage(string text, int size)
-        {
-            byte[] result;
-            using (var font = new System.Drawing.Font("Sylfaen", size, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point))
-            {
-                var graphics = System.Drawing.Graphics.FromImage(new System.Drawing.Bitmap(1, 1));
-                int w = (int)graphics.MeasureString(text, font).Width;
-                int h = (int)graphics.MeasureString(text, font).Height;
-
-                using (var bitmap = new System.Drawing.Bitmap(w, h))
-                {
-                    graphics = System.Drawing.Graphics.FromImage(bitmap);
-                    graphics.Clear(System.Drawing.Color.White);
-                    graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-                    graphics.DrawString(text, font, System.Drawing.Brushes.Black, 0, 0);
-                    graphics.Flush();
-                    using (var ms = new System.IO.MemoryStream())
-                    {
-                        bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                        //msResult.Position = 0;
-                        result = ms.ToArray();
-                    }
-                }
-            }
-            
-            Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
-            Response.Cache.SetValidUntilExpires(false);
-            Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Cache.SetNoStore();
-            
-            return new FileContentResult(result, "image/png");
-        }
-        */
 
     }
 }
