@@ -1,0 +1,47 @@
+﻿@model LOGA.WebUI.Models.UserSettings
+
+<script>
+    function clearForm() {
+        $("#tbDisplayName").val('');
+        $("#cbLearnAsomtavruli").prop('checked', false);
+    }
+</script>
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4>მომხმარებლის სწავლის პარამეტრები</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="tbDisplayName">
+                    თქვენი სახელი
+                </label>
+                @Html.TextBoxFor(m => m.DisplayName, null, new { @class = "form-control input auto-width", id = "tbDisplayName", placeholder = "", autofocus = "" })
+                <span id="helpBlock" class="help-block">შეიყვანეთ თქვენი სახელი რომ იყოს დამახსოვრებული თქვენი სწავლის პროგრესი</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(m => m.LearnAsomtavruli, new { id = "cbLearnAsomtavruli" }) <strong>ასევე ვისწავლოთ ასომთავრული სიმბოლოები</strong>
+                </label>
+                <p class="help-block">
+                    როდესაც არაა მონიშნული, გეძლევეთ მხოლოდ ნუსხური სიმბოლოები სასწავლებლად
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="text-left help-block">
+                <small>
+                    მითითებული პარამეტრები იქნება დამახსოვრებული თქვენს კომპიუტერში cookie-ში
+                </small>
+            </p>
+            <span class="load" style="display: none; padding-right: 10px" id="lblSaveInProgress">გთხოვთ დაელოდოთ...</span>
+            <button type="submit" class="btn btn-primary" id="btnSaveUserSettings" value="Save">დამახსოვრება</button>
+            <button type="button" class="btn btn-default" onclick="clearForm()">წაშლა</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">დახურვა</button>
+        </div>
+    </div>
+</div>

@@ -56,7 +56,7 @@ namespace Tests
 
         [TestMethod]
         public void GetWordsToTranslateForLetter_Shuffled_Test()
-        {
+        {   
             foreach (var l in GeorgianABC.LettersDictionary)
             {
                 var lid = l.Value.LearnOrder;

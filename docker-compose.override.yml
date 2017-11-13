@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  loga_webui_core:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"

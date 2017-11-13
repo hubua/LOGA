@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  loga_webui_core:
+    image: loga_webui_core
+    build:
+      context: ./WebUI_core
+      dockerfile: Dockerfile

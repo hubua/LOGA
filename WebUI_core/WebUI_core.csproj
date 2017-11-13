@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <RootNamespace>LOGA.WebUI</RootNamespace>
+    <AssemblyName>LOGA_WebUI_core</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\img\archive\**" />
+    <Content Remove="wwwroot\img\archive\**" />
+    <EmbeddedResource Remove="wwwroot\img\archive\**" />
+    <None Remove="wwwroot\img\archive\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Services\Data\oga.tsv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Services\Data\sentences.tsv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>

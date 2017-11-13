@@ -1,0 +1,64 @@
+﻿@using LOGA.WebUI.Models
+@model IEnumerable<KeyValuePair<char, GeorgianLetter>>
+
+@{
+    Layout = null;
+    int n = 1;
+    List<char> learned = new List<char>() { ' ' };
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>წინადადებები</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-2.2.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+</head>
+<body>
+    <div class="container">
+    <table class="table table-hover h2">
+        @foreach (var item in Model)
+        {
+            learned.Add(item.Key);
+            <tr class="bg-info">
+                <td colspan="4">
+                    @item.Key
+                </td>
+            </tr>
+            foreach (var word in item.Value.Words)
+            {
+                var err = word.Any(c => !learned.Contains(c)) ? "bg-danger" : "";
+                var errlist = word.Where(c => !learned.Contains(c)).ToList().Distinct() ;
+                <tr>
+                    <td class="text-right @err">
+                        @String.Format("{0})", n++)
+                    </td>
+                    <td class="geo-font">
+                        @word &nbsp;
+                        <span class="bg-danger">
+                        @foreach (var c in errlist)
+                        {
+                            @c
+                        }
+                        </span>
+                    </td>
+                    <td class="geo-font-bechduri">
+                        @word.ToKhucuri()
+                    </td>
+                    <td class="geo-font-bechduri">
+                        @word.ToKhucuri(true)
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    </div>
+</body>
+</html>
