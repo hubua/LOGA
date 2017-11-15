@@ -9,7 +9,7 @@
     <DockerServiceName>loga_webui_core</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="docker-compose-nginx.yml" />
+    <None Include="docker-compose-loga-nginx.yml" />
     <None Include="docker-compose.ci.build.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>

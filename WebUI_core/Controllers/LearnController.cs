@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
-namespace WebUI.Controllers
+namespace LOGA.WebUI.Controllers
 {
     public class LearnController : Controller
     {

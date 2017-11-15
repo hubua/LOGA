@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using LOGA.WebUI.Models;
 using LOGA.WebUI;
 
-namespace WebUI.Controllers
+namespace LOGA.WebUI.Controllers
 {
     public class HomeController : Controller
     {

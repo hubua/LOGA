@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     <RootNamespace>LOGA.WebUI</RootNamespace>
-    <AssemblyName>LOGA_WebUI_core</AssemblyName>
+    <AssemblyName>LOGA-WebUI</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +12,10 @@
     <Content Remove="wwwroot\img\archive\**" />
     <EmbeddedResource Remove="wwwroot\img\archive\**" />
     <None Remove="wwwroot\img\archive\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Properties\PublishProfiles\registry.hub.docker.com_hubua.pubxml" />
   </ItemGroup>
 
   <ItemGroup>

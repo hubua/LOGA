@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebUI.Controllers
+namespace LOGA.WebUI.Controllers
 {
     public class DownloadsController : Controller
     {
