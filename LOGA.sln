@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI_obsolete", "WebUI\WebUI_obsolete.csproj", "{79E7CEB8-D966-4735-B77F-295FD3FCF580}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI_obsolete", "WebUI_obsolete\WebUI_obsolete.csproj", "{79E7CEB8-D966-4735-B77F-295FD3FCF580}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebUI_core", "WebUI_core\WebUI_core.csproj", "{8E315961-36BF-4575-BD5D-7596FDCE0E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebUI", "WebUI\WebUI.csproj", "{8E315961-36BF-4575-BD5D-7596FDCE0E3A}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DD023D80-BC4A-4512-9357-4B3A0B0812F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests_core", "Tests_core\Tests_core.csproj", "{795D20C0-FC25-4B0C-8997-0175505F61CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{795D20C0-FC25-4B0C-8997-0175505F61CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,40 +1,43 @@
-﻿@{
-    Layout = null;
+﻿@using LOGA.WebUI.HtmlHelpers
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "შეცდომა";
 }
 
-<!DOCTYPE html>
+<h1 class="text-danger">სამწუხაროდ პროგრამაში მოხდა გაუთვალიწინებელი შეცდომა</h1>
+<h2 class="text-danger">ჩვენ ვეცდებით გავასწოროთ ის უახლოეს მომავალში</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>შეცდომა</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/jquery-2.2.2.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-</head>
-<body>
-    <div class="container">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                შეცდომა ვებ-გვერდზე
-            </div>
-            <div class="panel-body">
-                <p class="h3">
-                    სამწუხაროდ მოხდა გაუთვალიწინებელი შეცდომა. ჩვენ ვეცდებით გავასწოროთ ის უახლოეს მომავალში.
-                </p>
-                <p class="h2">
-                    ბოდიშს გიხდით უხერხულობისათვის.<br />
-                    გმადლობთ რომ სარგებლობთ "ბებოენით"!
-                </p>
-                <hr />
-                <p class="h4">
-                    @Html.ActionLink("საწყის გვერდზე დაბრუნება", "Index", "Home")
-                </p>
-            </div>
-        </div>
+<div class="panel panel-danger">
+    <div class="panel-body">
+        <p class="h3">
+            ბოდიშს გიხდით უხერხულობისათვის.<br />
+            გმადლობთ რომ სარგებლობთ "ბებოენით"!
+        </p>
+        <hr />
+        <p class="h4">
+            @Html.ActionLink("საწყის გვერდზე დაბრუნება", "Index", "Home")
+        </p>
     </div>
-</body>
-</html>
+</div>
+
+
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+@if (Html.IsDebugMode())
+{
+
+
+    <h3>Development Mode</h3>
+    <p>
+        Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
+    </p>
+    <p>
+        <strong>Development environment should not be enabled in deployed applications</strong>, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>, and restarting the application.
+    </p>
+}

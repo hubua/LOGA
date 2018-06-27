@@ -1,4 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LOGA.WebUI.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace LOGA.WebUI.Controllers
 {
@@ -7,7 +13,7 @@ namespace LOGA.WebUI.Controllers
 
         public DownloadsController()
         {
-            ViewData["ActiveMenu"] = "Downloads"; // TODO
+            ViewData["ActiveMenu"] = "Downloads";
         }
         
         // GET: Home

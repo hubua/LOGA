@@ -4,7 +4,7 @@ services:
   
   loga-service:
     container_name: loga-container
-    image: hubua/loga_webui_core
+    image: hubua/loga_webui
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 

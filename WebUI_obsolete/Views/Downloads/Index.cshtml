@@ -1,4 +1,5 @@
-﻿@{
+﻿@using LOGA.WebUI.Models
+@{
     ViewBag.Title = "სასარგებლო მასალა";
     ViewBag.PageHead = ViewBag.Title;
     ViewBag.PageHeadSmall = "ამოსაბეჭდად";
@@ -26,8 +27,8 @@
             <tr>
                 <td>
                     <a href="~/Download/@item.Key">
-                        <img class="visible-lg" src="~/img/Adobe_PDF_file_icon_32x32.png" />
-                        <img class="hidden-lg" src="~/img/Adobe_PDF_file_icon_24x24.png" />
+                        <img class="visible-lg" src="~/Content/img/Adobe_PDF_file_icon_32x32.png" />
+                        <img class="hidden-lg" src="~/Content/img/Adobe_PDF_file_icon_24x24.png" />
                     </a>
                 </td>
                 <td>
@@ -72,8 +73,8 @@
             <tr>
                 <td>
                     <a href="@links[i, LINK_ID]">
-                        <img class="visible-lg" src="~/img/browser-web-icon-32.png" />
-                        <img class="hidden-lg" src="~/img/browser-web-icon-24.png" />
+                        <img class="visible-lg" src="~/Content/img/browser-web-icon-32.png" />
+                        <img class="hidden-lg" src="~/Content/img/browser-web-icon-24.png" />
                     </a>
                 </td>
                 <td>
@@ -92,10 +93,13 @@
 <div class="row">
     <div class="col-md-2">
         <a href="https://get.adobe.com/reader/">
-            <img src="~/img/Get_Adobe_Acrobat_Reader_DC_web_button_158x39.fw.png" />
+            <img src="~/Content/img/Get_Adobe_Acrobat_Reader_DC_web_button_158x39.fw.png" />
         </a>
     </div>
     <div class="col-md-4">
         <span class="text-muted small">"pdf" ფორმატის ფაილების სანახავად საჭიროა გქონდეთ Adobe Acrobat Reader ან მსგავსი პროგრამა</span>
     </div>
 </div>
+
+
+

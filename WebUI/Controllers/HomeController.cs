@@ -1,18 +1,23 @@
-﻿using LOGA.WebUI.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using LOGA.WebUI.Services;
+using Microsoft.AspNetCore.Hosting;
+using LOGA.WebUI.Models;
+using LOGA.WebUI;
 
 namespace LOGA.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private IHostingEnvironment hostingEnvironment;
+
+        public HomeController(IHostingEnvironment hostingEnvironment)
         {
-            ViewData["ActiveMenu"] = "Home";
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Home
@@ -22,33 +27,33 @@ namespace LOGA.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateSettings(UserSettings settings)
+        public ActionResult UpdateSettings(UserSettings settings) //TODO show spinner progress
         {
 #if DEBUG
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(1000);
 #endif
             HttpContextStorage.SetUserSettings(HttpContext, settings);
 
-            if (Request.IsAjaxRequest())
-            {
-                var data = new { HasDisplayName = HttpContextStorage.HasProgressSaved(HttpContext), DisplayName = HttpContextStorage.GetUserSettings(HttpContext).DisplayName };
-                return Json(data); // JsonResult
-            }
-            else
-            {
-                return PartialView("UserSettingsPartial", settings); // TODO: return correct view when not js enabled
-            }
+            var data = new { HasDisplayName = HttpContextStorage.HasProgressSaved(HttpContext), DisplayName = HttpContextStorage.GetUserSettings(HttpContext).DisplayName };
+            return Json(data); // JsonResult
         }
 
         public ActionResult ReloadAll()
         {
-            GeorgianABC.Initialize(Server.MapPath(@"~\App_Data\")); // Re-initializing dictionary
-            return View(GeorgianABC.LettersDictionary.OrderBy(item => item.Value.LearnOrder));
+            var dirinfo = hostingEnvironment.ContentRootFileProvider.GetFileInfo("/Services/Data");
+            var dir = dirinfo.PhysicalPath;
+            GeorgianABCService.Initialize(dir); // Re-initializing dictionary
+            return View(GeorgianABCService.LettersDictionary.OrderBy(item => item.Value.LearnOrder));
         }
 
         public ActionResult LogError()
         {
             throw new ApplicationException("Sample error message", new ApplicationException("Sample inner error message"));
+        }
+
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

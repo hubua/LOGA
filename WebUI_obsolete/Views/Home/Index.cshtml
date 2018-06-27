@@ -1,8 +1,10 @@
-﻿@{
+﻿@using LOGA.WebUI.Models
+@using LOGA.WebUI.HtmlHelpers
+
+@{
     ViewBag.Title = "ხუცურის სწავლა";
     ViewBag.PageHead = "ბებო ენა";
     ViewBag.PageHeadSmall = "- ვისწავლოთ ხუცური";
-    ViewData["ActiveMenu"] = "Home";
 }
 
 <blockquote class="blockquote-reverse">
@@ -27,7 +29,7 @@
     <div class="row row-spaced"> <!-- Introduction block 1 -->
         <div class="col-md-4 col-md-push-8">
             <a href="https://ka.wikipedia.org/wiki/მრავალთავი" target="_blank">
-                <img class="img-thumbnail img-responsive" alt="სვანური მრავალთავი (X ს.)" src="~/img/1_SvanuriMravaltavi.png" />
+                <img class="img-thumbnail img-responsive" alt="სვანური მრავალთავი (X ს.)" src="~/Content/img/1_SvanuriMravaltavi.png" />
             </a>
             <div>
                 სვანური მრავალთავი (X&nbsp;ს.)
@@ -44,7 +46,7 @@
     <div class="row row-spaced"> <!-- Introduction block 2 -->
         <div class="col-md-4 text-right">
             <a href="http://qartulidamwerloba.blogspot.com/2012/04/blog-post_6869.html" target="_blank">
-                <img class="img-thumbnail img-responsive" alt="სვეტიცხოვლის გულანი (1681 წ.)" src="~/img/2_SvetickxovlisGulani.png" />
+                <img class="img-thumbnail img-responsive" alt="სვეტიცხოვლის გულანი (1681 წ.)" src="~/Content/img/2_SvetickxovlisGulani.png" />
             </a>
             <div>სვეტიცხოვლის გულანი (1681&nbsp;წ.)</div>
         </div>
@@ -58,7 +60,7 @@
     <div class="row row-spaced"> <!-- Introduction block 3 -->
         <div class="col-md-4 col-md-push-8">
             <a href="https://ka.wikipedia.org/wiki/ჯრუჭის_I_ოთხთავი" target="_blank">
-                <img class="img-thumbnail img-responsive" alt="ჯრუჭის ოთხთავი (936-940 წწ.)" src="~/img/3_JruchisOtxtavi.png" />
+                <img class="img-thumbnail img-responsive" alt="ჯრუჭის ოთხთავი (936-940 წწ.)" src="~/Content/img/3_JruchisOtxtavi.png" />
             </a>
             <div>ჯრუჭის ოთხთავი (936-940&nbsp;წწ.)</div>
         </div>
@@ -82,8 +84,6 @@
 
 </div>
 
-@*
-    
 @if (Html.IsDebugMode())
 {
 <pre>
@@ -111,4 +111,3 @@
 * http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_NET.quickstart.html
 </pre>
 }
-*@

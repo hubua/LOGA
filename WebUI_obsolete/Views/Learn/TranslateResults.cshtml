@@ -1,19 +1,20 @@
-﻿@model LOGA.WebUI.Models.Translate
+﻿@using LOGA.WebUI.Models
+@model LOGA.WebUI.Models.Translate
 
 @{
     ViewBag.Title = "სწავლა";
     ViewBag.PageHead = ViewBag.Title;
     ViewBag.PageHeadSmall = "შედეგი";
 
-    int letterLId = Convert.ToInt32(ViewContext.RouteData.Values["lid"]);
-    int nextLetterLId = GeorgianABCService.GetNextLetterLearnIndex(letterLId);
-    GeorgianLetter letter = GeorgianABCService.GetLetterByLearnIndex(letterLId);
+    int letterLId = Convert.ToInt32(Request.RequestContext.RouteData.Values["lid"]);
+    int nextLetterLId = GeorgianABC.GetNextLetterLearnIndex(letterLId);
+    GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(letterLId);
 
     // Tablets are NOT included into Mobile Devices
-    string viewname = Context.Request.IsMobileBrowser() ? "_LetterToLearnMobilePartial" : "_LetterToLearnPartial";
+    string viewname = Request.Browser.IsMobileDevice ? "_LetterToLearnMobilePartial" : "_LetterToLearnPartial";
 }
 
-@Html.Partial(viewname, letter, new ViewDataDictionary(this.ViewData) { { "size", "h4" } })
+@Html.Partial(viewname, letter, new ViewDataDictionary { { "size", "h4" } })
 
 <div class="panel panel-default padding-8">
 

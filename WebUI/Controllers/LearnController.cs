@@ -1,10 +1,12 @@
-﻿using LOGA.WebUI.Models;
+﻿using LOGA.WebUI;
+using LOGA.WebUI.Models;
+using LOGA.WebUI.Services;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 
 namespace LOGA.WebUI.Controllers
 {
@@ -16,64 +18,68 @@ namespace LOGA.WebUI.Controllers
 
         public LearnController()
         {
-            ViewData["ActiveMenu"] = "Learn";
+            ViewData["ActiveMenu"] = "Learn"; //TODO
         }
 
         // GET: Learn
         public ActionResult Index()
         {
-            var abc = GeorgianABC.LettersDictionary;
+            var abc = GeorgianABCService.LettersDictionary;
 
             return View("Index", abc);
         }
 
-        public ActionResult Letter([DefaultValue(GeorgianABC.FIRST_LETTER_LID)] int lid)
+        public ActionResult Letter([DefaultValue(GeorgianABCService.FIRST_LETTER_LID)] int lid)
         {
-            if (!GeorgianABC.IsValidLearnIndex(lid))
+            if (!GeorgianABCService.IsValidLearnIndex(lid))
             {
-                return RedirectToAction(nameof(Letter), new { lid = GeorgianABC.FIRST_LETTER_LID });
+                return RedirectToAction(nameof(Letter), new { lid = GeorgianABCService.FIRST_LETTER_LID });
             }
 
-            GeorgianLetter letter = GeorgianABC.GetLetterByLearnIndex(lid);
+            GeorgianLetter letter = GeorgianABCService.GetLetterByLearnIndex(lid);
             return View("Letter", letter);
         }
 
         [HttpGet] // Used by syncronous Get
-        public ActionResult Translate([DefaultValue(GeorgianABC.FIRST_LETTER_TRANSLATION_LID)] int lid, bool shuffle = false)
+        public ActionResult Translate([DefaultValue(GeorgianABCService.FIRST_LETTER_TRANSLATION_LID)] int lid, bool shuffle = false)
         {
-            if (!GeorgianABC.IsValidLearnIndex(lid) || lid == GeorgianABC.FIRST_LETTER_LID)
+            if (!GeorgianABCService.IsValidLearnIndex(lid) || lid == GeorgianABCService.FIRST_LETTER_LID)
             {
-                return RedirectToAction(nameof(Translate), new { lid = GeorgianABC.FIRST_LETTER_TRANSLATION_LID });
+                return RedirectToAction(nameof(Translate), new { lid = GeorgianABCService.FIRST_LETTER_TRANSLATION_LID });
             }
 
-            var words = GeorgianABC.GetWordsToTranslateForLetter(lid, shuffle);
+            var words = GeorgianABCService.GetWordsToTranslateForLetter(lid, shuffle);
 
-            Session[SESSION_WORDS_TO_TRANSLATE] = words;
+            HttpContext.Session.Set<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE, words);
 
             bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
-            //return View("Translate", new Translate(words.Keys.First(), words.Keys.First().ToKhucuri(capitalize)));
             return View("Translate", new Translate(words[0].Word, words[0].Word.ToKhucuri(capitalize)));
         }
 
         [HttpPost] // Used by Ajax Post
         public ActionResult Translate(int lid, string hdnMxedruli, string tbTranslation) // TODO: TextBox from model
         {
-            //var WordsToTranslate = (Dictionary<string, bool?>)Session[SESSION_WORDS_TO_TRANSLATE];
-            var WordsToTranslate = (List<WordToTranslate>)Session[SESSION_WORDS_TO_TRANSLATE];
-            if (WordsToTranslate == null)
+#if DEBUG
+            System.Threading.Thread.Sleep(2000);
+#endif
+            // TODO use spinner
+            var words = HttpContext.Session.Get<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE);
+            if (words == null)
             {
-                return JavaScript($"window.location='{Url.Action(nameof(Translate), new { lid = lid })}'"); // instead of RedirectToAction(nameof(Translate), new { lid = lid }); because result rendered by Ajax in div
+                return Content($"window.location='{Url.Action(nameof(Translate), new { lid = lid })}'", "application/x-javascript"); // instead of RedirectToAction because result rendered by Ajax in div. 'x-javascript' is redirected faster then 'javascript'.
             }
 
             var isCorrectTranslation = (hdnMxedruli == tbTranslation);
-            WordsToTranslate.Single(item => item.Word == hdnMxedruli).IsTranslatedCorrectly = isCorrectTranslation;
+            words.Single(item => item.Word == hdnMxedruli).IsTranslatedCorrectly = isCorrectTranslation;
 
-            ModelState.Clear();
+            HttpContext.Session.Set<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE, words);//TODO remove session
+
+            ModelState.Clear(); //TODO remove
             
-            int correctCount = WordsToTranslate.Where(item => item.IsTranslatedCorrectly.HasValue && item.IsTranslatedCorrectly.Value).Count();
-            int incorrectCount = WordsToTranslate.Where(item => item.IsTranslatedCorrectly.HasValue && !item.IsTranslatedCorrectly.Value).Count();
+            int correctCount = words.Where(item => item.IsTranslatedCorrectly.HasValue && item.IsTranslatedCorrectly.Value).Count();
+            int incorrectCount = words.Where(item => item.IsTranslatedCorrectly.HasValue && !item.IsTranslatedCorrectly.Value).Count();
 
-            var nextWordToTranslate = WordsToTranslate.FirstOrDefault(item => !item.IsTranslatedCorrectly.HasValue);
+            var nextWordToTranslate = words.FirstOrDefault(item => !item.IsTranslatedCorrectly.HasValue);
 
             if (nextWordToTranslate != null)
             {
@@ -84,15 +90,15 @@ namespace LOGA.WebUI.Controllers
             {
                 TempData[CORRECT_COUNT] = correctCount;
                 TempData[INCORRECT_COUNT] = incorrectCount;
-                return JavaScript($"window.location='{Url.Action(nameof(TranslateResults), new { lid = lid })}'"); // instead of RedirectToAction("TranslateResults", new { lid = lid }); because result rendered by Ajax in div
+                return Content($"window.location='{Url.Action(nameof(TranslateResults), new { lid = lid })}'", "application/x-javascript"); // instead of RedirectToAction because result rendered by Ajax in div. 'x-javascript' is redirected faster then 'javascript'.
             }
         }
 
         [HttpGet]
         public ActionResult TranslateResults(int lid)
         {
-            string letterMxedruli = GeorgianABC.GetLetterByLearnIndex(lid).Mkhedruli;
-            string letterKhucuri = GeorgianABC.GetLetterByLearnIndex(lid).Nuskhuri;
+            string letterMxedruli = GeorgianABCService.GetLetterByLearnIndex(lid).Mkhedruli;
+            string letterKhucuri = GeorgianABCService.GetLetterByLearnIndex(lid).Nuskhuri;
 
             int correctCount = Convert.ToInt32(TempData[CORRECT_COUNT]);
             int incorrectCount = Convert.ToInt32(TempData[INCORRECT_COUNT]);
