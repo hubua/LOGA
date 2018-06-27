@@ -8,3 +8,4 @@ Learn Old Georgian Alphabet
 
 ## Usefull
 * https://developers.google.com/analytics/solutions/experiments-client-side
+* https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters#exception-filters
