@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace LOGA.WebUI
 {
-    public class UserSettingsActionFilter : IActionFilter // TODO
+    public class UserSettingsActionFilter : IActionFilter //TODO simplify
     {
         private const string COOKIE_USERSETTINGS = "COOKIE_USERSETTINGS";
         //private const string COOKIE_VALUE_DISPLAYNAME = "COOKIE_VALUE_DISPLAYNAME";
@@ -186,7 +186,7 @@ namespace LOGA.WebUI
             var result = new ViewResult { ViewName = "CustomError" };
             result.ViewData = new ViewDataDictionary(_modelMetadataProvider, context.ModelState);
             result.ViewData.Add("Exception", context.Exception);
-            // TODO: Pass additional detailed data via ViewData
+            //TODO Pass additional detailed data via ViewData
             context.Result = result;
         }
     }

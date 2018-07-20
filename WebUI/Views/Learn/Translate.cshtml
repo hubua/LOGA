@@ -23,11 +23,10 @@
             });
             $('#tbTranslation').focus();
 
-            @{
-                var span = Model.IsPreviousTranslatedCorrectly ? "#spanCorrect" : "#spanIncorrect";
-            }
-            $('@span').toggle('highlight', 1000);
-            $('@span').toggle('highlight', 1000);
+            var span = $('#hiddenIsPreviousTranslatedCorrectly').val() == 'True' ? "#spanCorrect" : "#spanIncorrect"; // rendered by TranslatePartial
+
+            $(span).toggle('highlight', 1000);
+            $(span).toggle('highlight', 1000);
         }
 
         $(document).ready(function () {

@@ -7,7 +7,7 @@ namespace LOGA.WebUI.Controllers
 
         public DownloadsController()
         {
-            ViewData["ActiveMenu"] = "Downloads"; // TODO
+            ViewData["ActiveMenu"] = "Downloads"; //TODO Highlight active item in UI
         }
         
         // GET: Home

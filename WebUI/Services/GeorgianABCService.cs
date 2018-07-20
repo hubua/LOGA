@@ -17,21 +17,6 @@ namespace LOGA.WebUI.Services
         public const int FIRST_LETTER_LID = 1;
         public const int FIRST_LETTER_TRANSLATION_LID = 2;
 
-        /*
-        private static List<GeorgianLetter> LettersOrdered
-        {
-            get
-            {
-                return LettersDictionary.Values.OrderBy(item => item.LearnOrder).ToList();
-            }
-        }
-
-        public static GeorgianLetter GetLetterByAlphabetIndex(int index)
-        {
-            return LettersDictionary.ToList()[index - 1].Value;
-        }
-        */
-
         public static bool IsValidLearnIndex(int lid)
         {
             return LettersDictionary.Values.ToList().Exists(item => item.LearnOrder == lid);
@@ -68,77 +53,12 @@ namespace LOGA.WebUI.Services
             return GetLetterByLearnIndex(lid).Words[0];
         }
 
-        //public static Dictionary<string, bool?> GetWordsToTranslateForLetter(int lid, bool shuffle = false)
         public static List<WordToTranslate> GetWordsToTranslateForLetter(int lid, bool shuffle = false)
         {
             var letter = GetLetterByLearnIndex(lid);
             var words = shuffle ? letter.Words.OrderBy(item => random.Next()).ToList() : letter.Words.ToList();
             return words.Select(item => new WordToTranslate { Word = item, IsTranslatedCorrectly = default(bool?) }).ToList();
-            //return words.ToDictionary(item => item, item => default(bool?));
         }
-
-        /*
-        /// <summary>
-        /// Gets word/sentence to translate for given Letter ID
-        /// </summary>
-        /// <param name="lid">Letter ID</param>
-        /// <returns>String in mxedruli to translate</returns>
-        public static string GetRandomWordToTranslateForLetter(int lid)
-        {
-            throw new NotImplementedException();
-
-            var letter = GetLetterByLearnIndex(lid);
-            return letter.Words[random.Next(1, letter.Words.Count())];
-        }
-
-        /// <summary>
-        /// Gets word/sentence to translate for letters up to given Letter ID
-        /// </summary>
-        /// <param name="lid">Latter letter ID</param>
-        /// <returns>String in mxedruli to translate</returns>
-        public static string GetRandomWordToTranslateForLetters(int lid)
-        {
-            throw new NotImplementedException();
-
-            var letter = GetLetterByLearnIndex(random.Next(lid));
-            return letter.Words[random.Next(1, letter.Words.Count())];
-        }
-
-        /// <summary>
-        /// Gets shuffled words/sentences to translate for given Letter ID
-        /// </summary>
-        /// <param name="lid">Letter ID</param>
-        /// <returns>Strings in mxedruli / is correct translation</returns>
-        public static Dictionary<string, bool?> GetRandomWordsToTranslateForLetter(int lid)
-        {
-            throw new NotImplementedException();
-
-            var letter = GetLetterByLearnIndex(lid);
-            var words = letter.Words.OrderBy(item => random.Next()).ToArray();
-            return words.ToDictionary(item => item, item => default(bool?));
-        }
-
-        /// <summary>
-        /// Gets shuffled words/sentences to translate for letters up to given Letter ID
-        /// </summary>
-        /// <param name="lid"></param>
-        /// <returns></returns>
-        public static string[] GetRandomWordsToTranslateForLetters(int lid)
-        {
-            throw new NotImplementedException();
-
-            var result = new string[0];
-            
-
-            for (int i = 1; i <= lid; i++)
-            {
-                var letter = GetLetterByLearnIndex(i);
-                result = result.Concat(letter.Words).ToArray();
-            }
-
-            return result.OrderBy(item => random.Next()).ToArray();
-        }
-        */
 
         public static void Initialize(string csvdir)
         {
@@ -179,20 +99,11 @@ namespace LOGA.WebUI.Services
                 var LearnOrder = Convert.ToInt32(data[9]);
                 var LearnOrder2 = Convert.ToInt32(data[10]);
 
-                /*var sRaw = data[11].Split(';').ToList();
-                var sProc = new List<string>();
-                foreach (var s in sRaw)
-                {
-                    if (!String.IsNullOrWhiteSpace(s))
-                    {
-                        sProc.Add(s.Trim());
-                    }
-                }
-                var Words = sProc.ToArray();*/
-
                 var Words = letterSentences[LetterMxedruli].OrderBy(item => item.Length).ToArray();
 
-                LettersDictionary.Add(Convert.ToChar(data[1]), new GeorgianLetter(Order, LetterMxedruli.ToString(), data[2], data[3], data[4], data[5], data[6], data[7], data[8], LearnOrder, Words));
+                var letter = new GeorgianLetter(Order, LetterMxedruli.ToString(), data[2], data[3], data[4], data[5], data[6], data[7], data[8], LearnOrder, Words);
+
+                LettersDictionary.Add(LetterMxedruli, letter);
             }
         }
     }

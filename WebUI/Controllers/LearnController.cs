@@ -18,7 +18,7 @@ namespace LOGA.WebUI.Controllers
 
         public LearnController()
         {
-            ViewData["ActiveMenu"] = "Learn"; //TODO
+            ViewData["ActiveMenu"] = "Learn"; //TODO Highlight active item in UI
         }
 
         // GET: Learn
@@ -57,12 +57,12 @@ namespace LOGA.WebUI.Controllers
         }
 
         [HttpPost] // Used by Ajax Post
-        public ActionResult Translate(int lid, string hdnMxedruli, string tbTranslation) // TODO: TextBox from model
+        public ActionResult Translate(int lid, string hdnMxedruli, string tbTranslation)
         {
 #if DEBUG
             System.Threading.Thread.Sleep(2000);
 #endif
-            // TODO use spinner
+            //TODO show spinner
             var words = HttpContext.Session.Get<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE);
             if (words == null)
             {
@@ -72,7 +72,7 @@ namespace LOGA.WebUI.Controllers
             var isCorrectTranslation = (hdnMxedruli == tbTranslation);
             words.Single(item => item.Word == hdnMxedruli).IsTranslatedCorrectly = isCorrectTranslation;
 
-            HttpContext.Session.Set<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE, words);//TODO remove session
+            HttpContext.Session.Set<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE, words); //TODO remove session
 
             ModelState.Clear(); //TODO remove
             

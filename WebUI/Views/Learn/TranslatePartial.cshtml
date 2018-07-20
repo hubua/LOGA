@@ -4,9 +4,9 @@
     <div class="col-sm-6 col-sm-push-6">
         <!--ROW 1 COL 2-->
         @if (Model.CorrectCount > 0 || Model.IncorrectCount > 0)
-            {
+        {
             <h4><span id="spanCorrect" class="label label-success margin-8">@Model.CorrectCount</span> სწორი</h4>
-                <h4><span id="spanIncorrect" class="label label-danger margin-8">@Model.IncorrectCount</span> არასწორი</h4>
+            <h4><span id="spanIncorrect" class="label label-danger margin-8">@Model.IncorrectCount</span> არასწორი</h4>
         }
     </div>
     <div class="col-sm-6 col-sm-pull-6">
@@ -30,4 +30,6 @@
     <input type="submit" id="btnTranslate" name="btnTranslate" value="შევამოწმოთ" class="btn btn-success btn-lg" disabled="disabled" />
     <!-- <img class="margin-8" src="~/img/ajax-loader.gif" /> TODO -->
 </div>
+
+<input type="hidden" id="hiddenIsPreviousTranslatedCorrectly" value="@Model.IsPreviousTranslatedCorrectly.ToString()" />
 
