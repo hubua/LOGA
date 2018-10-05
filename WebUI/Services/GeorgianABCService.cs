@@ -63,14 +63,17 @@ namespace LOGA.WebUI.Services
         public static void Initialize(string csvdir)
         {
             LettersDictionary.Clear(); // In case Initialize was already called before
+
             var ogaCSV = File.ReadAllLines(Path.Combine(csvdir, "oga.tsv"));
-            var sentencesCSV = File.ReadAllLines(Path.Combine(csvdir, "sentences.txt"));
             /*
              * [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent
              * [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
              */
             var ogaData = ogaCSV.Skip(1).Select(item => item.Split('\t'));
-            var sentencesData = sentencesCSV.Distinct().ToList();
+
+            var sentencesCSV1 = File.ReadAllLines(Path.Combine(csvdir, "sentences1.txt"));
+            var sentencesCSV2 = File.ReadAllLines(Path.Combine(csvdir, "sentences2.txt"));
+            var sentencesData = sentencesCSV1.Concat(sentencesCSV2).Distinct().ToList();
 
             var letterSentences = new Dictionary<char, List<string>>();
 

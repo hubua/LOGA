@@ -7,8 +7,8 @@ namespace LOGA.WebUI.Models
 {
     public class UserSettings
     {
-        public string DisplayName { get; set; }
         public bool LearnAsomtavruli { get; set; }
-        //public int CurrentLearnProgressLId { get; set; }
+        public bool SaveLearnProgress { get; set; }
+        public int SavedLearnProgressLId { get; set; }
     }
 }

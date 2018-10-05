@@ -6,7 +6,7 @@
     <ProjectGuid>dd023d80-bc4a-4512-9357-4b3a0b0812f3</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
     <DockerServiceUrl>http://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>loga_webui_core</DockerServiceName>
+    <DockerServiceName>loga_webui</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose-loga-nginx.yml" />

@@ -34,7 +34,7 @@ namespace LOGA.WebUI.Controllers
 #endif
             HttpContextStorage.SetUserSettings(HttpContext, settings);
 
-            var data = new { HasDisplayName = HttpContextStorage.HasProgressSaved(HttpContext), DisplayName = HttpContextStorage.GetUserSettings(HttpContext).DisplayName };
+            var data = new { SaveLearnProgress = HttpContextStorage.GetUserSettings(HttpContext).SaveLearnProgress };
             return Json(data); // JsonResult
         }
 

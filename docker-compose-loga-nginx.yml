@@ -4,9 +4,9 @@ services:
   
   loga-service:
     container_name: loga-container
-    image: hubua/loga_webui
+    image: hubua/loga_webapp:{TAG_HERE}
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
 
   reverse-proxy-service:
     container_name: reverse-proxy

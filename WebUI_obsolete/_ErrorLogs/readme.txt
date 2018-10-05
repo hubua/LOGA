@@ -1,1 +1,0 @@
-﻿Set write persimmsion to IIS for Error Log folder

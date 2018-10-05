@@ -1,6 +1,4 @@
-﻿@using LOGA.WebUI.HtmlHelpers
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -14,14 +12,13 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/jquery-ui-1.12.1.custom/jquery-ui.css" />
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/custom-bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/site-custom-bootstrap.css" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/jquery-ui-1.12.1.custom/jquery-ui.min.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" /> <!-- includes custom-bootstrap -->
     </environment>
 </head>
 
@@ -39,25 +36,21 @@
         ga('send', 'pageview');
     </script>
 
-
-
     @if (Html.IsDebugMode())
     {
         <p class="bg-warning text-center">
             DEBUG MODE @DateTime.Now.ToString() <br />
+            LearnAsomtavruli: @HttpContextStorage.GetUserSettings(Context).LearnAsomtavruli<br />
+            SaveLearnProgress: @HttpContextStorage.GetUserSettings(Context).SaveLearnProgress<br />
             ProgressLId: @HttpContextStorage.GetUserLearnProgressLId(Context) <br />
-            LearnAsomtavruli: @HttpContextStorage.GetUserSettings(Context).LearnAsomtavruli
         </p>
     }
 
-
     <div id="modalUserSettings" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-large">
         <form asp-action="UpdateSettings" asp-controller="Home" method="post" data-ajax="true" data-ajax-url="/Home/UpdateSettings" data-ajax-update="" data-ajax-begin="onBegin" data-ajax-success="onSuccess" data-ajax-loading="lblSaveInProgress" data-ajax-loading-duration="500">
-
-            @Html.Partial("_UserSettingsPartial", HttpContextStorage.GetUserSettings(Context))
+            @await Html.PartialAsync("_UserSettingsPartial", HttpContextStorage.GetUserSettings(Context))
         </form>
     </div>
-
 
     <div class="navbar navbar-default">
         <div class="container">
@@ -74,16 +67,11 @@
                     <li class="@(ViewData["ActiveMenu"]?.ToString() == "Learn" ? "active" : "")"><a href="@Url.Action("Index", "Learn")">სწავლა</a></li>
                     <li class="@(ViewData["ActiveMenu"]?.ToString() == "Downloads" ? "active" : "")"><a href="@Url.Action("Index", "Downloads")">სასარგებლო მასალა</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right"> <!-- TODO parameters -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- TODO parameters -->
                     <li>
                         <a href="#" data-toggle="modal" data-target="#modalUserSettings">
-                            @{
-                                var userDisplayName = HttpContextStorage.GetUserSettings(Context).DisplayName;
-                                var userHasDisplayName = !String.IsNullOrWhiteSpace(userDisplayName);
-                            }
-                            <span class="glyphicon glyphicon-user"></span>
-                            <span class="@(userHasDisplayName ? "hide" : "")" id="spanUserAnonymous" data-toggle="tooltip" data-placement="bottom" title="მიუთითეთ სწავლის პარამეტრები">პარამეტრები</span>
-                            <span class="@(userHasDisplayName ? "" : "hide")" id="spanUserNamed" data-toggle="tooltip" data-placement="bottom" title="თქვენი სწავლის პარამეტრები">მოგესალმებით, <span id="spanUserDisplayName">@userDisplayName</span>!</span>
+                            <span class="glyphicon glyphicon-cog" data-toggle="tooltip" data-placement="bottom" title="სწავლის პარამეტრები"></span>
                         </a>
                     </li>
                 </ul>
@@ -135,19 +123,11 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
-    <environment exclude="Development"> <!-- TODO minification -->
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+        <script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 

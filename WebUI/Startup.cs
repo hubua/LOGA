@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LOGA.WebUI.Services;
+using LOGA.WebUI.Filters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebUI
 {
@@ -22,7 +24,7 @@ namespace WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options => { options.Filters.Add(typeof(UserSettingsActionFilter)); });
 
             services.AddDistributedMemoryCache();
 
@@ -32,6 +34,8 @@ namespace WebUI
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
                 options.Cookie.HttpOnly = true;
             });
+
+            services.AddScoped<UserSettingsActionFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

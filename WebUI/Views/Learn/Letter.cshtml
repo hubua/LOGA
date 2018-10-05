@@ -12,7 +12,7 @@
     string viewname = Context.Request.IsMobileBrowser() ? "_LetterToLearnMobilePartial" : "_LetterToLearnPartial";
 }
 
-@Html.Partial(viewname, Model, new ViewDataDictionary(this.ViewData) { { "size", "h2" } })
+@await Html.PartialAsync(viewname, Model, new ViewDataDictionary(this.ViewData) { { "size", "h2" } })
 
 @{
     var showTranslate = (Model.Words.Count() > 0);

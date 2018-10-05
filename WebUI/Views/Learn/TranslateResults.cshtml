@@ -13,7 +13,7 @@
     string viewname = Context.Request.IsMobileBrowser() ? "_LetterToLearnMobilePartial" : "_LetterToLearnPartial";
 }
 
-@Html.Partial(viewname, letter, new ViewDataDictionary(this.ViewData) { { "size", "h4" } })
+@await Html.PartialAsync(viewname, letter, new ViewDataDictionary(this.ViewData) { { "size", "h4" } })
 
 <div class="panel panel-default padding-8">
 

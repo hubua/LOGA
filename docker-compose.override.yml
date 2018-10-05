@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  loga_webui_core:
+  loga_webapp:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
     ports:
-      - "80"
+      - "80:4123" # map container port 4123 to 80 (ensure nothing uses port 80 locally!)

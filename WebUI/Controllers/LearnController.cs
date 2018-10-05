@@ -1,6 +1,7 @@
 ﻿using LOGA.WebUI;
 using LOGA.WebUI.Models;
 using LOGA.WebUI.Services;
+using LOGA.WebUI.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -35,12 +36,14 @@ namespace LOGA.WebUI.Controllers
             {
                 return RedirectToAction(nameof(Letter), new { lid = GeorgianABCService.FIRST_LETTER_LID });
             }
+            
+            HttpContextStorage.SetUserLearnProgressLId(HttpContext, lid);
 
             GeorgianLetter letter = GeorgianABCService.GetLetterByLearnIndex(lid);
             return View("Letter", letter);
         }
 
-        [HttpGet] // Used by syncronous Get
+        [HttpGet] // Used by http Get
         public ActionResult Translate([DefaultValue(GeorgianABCService.FIRST_LETTER_TRANSLATION_LID)] int lid, bool shuffle = false)
         {
             if (!GeorgianABCService.IsValidLearnIndex(lid) || lid == GeorgianABCService.FIRST_LETTER_LID)
