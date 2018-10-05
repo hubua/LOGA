@@ -16,6 +16,7 @@ namespace LOGA.WebUI.Services
 
         public const int FIRST_LETTER_LID = 1;
         public const int FIRST_LETTER_TRANSLATION_LID = 2;
+        public const int LAST_LETTER_LID = 105;
 
         public static bool IsValidLearnIndex(int lid)
         {

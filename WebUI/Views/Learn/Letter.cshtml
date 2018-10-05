@@ -16,8 +16,8 @@
 
 @{
     var showTranslate = (Model.Words.Count() > 0);
-    var showNext = true;
-    var showPrev = (Model.LearnOrder != 1);
+    var showNext = (Model.LearnOrder != GeorgianABCService.LAST_LETTER_LID);
+    var showPrev = (Model.LearnOrder != GeorgianABCService.FIRST_LETTER_LID);
 }
 
 @if (showTranslate)

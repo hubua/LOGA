@@ -55,6 +55,15 @@ namespace Tests
         }
 
         [TestMethod]
+        public void GetWordsToTranslateForLetter_Test()
+        {
+            // Test fails if sentences.txt contains empty string
+            Assert.IsTrue(GeorgianABCService.GetWordsToTranslateForLetter(1).Count == 0);
+            Assert.IsTrue(GeorgianABCService.GetWordsToTranslateForLetter(2).Count == 1);
+            Assert.IsTrue(GeorgianABCService.GetWordsToTranslateForLetter(101).Count == 0);
+        }
+
+        [TestMethod]
         public void GetWordsToTranslateForLetter_Shuffled_Test()
         {   
             foreach (var l in GeorgianABCService.LettersDictionary)
