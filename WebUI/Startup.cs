@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using LOGA.WebUI.Services;
 using LOGA.WebUI.Filters;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
 
 namespace WebUI
 {
@@ -53,7 +56,17 @@ namespace WebUI
 
             app.UseSession();
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(); // from wwwroot
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "node_modules")),
+                RequestPath = "/lib",
+                OnPrepareResponse = context =>
+                {
+                    var t = 60 * 10; // sec
+                    context.Context.Response.Headers.Append("Cache-Control", $"public,max-age={t}");
+                }
+            });
 
             app.UseMvc(routes =>
             {
