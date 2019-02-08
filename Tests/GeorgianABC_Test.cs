@@ -4,6 +4,8 @@ using LOGA.WebUI.Models;
 using System.Collections.Generic;
 using System.Linq;
 using LOGA.WebUI.Services;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace Tests
 {
@@ -27,7 +29,11 @@ namespace Tests
         [TestInitialize]
         public void Initialize()
         {
-            GeorgianABCService.Initialize(@".\..\..\..\..\WebUI\Services\Data\");
+            var provider = new PhysicalFileProvider(new FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).DirectoryName);
+            var dirinfo = provider.GetFileInfo("/Services/Data/");
+            var dir = dirinfo.PhysicalPath;
+
+            GeorgianABCService.Initialize(dir);
         }
 
         [TestMethod]
