@@ -18,6 +18,9 @@ namespace LOGA.WebUI.Services
         public const int FIRST_LETTER_TRANSLATION_LID = 2;
         public const int LAST_LETTER_LID = 105;
 
+        public const int MODERN_LETTER_COUNT = 33;
+        public const int OLD_LETTER_COUNT = 5;
+
         public static bool IsValidLearnIndex(int lid)
         {
             return LettersDictionary.Values.ToList().Exists(item => item.LearnOrder == lid);
@@ -42,16 +45,6 @@ namespace LOGA.WebUI.Services
                 nextIndex = (currentIndex == 0) ? order.Count - 1 : currentIndex - 1;
             }
             return order[nextIndex];
-        }
-
-        /// <summary>
-        /// Gets firts word/sentence to translate for given Letter ID
-        /// </summary>
-        /// <param name="lid">Letter ID</param>
-        /// <returns>String in mxedruli to translate</returns>
-        public static string GetFirstWordToTranslateForLetter(int lid)
-        {
-            return GetLetterByLearnIndex(lid).Words[0];
         }
 
         public static List<WordToTranslate> GetWordsToTranslateForLetter(int lid, bool shuffle = false)

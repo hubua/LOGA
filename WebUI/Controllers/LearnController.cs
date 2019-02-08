@@ -56,7 +56,7 @@ namespace LOGA.WebUI.Controllers
             HttpContext.Session.Set<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE, words);
 
             bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
-            return View("Translate", new Translate(words[0].Word, words[0].Word.ToKhucuri(capitalize)));
+            return View("Translate", new Translate(words[0].Word, words[0].Word.ToKhucuri(capitalize), words.Count));
         }
 
         [HttpPost] // Used by Ajax Post
@@ -87,7 +87,7 @@ namespace LOGA.WebUI.Controllers
             if (nextWordToTranslate != null)
             {
                 bool capitalize = HttpContextStorage.GetUserSettings(HttpContext).LearnAsomtavruli;
-                return PartialView("TranslatePartial", new Translate(nextWordToTranslate.Word, nextWordToTranslate.Word.ToKhucuri(capitalize), correctCount, incorrectCount, isCorrectTranslation));
+                return PartialView("TranslatePartial", new Translate(nextWordToTranslate.Word, nextWordToTranslate.Word.ToKhucuri(capitalize), words.Count, correctCount, incorrectCount, isCorrectTranslation));
             }
             else
             {
@@ -100,6 +100,11 @@ namespace LOGA.WebUI.Controllers
         [HttpGet]
         public ActionResult TranslateResults(int lid)
         {
+            if (TempData[CORRECT_COUNT] == null || TempData[INCORRECT_COUNT] == null)
+            {
+                return RedirectToAction(nameof(Translate), new { lid = lid });
+            }
+
             string letterMxedruli = GeorgianABCService.GetLetterByLearnIndex(lid).Mkhedruli;
             string letterKhucuri = GeorgianABCService.GetLetterByLearnIndex(lid).Nuskhuri;
 
