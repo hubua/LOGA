@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  loga_webapp:
-    image: loga_webapp
+  logawebapp:
+    image: ${DOCKER_REGISTRY-}logawebapp
     build:
-      context: ./WebUI
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: LOGAWebApp/Dockerfile

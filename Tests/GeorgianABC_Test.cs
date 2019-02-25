@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LOGA.WebUI.Models;
+using LOGAWebApp.Models;
 using System.Collections.Generic;
 using System.Linq;
-using LOGA.WebUI.Services;
+using LOGAWebApp.Services;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 
@@ -40,10 +40,12 @@ namespace Tests
         public void Translation_Test()
         {
             string mkhedruli = "ბებო ენა";
-            string asomtavruli = "Ⴁⴄⴁⴍ ⴄⴌⴀ";
+            string mixed = "Ⴁⴄⴁⴍ ⴄⴌⴀ";
             string nuskhuri = "ⴁⴄⴁⴍ ⴄⴌⴀ";
-            Assert.IsTrue(mkhedruli.ToKhucuri(true) == asomtavruli);
-            Assert.IsTrue(mkhedruli.ToKhucuri(false) == nuskhuri);
+            string asomtavruli = "ႡႤႡႭ ႤႬႠ";
+            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.Mixed) == mixed);
+            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.OnlyNuskhuri) == nuskhuri);
+            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.OnlyAsomtavruli) == asomtavruli);
         }
 
         [TestMethod]

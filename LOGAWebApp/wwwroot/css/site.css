@@ -1,0 +1,104 @@
+﻿/* For mobile devices and tablets */
+@media (max-width: 768px) {
+    .body-content-container {
+        padding: 0 5px 15px 5px;
+        border-radius: unset;
+        box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+    }
+
+    .page-header {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    /* Remove extra space in navbar*/
+    .navbar-default {
+        margin-bottom: 0;
+    }
+
+    .panel-body {
+        padding-top: 0;
+    }
+}
+
+@font-face {
+    font-family: GeoUnicodeFont;
+    src: url('../../fonts/sylfaen.ttf')
+}
+
+@font-face {
+    font-family: GeoUnicodeFontBechduri;
+    src: url('../../fonts/sylfaen_W10.ttf')
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 480px;
+}
+
+/* Use Sylfaen explicitely */
+.geo-font {
+    font-family: GeoUnicodeFont;
+}
+
+/* Use Sylfaen-W10 explicitely */
+.geo-font-bechduri {
+    font-family: GeoUnicodeFontBechduri;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content-container {
+    padding: 0 30px 25px 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Remove extra space */
+.no-top-margin {
+    margin-top: 0;
+}
+
+/* Outer margin */
+.margin-8 {
+    margin: 8px;
+}
+
+/* Inner padding */
+.padding-8 {
+    padding: 8px;
+}
+
+/* Inner padding vertical */
+.padding-v-spaced {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.row-spaced {
+    margin-bottom: 12px;
+    /*display: flex;
+    display: -webkit-flex; /* Safari */
+}
+
+.auto-width {
+    width: auto /*!important*/;
+}
+
+.btn-min-width {
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.text-v-middle {
+    vertical-align: middle;
+}
+
+.text-spaced {
+    line-height: 200%;
+}

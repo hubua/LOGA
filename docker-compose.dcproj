@@ -3,18 +3,18 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>dd023d80-bc4a-4512-9357-4b3a0b0812f3</ProjectGuid>
-    <DockerLaunchBrowser>True</DockerLaunchBrowser>
-    <DockerServiceUrl>http://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>loga_webui</DockerServiceName>
+    <ProjectGuid>3ffc63bf-e5ec-4b70-b3db-fa573903663f</ProjectGuid>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
+    <DockerServiceName>logawebapp</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose-loga-nginx.yml" />
-    <None Include="docker-compose.ci.build.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
     <None Include="docker-compose.yml" />
+    <None Include=".dockerignore" />
     <None Include="loga-nginx.conf" />
   </ItemGroup>
 </Project>

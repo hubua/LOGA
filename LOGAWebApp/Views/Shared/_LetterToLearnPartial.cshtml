@@ -1,0 +1,36 @@
+﻿@model LOGAWebApp.Models.GeorgianLetter
+
+<table class="table text-center table-bordered auto-width">
+    <colgroup>
+        <col style="width: 25%; background-color: lightgray" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+    </colgroup>
+    <tr>
+        <td><strong>ასო</strong></td>
+        <td>ასომთავრული</td>
+        <td>ნუსხური</td>
+        <td>რიცხვითი მნიშვნელობა</td>
+    </tr>
+    <tr class="@ViewData["size"]">
+        <td class="geo-font">@(String.IsNullOrEmpty(Model.ReadAs) ? Model.Mkhedruli : $"{Model.Mkhedruli} ({Model.ReadAs})")</td>
+        <td>
+            <span class="geo-font-bechduri" data-toggle="tooltip" data-placement="left" title="ბეჭდური">
+                @Model.Asomtavruli
+            </span>
+            <span class="geo-font" data-toggle="tooltip" data-placement="right" title="ხელნაწერი">
+                (&nbsp;@Model.Asomtavruli&nbsp;)
+            </span>
+        </td>
+        <td>
+            <span class="geo-font-bechduri" data-toggle="tooltip" data-placement="left" title="ბეჭდური">
+                @Model.Nuskhuri
+            </span>
+            <span class="geo-font" data-toggle="tooltip" data-placement="right" title="ხელნაწერი">
+                (&nbsp;@Model.Nuskhuri&nbsp;)
+            </span>
+        </td>
+        <td>@Model.NumberEquivalent</td>
+    </tr>
+</table>

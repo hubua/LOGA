@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ხუცურის სწავლის ადვილი საშუალება">
+    <meta name="google" content="notranslate">
+    <meta name="robots" content="noarchive">
+    <meta name="" content="">
+    <title>@ViewBag.Title - ბებო ენა .მე</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/jquery-ui-bundle.1.12.1/jquery-ui.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> <!-- site scripts go last -->
+        <link rel="stylesheet" href="~/css/site-custom-bootstrap.css" asp-append-version="true" /> <!-- site scripts go last -->
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/jquery-ui-bundle.1.12.1/jquery-ui.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" /> <!-- includes custom-bootstrap -->
+    </environment>
+</head>
+
+<body>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-78075437-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    @if (Html.IsDebugMode())
+    {
+        <p class="bg-warning text-center">
+            DEBUG MODE @DateTime.Now.ToString() <br />
+            WritingCapitalization: @HttpContextStorage.GetUserSettings(Context).WritingCapitalization<br />
+            SaveLearnProgress: @HttpContextStorage.GetUserSettings(Context).SaveLearnProgress<br />
+            ProgressLId: @HttpContextStorage.GetUserLearnProgressLId(Context) <br />
+        </p>
+    }
+
+    <div id="modalUserSettings" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-large">
+        <form asp-action="UpdateSettings" asp-controller="Home" method="post" data-ajax="true" data-ajax-url="/Home/UpdateSettings" data-ajax-update="" data-ajax-begin="onBegin" data-ajax-success="onSuccess" data-ajax-loading="lblSaveInProgress" data-ajax-loading-duration="500">
+            @await Html.PartialAsync("_UserSettingsPartial", HttpContextStorage.GetUserSettings(Context))
+        </form>
+    </div>
+
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Ⴁⴄⴁⴍ Ⴄⴌⴀ", "Index", "Home", null, new { @class = "navbar-brand geo-font-bechduri" })
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="@(ViewData["ActiveMenu"]?.ToString() == "Learn" ? "active" : "")"><a href="@Url.Action("Index", "Learn")">სწავლა</a></li>
+                    <li class="@(ViewData["ActiveMenu"]?.ToString() == "Downloads" ? "active" : "")"><a href="@Url.Action("Index", "Downloads")">სასარგებლო მასალა</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- TODO parameters -->
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#modalUserSettings">
+                            <span class="glyphicon glyphicon-cog" data-toggle="tooltip" data-placement="bottom" title="სწავლის პარამეტრები"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content-container">
+        <div class="page-header">
+            @{
+                string h = Context.Request.IsMobileBrowser() ? "h3" : "h2";
+            }
+            <@h>@ViewBag.PageHead&nbsp;<small>@ViewBag.PageHeadSmall</small></@h>
+        </div>
+
+        @RenderBody()
+
+    </div>
+
+    <div class="container padding-v-spaced">
+        <footer class="text-muted">
+            <div>
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                        <p>&copy; 2016-@DateTime.Now.Year "ბებო ენა" :) - ვისწავლოთ ხუცური</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-nowrap text-right">
+                            <span class="hidden-xs">საკონტაქტო ელ-ფოსტა:&nbsp;</span>
+                            <span class="visible-xs-inline">მოგვწერეთ:&nbsp;</span>
+                            <a class="text-muted" href="mailto:khubua@gmail.com">khubua@gmail.com</a>
+                        </div>
+                        <div class="text-nowrap text-right">
+                            <span class="hidden-xs">გავაუმჯობესოთ საიტი ერთად:&nbsp;</span>
+                            <span class="visible-xs-inline">sources:&nbsp;</span>
+                            <a class="text-muted" href="https://github.com/hubua/LOGA" target="_blank">https://github.com/hubua/LOGA</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
+
+        <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js" type="text/javascript" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+
+        <script src="~/lib/jquery-ui-bundle.1.12.1/jquery-ui.js" asp-append-version="true"></script>
+
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+
+        <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" type="text/javascript" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+
+        <script src="~/lib/jquery-ui-bundle.1.12.1/jquery-ui.min.js" asp-append-version="true"></script>
+
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+
+</html>

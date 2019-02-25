@@ -62,26 +62,26 @@ namespace Tests
         [TestMethod]
         public void Home_Index_Test()
         {
-            var controller = new LOGA.WebUI.Controllers.HomeController();
+            var controller = new LOGAWebApp.Controllers.HomeController();
             controller.Index().IsViewResult().HasViewName("Index");
         }
 
         [TestMethod]
         public void Learn_Index_Test()
         {
-            var controller = new LOGA.WebUI.Controllers.LearnController();
+            var controller = new LOGAWebApp.Controllers.LearnController();
             var actionresult = controller.Index();
 
             actionresult.IsActionResultOfType<ViewResult>().HasViewName("Index");
 
-            var model = (Dictionary<char, LOGA.WebUI.Models.GeorgianLetter>)((ViewResult)actionresult).Model;
+            var model = (Dictionary<char, LOGAWebApp.Models.GeorgianLetter>)((ViewResult)actionresult).Model;
 
             const int INVALID_LEARN_INDEX = 1000;
             const int VALID_LEARN_INDEX = 2;
 
-            var c = new LOGA.WebUI.Controllers.LearnController();
+            var c = new LOGAWebApp.Controllers.LearnController();
             c.Letter(INVALID_LEARN_INDEX).IsActionResultOfType<RedirectToRouteResult>().RedirectsTo("Letter").WithParam("lid", 1);
-            c.Letter(VALID_LEARN_INDEX).IsActionResultOfType<ViewResult>().HasViewName("Letter").HasModel<LOGA.WebUI.Models.GeorgianLetter>();
+            c.Letter(VALID_LEARN_INDEX).IsActionResultOfType<ViewResult>().HasViewName("Letter").HasModel<LOGAWebApp.Models.GeorgianLetter>();
         }
         */
 

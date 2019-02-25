@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  loga_webapp:
+  logawebapp:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
     ports:
