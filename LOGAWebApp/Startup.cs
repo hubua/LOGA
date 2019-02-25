@@ -45,11 +45,15 @@ namespace LOGAWebApp
 
             services.AddHealthChecks();
 
-            services.AddResponseCompression(options =>
+            services.AddResponseCompression();
+
+            /*
+             * Brotli is HTTPS only https://samsaffron.com/archive/2016/06/15/the-current-state-of-brotli-compression
+             * services.AddResponseCompression(options =>
             {
                 options.Providers.Add<BrotliCompressionProvider>();
                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
-            });
+            });*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -99,18 +103,4 @@ namespace LOGAWebApp
         }
     }
 
-    public class BrotliCompressionProvider : ICompressionProvider
-    {
-        // https://blogs.msdn.microsoft.com/dotnet/2017/07/27/introducing-support-for-brotli-compression/
-        // https://dotnet.myget.org/feed/dotnet-corefxlab/package/nuget/System.IO.Compression.Brotli
-
-        public string EncodingName => "br";
-
-        public bool SupportsFlush => true;
-
-        public Stream CreateStream(Stream outputStream)
-        {
-            return new BrotliStream(outputStream, CompressionMode.Compress);
-        }
-    }
 }
