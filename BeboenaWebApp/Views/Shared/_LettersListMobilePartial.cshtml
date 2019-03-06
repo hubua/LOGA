@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BeboenaWebApp.Models.GeorgianLetter>
+
+<div class="h4">
+    <table class="table text-center table-bordered">
+        <colgroup>
+            <col style="width: 25%;" />
+            <col style="width: 25%" />
+            <col style="width: 25%" />
+            <col style="width: 25%" />
+        </colgroup>
+        <tr>
+            <th class="text-center" colspan="2">[ სახელი ] მხედრული</th>
+            <th class="text-center h5" colspan="2">ასომთავრული / ნუსხური</th>
+        </tr>
+        @foreach (var item in @Model)
+        {
+            var letter = item;
+            <tr>
+                <td>
+                    [ <a href='@Url.Action("Letter", "Learn", new { lid = @letter.LearnOrder })' data-toggle="tooltip" data-placement="top" title="გავაგრძელოთ აქედან">@letter.LetterName</a> ]
+                </td>
+                <td>
+                    @(String.IsNullOrEmpty(letter.ReadAs) ? letter.Mkhedruli : $"{letter.Mkhedruli} ({letter.ReadAs})")
+                </td>
+                <td>
+                    <span class="geo-font-bechduri">
+                        @letter.Asomtavruli
+                    </span>
+                </td>
+                <td>
+                    <span class="geo-font-bechduri">
+                        @letter.Nuskhuri
+                    </span>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

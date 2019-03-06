@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LOGAWebApp", "LOGAWebApp\LOGAWebApp.csproj", "{8E315961-36BF-4575-BD5D-7596FDCE0E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboenaWebApp", "BeboenaWebApp\BeboenaWebApp.csproj", "{8E315961-36BF-4575-BD5D-7596FDCE0E3A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{795D20C0-FC25-4B0C-8997-0175505F61CB}"
 EndProject

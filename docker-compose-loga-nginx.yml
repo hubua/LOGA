@@ -2,9 +2,9 @@ version: '3.4'
 
 services:
   
-  logawebapp-service: # name used in loga-nginx.conf
-    container_name: logawebapp-container
-    image: hubua/logawebapp:20190225070613 # update tag with latest required
+  loga-service: # name used in loga-nginx.conf
+    container_name: loga-container
+    image: hubua/loga:20190225070613 # update tag with latest required
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
 

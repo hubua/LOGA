@@ -1,0 +1,65 @@
+﻿@model BeboenaWebApp.Models.Translate
+
+@{
+    ViewBag.Title = "სწავლა";
+    ViewBag.PageHead = ViewBag.Title;
+    ViewBag.PageHeadSmall = "შედეგი";
+
+    int letterLId = Convert.ToInt32(ViewContext.RouteData.Values["lid"]);
+    int nextLetterLId = GeorgianABCService.GetNextLetterLearnIndex(letterLId);
+    GeorgianLetter letter = GeorgianABCService.GetLetterByLearnIndex(letterLId);
+
+    // Tablets are NOT included into Mobile Devices
+    string viewname = Context.Request.IsMobileBrowser() ? "_LetterToLearnMobilePartial" : "_LetterToLearnPartial";
+}
+
+@await Html.PartialAsync(viewname, letter, new ViewDataDictionary(this.ViewData) { { "size", "h4" } })
+
+<div class="panel panel-default padding-8">
+
+    <h3 class="margin-8">
+        <span class="label label-success"><span class="lead">@Model.CorrectCount</span> სწორი თარგმანი</span>
+    </h3>
+    <h3 class="margin-8">
+        <span class="label label-danger"><span class="lead">@Model.IncorrectCount</span> არასწორი თარგმანი</span>
+    </h3>
+    <h2 class="margin-8" style="margin-top: 12px">
+        @if (Model.CorrectCount == 0)
+        {
+            <b>ცუდია</b><span class="glyphicon glyphicon-thumbs-down" style="margin-left: 10px;"></span>
+        }
+        else if (Model.IncorrectCount == 0)
+        {
+            <b>ბრწყინვალეა</b><span class="glyphicon glyphicon-thumbs-up" style="margin-left: 10px;"></span>
+        }
+        else if (Model.CorrectCount < Model.IncorrectCount)
+        {
+            <b>არადამაკმაყოფილებელია</b>
+        }
+        else // CorrectCount >= IncorrectCount
+        {
+            <b>კარგია</b>
+        }
+    </h2>
+
+</div>
+
+@{
+    var hasIncorrectAnswers = (Model.IncorrectCount != 0);
+    var hasCorrectAnswers = (Model.CorrectCount != 0);
+}
+
+@if (hasIncorrectAnswers)
+{
+    <div class="margin-8 btn-min-width">
+        @Html.ActionLink("ვცადოთ ხელახლა", "Translate", "Learn", new { lid = letterLId, shuffle = true }, new { @class = "btn btn-primary btn-lg btn-block", id = "default-focus-a" })
+    </div>
+}
+
+@if (hasCorrectAnswers)
+{
+    <div class="margin-8 btn-min-width">
+        @Html.ActionLink("შემდეგი ასო", "Letter", "Learn", new { lid = nextLetterLId }, new { @class = "btn btn-info btn-lg btn-block", id = (!hasIncorrectAnswers ? "default-focus-a" : "") })
+    </div>
+}
+

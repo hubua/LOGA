@@ -1,0 +1,36 @@
+﻿@model BeboenaWebApp.Models.Translate
+
+@{
+    ViewBag.Title = "თარგმანი";
+    ViewBag.PageHead = ViewBag.Title;
+    ViewBag.PageHeadSmall = "შევამოწმოთ ცოდნა";
+}
+
+<form asp-action="Translate" asp-controller="Learn" method="post" data-ajax="true" data-ajax-update="#divAjaxUpdate" data-ajax-success="ReInit">
+    <div id="divAjaxUpdate">
+        @await Html.PartialAsync("TranslatePartial", Model)
+    </div>
+</form>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        function ReInit()
+        {
+            $('#tbTranslation').bind('keyup blur', function () {
+                $('#btnTranslate').prop('disabled', this.value.trim().length == 0);
+            });
+            $('#tbTranslation').focus();
+
+            var span = $('#hiddenIsPreviousTranslatedCorrectly').val() == 'True' ? "#spanCorrect" : "#spanIncorrect"; // rendered by TranslatePartial
+
+            $(span).toggle('highlight', 1000);
+            $(span).toggle('highlight', 1000);
+        }
+
+        $(document).ready(function () {
+            ReInit()
+        });
+    </script>
+}

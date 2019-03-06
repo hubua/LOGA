@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LOGAWebApp.Models;
+using BeboenaWebApp.Models;
 using System.Collections.Generic;
 using System.Linq;
-using LOGAWebApp.Services;
+using BeboenaWebApp.Services;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 

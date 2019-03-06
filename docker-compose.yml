@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  logawebapp:
-    image: ${DOCKER_REGISTRY-}logawebapp
+  loga:
+    image: ${DOCKER_REGISTRY-}loga
     build:
       context: .
-      dockerfile: LOGAWebApp/Dockerfile
+      dockerfile: BeboenaWebApp/Dockerfile

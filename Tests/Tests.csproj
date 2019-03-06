@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebUI\LOGAWebApp.csproj" />
+    <ProjectReference Include="..\BeboenaWebApp\BeboenaWebApp.csproj" />
   </ItemGroup>
 
 </Project>
