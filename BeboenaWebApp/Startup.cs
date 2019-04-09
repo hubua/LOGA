@@ -66,7 +66,7 @@ namespace BeboenaWebApp
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error"); //TODO not working
+                app.UseExceptionHandler("/Home/Error"); //TODO IMPORTANT nice exception page
             }
 
             app.UseSession();
@@ -99,7 +99,7 @@ namespace BeboenaWebApp
 
             var dirinfo = env.ContentRootFileProvider.GetFileInfo("/Services/Data");
             var dir = dirinfo.PhysicalPath;
-            GeorgianABCService.Initialize(dir); //TODO inject svc
+            GeorgianABCService.Initialize(dir);
         }
     }
 

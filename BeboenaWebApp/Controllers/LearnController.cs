@@ -66,7 +66,7 @@ namespace BeboenaWebApp.Controllers
 #if DEBUG
             System.Threading.Thread.Sleep(2000);
 #endif
-            //TODO show spinner
+            //TODO show progress spinner
             var words = HttpContext.Session.Get<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE);
             if (words == null)
             {
@@ -76,9 +76,9 @@ namespace BeboenaWebApp.Controllers
             var isCorrectTranslation = (hdnMxedruli == tbTranslation);
             words.Single(item => item.Word == hdnMxedruli).IsTranslatedCorrectly = isCorrectTranslation;
 
-            HttpContext.Session.Set<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE, words); //TODO remove session
+            HttpContext.Session.Set<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE, words); //TODO IMPORTANT remove session
 
-            ModelState.Clear(); //TODO remove
+            ModelState.Clear(); //TODO IMPORTANT remove session
             
             int correctCount = words.Where(item => item.IsTranslatedCorrectly.HasValue && item.IsTranslatedCorrectly.Value).Count();
             int incorrectCount = words.Where(item => item.IsTranslatedCorrectly.HasValue && !item.IsTranslatedCorrectly.Value).Count();

@@ -78,7 +78,7 @@ namespace BeboenaWebApp.Filters
         }
     }
 
-    public class CustomExceptionFilterAttribute : ExceptionFilterAttribute // TODO
+    public class CustomExceptionFilterAttribute : ExceptionFilterAttribute //TODO IMPORTANT error logging
     {
         // https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters#exception-filters
         // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling
@@ -102,12 +102,12 @@ namespace BeboenaWebApp.Filters
             var result = new ViewResult { ViewName = "CustomError" };
             result.ViewData = new ViewDataDictionary(_modelMetadataProvider, context.ModelState);
             result.ViewData.Add("Exception", context.Exception);
-            //TODO Pass additional detailed data via ViewData
+            //TODO IMPORTANT Pass additional detailed data via ViewData
             context.Result = result;
         }
     }
 
-    public class LogErrorAttribute : ExceptionFilterAttribute // TODO
+    public class LogErrorAttribute : ExceptionFilterAttribute //TODO IMPORTANT error logging
     {
         public override void OnException(ExceptionContext filterContext)
         {

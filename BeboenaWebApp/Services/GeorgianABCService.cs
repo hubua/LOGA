@@ -21,39 +21,6 @@ namespace BeboenaWebApp.Services
         public const int MODERN_LETTER_COUNT = 33;
         public const int OLD_LETTER_COUNT = 5;
 
-        public static bool IsValidLearnIndex(int lid)
-        {
-            return LettersDictionary.Values.ToList().Exists(item => item.LearnOrder == lid);
-        }
-
-        public static GeorgianLetter GetLetterByLearnIndex(int lid)
-        {
-            return LettersDictionary.Single(item => item.Value.LearnOrder == lid).Value;
-        }
-
-        public static int GetNextLetterLearnIndex(int lid, bool back = false)
-        {
-            var order = LettersDictionary.Select(item => item.Value.LearnOrder).OrderBy(item => item).ToList();
-            int currentIndex = order.IndexOf(lid);
-            int nextIndex;
-            if (!back)
-            {
-                nextIndex = (currentIndex == order.Count - 1) ? 0 : currentIndex + 1;
-            }
-            else
-            {
-                nextIndex = (currentIndex == 0) ? order.Count - 1 : currentIndex - 1;
-            }
-            return order[nextIndex];
-        }
-
-        public static List<WordToTranslate> GetWordsToTranslateForLetter(int lid, bool shuffle = false)
-        {
-            var letter = GetLetterByLearnIndex(lid);
-            var words = shuffle ? letter.Words.OrderBy(item => random.Next()).ToList() : letter.Words.ToList();
-            return words.Select(item => new WordToTranslate { Word = item, IsTranslatedCorrectly = default(bool?) }).ToList();
-        }
-
         public static void Initialize(string csvdir)
         {
             LettersDictionary.Clear(); // In case Initialize was already called before
@@ -103,6 +70,40 @@ namespace BeboenaWebApp.Services
                 LettersDictionary.Add(LetterMxedruli, letter);
             }
         }
+
+        public static bool IsValidLearnIndex(int lid)
+        {
+            return LettersDictionary.Values.ToList().Exists(item => item.LearnOrder == lid);
+        }
+
+        public static GeorgianLetter GetLetterByLearnIndex(int lid)
+        {
+            return LettersDictionary.Single(item => item.Value.LearnOrder == lid).Value;
+        }
+
+        public static int GetNextLetterLearnIndex(int lid, bool back = false)
+        {
+            var order = LettersDictionary.Select(item => item.Value.LearnOrder).OrderBy(item => item).ToList();
+            int currentIndex = order.IndexOf(lid);
+            int nextIndex;
+            if (!back)
+            {
+                nextIndex = (currentIndex == order.Count - 1) ? 0 : currentIndex + 1;
+            }
+            else
+            {
+                nextIndex = (currentIndex == 0) ? order.Count - 1 : currentIndex - 1;
+            }
+            return order[nextIndex];
+        }
+
+        public static List<WordToTranslate> GetWordsToTranslateForLetter(int lid, bool shuffle = false)
+        {
+            var letter = GetLetterByLearnIndex(lid);
+            var words = shuffle ? letter.Words.OrderBy(item => random.Next()).ToList() : letter.Words.ToList();
+            return words.Select(item => new WordToTranslate { Word = item, IsTranslatedCorrectly = default(bool?) }).ToList();
+        }
+
     }
     
     public static class StringTranslationExtension

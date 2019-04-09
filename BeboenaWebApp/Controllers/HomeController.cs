@@ -28,7 +28,7 @@ namespace BeboenaWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateSettings(UserSettings settings) //TODO show spinner progress
+        public ActionResult UpdateSettings(UserSettings settings) //TODO show progress spinner
         {
 #if DEBUG
             System.Threading.Thread.Sleep(1000);
