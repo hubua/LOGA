@@ -102,3 +102,7 @@ textarea {
 .text-spaced {
     line-height: 200%;
 }
+
+#bagde-container img {
+    max-width: 100%;
+}

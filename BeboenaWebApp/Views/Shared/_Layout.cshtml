@@ -91,12 +91,22 @@
 
     </div>
 
+    @if (Context.Request.IsMobileBrowser())
+    {
+        <div class="container" id="bagde-container">
+            <a href='https://play.google.com/store/apps/details?id=com.hubua.beboena&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                <img class="object-fit_contain" alt='ჩამოტვირთეთ Google Play-დან' src='https://play.google.com/intl/en_us/badges/static/images/badges/ka_badge_web_generic.png' />
+            </a>
+        </div>
+    }
+
     <div class="container padding-v-spaced">
         <footer class="text-muted">
             <div>
                 <div class="row">
                     <div class="col-md-6 text-left">
                         <p>&copy; 2016-@DateTime.Now.Year "ბებო ენა" :) - ვისწავლოთ ხუცური</p>
+                        <p>Google Play და Google Play-ს ლოგო Google LLC-ის სასაქონლო ნიშნებს წარმოადგენს.</p>
                     </div>
                     <div class="col-md-6">
                         <div class="text-nowrap text-right">
