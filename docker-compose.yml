@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   loga:
-    image: ${DOCKER_REGISTRY-}loga
+    image: ${DOCKER_REGISTRY-}loga # This defines the repository name in dockerhub while publishing
     build:
       context: .
       dockerfile: BeboenaWebApp/Dockerfile

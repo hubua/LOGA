@@ -4,7 +4,7 @@ services:
   
   loga-service: # name used in loga-nginx.conf
     container_name: loga-container
-    image: hubua/loga:20190225070613 # update tag with latest required
+    image: hubua/loga:20200103070658 # update tag with latest required
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
 
