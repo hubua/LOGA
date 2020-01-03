@@ -14,9 +14,9 @@ namespace BeboenaWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private IHostingEnvironment hostingEnvironment;
+        private readonly IWebHostEnvironment hostingEnvironment;
 
-        public HomeController(IHostingEnvironment hostingEnvironment)
+        public HomeController(IWebHostEnvironment hostingEnvironment)
         {
             this.hostingEnvironment = hostingEnvironment;
         }

@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
 using Microsoft.Net.Http.Headers;
+using Microsoft.Extensions.Hosting;
 
 namespace BeboenaWebApp
 {
@@ -30,6 +31,8 @@ namespace BeboenaWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddControllersWithViews();
+
             services.AddMvc(options => { options.Filters.Add(typeof(UserSettingsActionFilter)); });
 
             services.AddDistributedMemoryCache();
@@ -57,12 +60,11 @@ namespace BeboenaWebApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
@@ -90,11 +92,13 @@ namespace BeboenaWebApp
                 }
             });
 
-            app.UseMvc(routes =>
+            app.UseStatusCodePages();
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{lid?}");
+                endpoints.MapDefaultControllerRoute();
             });
 
             var dirinfo = env.ContentRootFileProvider.GetFileInfo("/Services/Data");

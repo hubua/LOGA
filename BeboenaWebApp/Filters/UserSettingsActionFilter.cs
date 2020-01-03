@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using BeboenaWebApp.Helpers;
+using Microsoft.Extensions.Hosting;
 
 namespace BeboenaWebApp.Filters
 {
@@ -82,10 +83,10 @@ namespace BeboenaWebApp.Filters
     {
         // https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters#exception-filters
         // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IModelMetadataProvider _modelMetadataProvider;
 
-        public CustomExceptionFilterAttribute(IHostingEnvironment hostingEnvironment, IModelMetadataProvider modelMetadataProvider)
+        public CustomExceptionFilterAttribute(IWebHostEnvironment hostingEnvironment, IModelMetadataProvider modelMetadataProvider)
         {
             _hostingEnvironment = hostingEnvironment;
             _modelMetadataProvider = modelMetadataProvider;

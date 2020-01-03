@@ -11,3 +11,4 @@ Learn Old Georgian Alphabet
 
 ## Usefull
 * https://developers.google.com/analytics/solutions/experiments-client-side
+* `docker rmi -f $(docker images -a -q)`

@@ -39,13 +39,14 @@ namespace Tests
         [TestMethod]
         public void Translation_Test()
         {
+            // Test works only in Release configuration
             string mkhedruli = "ბებო ენა";
             string mixed = "Ⴁⴄⴁⴍ ⴄⴌⴀ";
             string nuskhuri = "ⴁⴄⴁⴍ ⴄⴌⴀ";
             string asomtavruli = "ႡႤႡႭ ႤႬႠ";
-            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.Mixed) == mixed);
-            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.OnlyNuskhuri) == nuskhuri);
-            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.OnlyAsomtavruli) == asomtavruli);
+            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.Mixed) == mixed, "Mixed");
+            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.OnlyNuskhuri) == nuskhuri, "OnlyNuskhuri");
+            Assert.IsTrue(mkhedruli.ToKhucuri(Writing.OnlyAsomtavruli) == asomtavruli, "Asomtavruli");
         }
 
         [TestMethod]
