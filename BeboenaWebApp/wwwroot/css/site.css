@@ -103,6 +103,11 @@ textarea {
     line-height: 200%;
 }
 
+#bagde-container {
+    text-align: right;
+    max-width: 300px;
+}
+
 #bagde-container img {
     max-width: 100%;
 }
