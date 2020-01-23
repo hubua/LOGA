@@ -47,13 +47,16 @@ namespace BeboenaWebApp.Services
 
             foreach (var sentence in sentencesData)
             {
-                int max = 0;
-                foreach (char letter in sentence)
+                if (!String.IsNullOrWhiteSpace(sentence))
                 {
-                    int lid = letters.IndexOf(letter);
-                    max = Math.Max(max, lid);
+                    int max = 0;
+                    foreach (char letter in sentence)
+                    {
+                        int lid = letters.IndexOf(letter);
+                        max = Math.Max(max, lid);
+                    }
+                    letterSentences[letters[max]].Add(sentence);
                 }
-                letterSentences[letters[max]].Add(sentence);
             }
 
             foreach (var data in ogaData)
@@ -97,15 +100,17 @@ namespace BeboenaWebApp.Services
             return order[nextIndex];
         }
 
-        public static List<WordToTranslate> GetWordsToTranslateForLetter(int lid, bool shuffle = false)
+        public static List<WordToTranslate> GetWordsToTranslateForLetter(int lid, bool shuffle = false, int maxSentences = Int32.MaxValue)
         {
             var letter = GetLetterByLearnIndex(lid);
-            var words = shuffle ? letter.Words.OrderBy(item => random.Next()).ToList() : letter.Words.ToList();
-            return words.Select(item => new WordToTranslate { Word = item, IsTranslatedCorrectly = default(bool?) }).ToList();
+            var words = !shuffle
+                ? letter.Words.OrderBy(item => item.Length).ToList()
+                : letter.Words.OrderBy(item => random.Next()).ToList();
+            return words.Select(item => new WordToTranslate { Word = item, IsTranslatedCorrectly = default(bool?) }).Take(maxSentences).ToList();
         }
 
     }
-    
+
     public static class StringTranslationExtension
     {
         public static string ToKhucuri(this string mxedruli, Writing capitalization = Writing.Mixed)

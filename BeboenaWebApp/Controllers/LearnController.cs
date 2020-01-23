@@ -52,7 +52,8 @@ namespace BeboenaWebApp.Controllers
                 return RedirectToAction(nameof(Translate), new { lid = GeorgianABCService.FIRST_LETTER_TRANSLATION_LID });
             }
 
-            var words = GeorgianABCService.GetWordsToTranslateForLetter(lid, shuffle);
+            const int MAX_SENTENCES = 9;
+            var words = GeorgianABCService.GetWordsToTranslateForLetter(lid, shuffle, MAX_SENTENCES);
 
             HttpContext.Session.Set<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE, words);
 

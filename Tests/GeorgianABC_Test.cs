@@ -39,7 +39,10 @@ namespace Tests
         [TestMethod]
         public void Translation_Test()
         {
-            // Test works only in Release configuration
+#if DEBUG
+            Assert.Fail("Test should be run in Release configuration only");
+#endif
+            
             string mkhedruli = "ბებო ენა";
             string mixed = "Ⴁⴄⴁⴍ ⴄⴌⴀ";
             string nuskhuri = "ⴁⴄⴁⴍ ⴄⴌⴀ";
@@ -66,10 +69,9 @@ namespace Tests
         [TestMethod]
         public void GetWordsToTranslateForLetter_Test()
         {
-            // Test fails if sentences.txt contains empty string
-            Assert.IsTrue(GeorgianABCService.GetWordsToTranslateForLetter(1).Count == 0);
-            Assert.IsTrue(GeorgianABCService.GetWordsToTranslateForLetter(2).Count == 1);
-            Assert.IsTrue(GeorgianABCService.GetWordsToTranslateForLetter(101).Count == 0);
+            Assert.IsTrue(GeorgianABCService.GetWordsToTranslateForLetter(1).Count == 0, "lid 1 words wrong");
+            Assert.IsTrue(GeorgianABCService.GetWordsToTranslateForLetter(2).Count == 1, "lid 2 words wrong");
+            Assert.IsTrue(GeorgianABCService.GetWordsToTranslateForLetter(101).Count == 0, "lid 101 words wrong");
         }
 
         [TestMethod]

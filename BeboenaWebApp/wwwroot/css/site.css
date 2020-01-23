@@ -31,7 +31,7 @@
 
 @font-face {
     font-family: GeoUnicodeFontBechduri;
-    src: url('../../fonts/sylfaen_W10.ttf')
+    src: url('../../fonts/sylfaen_bechduri_khutsuri.ttf')
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -46,7 +46,7 @@ textarea {
     font-family: GeoUnicodeFont;
 }
 
-/* Use Sylfaen-W10 explicitely */
+/* Use Sylfaen_bechduri_khutsuri explicitely */
 .geo-font-bechduri {
     font-family: GeoUnicodeFontBechduri;
 }
