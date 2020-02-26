@@ -42,7 +42,7 @@ namespace Tests
 #if DEBUG
             Assert.Fail("Test should be run in Release configuration only");
 #endif
-            
+
             string mkhedruli = "ბებო ენა";
             string mixed = "Ⴁⴄⴁⴍ ⴄⴌⴀ";
             string nuskhuri = "ⴁⴄⴁⴍ ⴄⴌⴀ";
@@ -76,18 +76,20 @@ namespace Tests
 
         [TestMethod]
         public void GetWordsToTranslateForLetter_Shuffled_Test()
-        {   
-            foreach (var l in GeorgianABCService.LettersDictionary)
-            {
-                var lid = l.Value.LearnOrder;
-                var words = GeorgianABCService.GetWordsToTranslateForLetter(lid);
-                var wordsShuffled = GeorgianABCService.GetWordsToTranslateForLetter(lid, true);
-                
-                Assert.IsTrue(Enumerable.SequenceEqual(words.OrderBy(item => item.Word), wordsShuffled.OrderBy(item => item.Word), new WordsToTranslateComparer()));
-            }
+        {
+            var l = GeorgianABCService.LettersDictionary.First(item => item.Value.Words.Count() >= 8 && item.Value.Words.Count() <= 10);
+
+            var lid = l.Value.LearnOrder;
+            var words1 = GeorgianABCService.GetWordsToTranslateForLetter(lid);
+            var words2 = GeorgianABCService.GetWordsToTranslateForLetter(lid);
+
+
+            Assert.IsFalse(Enumerable.SequenceEqual(words1, words2, new WordsToTranslateComparer()));
+            Assert.IsTrue(Enumerable.SequenceEqual(words1.OrderBy(item => item.Word), words2.OrderBy(item => item.Word), new WordsToTranslateComparer()));
+
         }
 
-        
-        
+
+
     }
 }

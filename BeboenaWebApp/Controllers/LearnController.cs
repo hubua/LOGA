@@ -45,7 +45,7 @@ namespace BeboenaWebApp.Controllers
         }
 
         [HttpGet] // Used by http Get
-        public ActionResult Translate([DefaultValue(GeorgianABCService.FIRST_LETTER_TRANSLATION_LID)] int lid, bool shuffle = false)
+        public ActionResult Translate([DefaultValue(GeorgianABCService.FIRST_LETTER_TRANSLATION_LID)] int lid)
         {
             if (!GeorgianABCService.IsValidLearnIndex(lid) || lid == GeorgianABCService.FIRST_LETTER_LID)
             {
@@ -53,7 +53,7 @@ namespace BeboenaWebApp.Controllers
             }
 
             const int MAX_SENTENCES = 9;
-            var words = GeorgianABCService.GetWordsToTranslateForLetter(lid, shuffle, MAX_SENTENCES);
+            var words = GeorgianABCService.GetWordsToTranslateForLetter(lid, MAX_SENTENCES);
 
             HttpContext.Session.Set<List<WordToTranslate>>(SESSION_WORDS_TO_TRANSLATE, words);
 

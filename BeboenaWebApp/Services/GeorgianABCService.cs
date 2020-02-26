@@ -30,36 +30,38 @@ namespace BeboenaWebApp.Services
              * [0]Order [1]Modern [2]Asomtavruli [3]Nuskhuri [4]AlternativeAsomtavruliSpelling [5]LatinEquivalent
              * [6]NumberEquivalent [7]LetterName [8]ReadAs [9]LearnOrder [10]LearnOrder2 [11]Words
              */
-            var ogaData = ogaCSV.Skip(1).Select(item => item.Split('\t'));
+            var ogaList = ogaCSV.Skip(1).Select(item => item.Split('\t'));
 
             var sentencesCSV1 = File.ReadAllLines(Path.Combine(csvdir, "sentences1.txt"));
             var sentencesCSV2 = File.ReadAllLines(Path.Combine(csvdir, "sentences2.txt"));
-            var sentencesData = sentencesCSV1.Concat(sentencesCSV2).Distinct().ToList();
+            var sentencesList = sentencesCSV1.Concat(sentencesCSV2)
+                .Select(item => item.Trim())
+                .Where(item => !String.IsNullOrWhiteSpace(item))
+                .Where(item => !item.Contains('('))
+                .Distinct()
+                .ToList();
 
             var letterSentences = new Dictionary<char, List<string>>();
 
-            var letters = ogaData
+            var letters = ogaList
                 .Select(item => new KeyValuePair<char, int>(Convert.ToChar(item[1]), Convert.ToInt32(item[9])))
                 .OrderBy(item => item.Value)
                 .Select(item => item.Key)
                 .ToList();
             letters.ForEach(letter => { letterSentences.Add(letter, new List<string>()); });
 
-            foreach (var sentence in sentencesData)
+            foreach (var sentence in sentencesList)
             {
-                if (!String.IsNullOrWhiteSpace(sentence))
+                int max = 0;
+                foreach (char letter in sentence)
                 {
-                    int max = 0;
-                    foreach (char letter in sentence)
-                    {
-                        int lid = letters.IndexOf(letter);
-                        max = Math.Max(max, lid);
-                    }
-                    letterSentences[letters[max]].Add(sentence);
+                    int lid = letters.IndexOf(letter);
+                    max = Math.Max(max, lid);
                 }
+                letterSentences[letters[max]].Add(sentence);
             }
 
-            foreach (var data in ogaData)
+            foreach (var data in ogaList)
             {
                 var LetterMxedruli = Convert.ToChar(data[1]);
                 var Order = Convert.ToInt32(data[0]);
@@ -100,13 +102,14 @@ namespace BeboenaWebApp.Services
             return order[nextIndex];
         }
 
-        public static List<WordToTranslate> GetWordsToTranslateForLetter(int lid, bool shuffle = false, int maxSentences = Int32.MaxValue)
+        public static List<WordToTranslate> GetWordsToTranslateForLetter(int lid, int maxSentences = Int32.MaxValue)
         {
             var letter = GetLetterByLearnIndex(lid);
-            var words = !shuffle
-                ? letter.Words.OrderBy(item => item.Length).ToList()
-                : letter.Words.OrderBy(item => random.Next()).ToList();
-            return words.Select(item => new WordToTranslate { Word = item, IsTranslatedCorrectly = default(bool?) }).Take(maxSentences).ToList();
+            var words = letter.Words
+                .OrderBy(item => random.Next()) // Shuffle
+                .Take(maxSentences)
+                .OrderBy(item => item.Length);
+            return words.Select(item => new WordToTranslate { Word = item, IsTranslatedCorrectly = default(bool?) }).ToList();
         }
 
     }
