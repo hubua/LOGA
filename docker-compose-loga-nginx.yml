@@ -7,6 +7,8 @@ services:
     image: hubua/loga:20200123043834 # update tag with latest required
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      
+      restart always http healch url required
 
   reverse-proxy-service:
     container_name: reverse-proxy
